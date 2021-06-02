@@ -19,7 +19,7 @@ font-family: "Now Bold";
 color: #6A7885;
 `
 // const reducer = combineReducers({
-//   user: user.reducer
+//   user: user.reucer
 // })
 
 // const store = configureStore({ reducer })
