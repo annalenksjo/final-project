@@ -14,7 +14,9 @@ import { Input } from 'components/Input'
 
 export const StartPage = () => {
   const [ username, setUsername ] = useState('')
+  const [ registerUsername, setRegisterUsername ] = useState('')
   const [ password, setPassword ] = useState('')
+  const [ registerPassword, setRegisterPassword ] = useState('')
   const [ passwordMatch, setPasswordMatch ] = useState('')
  // const [ enableRegisterButton, setEnableRegisterButton ] = useState(true)
   const [ registerError, setRegisterError ] = useState(null)
@@ -56,14 +58,17 @@ export const StartPage = () => {
         }
       })
       .catch()
+    history.push('/profile')
   }
 
   const onRegister = (event) => {
     event.preventDefault()
 
-    if (password !== passwordMatch) {
+    if (registerPassword !== passwordMatch) {
       setRegisterError('Passwords must match')
     } else {
+      setRegisterError(null)
+
       fetch(API_URL('register'), {
         method: 'POST',
         headers: {
@@ -93,6 +98,7 @@ export const StartPage = () => {
   //   }
   // }
 
+  // exchange the forms to styled components RegisterForm and LoginForm
 
   return (
     <>
@@ -121,21 +127,21 @@ export const StartPage = () => {
           <Form onSubmit={onRegister}>
             <label>
             Choose username: 
-              <Input onChange={(event) => setUsername(event.target.value)}
-            value={username} type="text"/>
+              <Input onChange={(event) => setRegisterUsername(event.target.value)}
+            value={registerUsername} type="text"/>
             </label>
             <label>
             Password:
-              <Input onChange={setPassword}
-              value={password} type="password"/>
+              <Input onChange={(event) => setRegisterPassword(event.target.value)}
+              value={registerPassword} type="password"/>
             </label>
             <label>
             Repeat password:
-              <Input onChange={setPasswordMatch}
+              <Input onChange={(event) => setPasswordMatch(event.target.value)}
               value={passwordMatch} type="password"/>
             </label>
             {registerError ? <p>{registerError}</p> : '' }
-            <StyledButton type='submit'> Sign up!</StyledButton>
+            <StyledButton type="submit"> Sign up!</StyledButton>
           </Form>
           <StyledButton onClick={() => setShowRegister(false)}>Back</StyledButton>
         </>

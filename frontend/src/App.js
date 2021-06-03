@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { StartPage } from "pages/Main"
 import { Profile } from "pages/Profile"
+import { Users } from "pages/Users"
 
 import user from './reducers/user'
 
@@ -37,7 +38,10 @@ export const App = () => {
             </Route>     
             <Route path='/profile' exact> 
               <Profile/>
-            </Route>   
+            </Route>
+            <Route path='/users' exact> 
+              <Users/>
+            </Route> 
           </Main>
         </Switch>
         </Provider>

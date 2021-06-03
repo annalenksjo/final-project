@@ -5,6 +5,9 @@ import mongoose from 'mongoose'
 import listEndpoints from 'express-list-endpoints'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/challengeAppAPI'
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -80,6 +83,23 @@ const User = mongoose.model('User', {
   }
 })
 
+const authenticateUser = async (req, res, next) => {
+  const accessToken = req.header('Authorization')
+
+  try {
+    const user = await User.findOne({ accessToken })
+    if (user) {
+      req.user = user
+      next()
+    } else {
+      res.status(401).json({ success: false, message: 'Not authorized' })
+    }
+  } catch (error) {
+    res.status(400).json({ success: false, message: 'Invalid request', error })
+  }
+}
+
+
 const port = process.env.PORT || 8080
 const app = express()
 
@@ -92,6 +112,17 @@ app.get('/', (req, res) => {
   res.send(listEndpoints(app))
 })
 
+//endpoint för att få tag på profilsidan, ska det vara på Id eller username?
+// app.get('/profile', authenticateUser)
+// app.get('/profile', async (req, res) => {
+//   const { _id } = req.params
+
+// })
+
+
+
+
+app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
   // to filter on useraccounts -> users?useraccount='value'
   // should only send username (not accesT & pw)
