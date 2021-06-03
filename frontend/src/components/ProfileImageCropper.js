@@ -6,4 +6,5 @@ export const ProfileImageCropper = styled.div`
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+   
 `

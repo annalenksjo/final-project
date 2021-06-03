@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import { StartPage } from "pages/Main"
 import { Profile } from "pages/Profile"
 
+import user from './reducers/user'
+
 const Main = styled.main` 
 display: flex;
 flex-direction: column;
@@ -18,15 +20,16 @@ box-sizing: border-box;
 font-family: "Now Bold";
 color: #6A7885;
 `
-// const reducer = combineReducers({
-//   user: user.reucer
-// })
+const reducer = combineReducers({
+  user: user.reducer
+})
 
-// const store = configureStore({ reducer })
+const store = configureStore({ reducer })
 
 export const App = () => {
   return (
     <BrowserRouter>
+      <Provider store={store}>
         <Switch>
           <Main>
             <Route path='/' exact>
@@ -37,5 +40,6 @@ export const App = () => {
             </Route>   
           </Main>
         </Switch>
+        </Provider>
     </BrowserRouter>
   )}
