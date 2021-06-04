@@ -14,8 +14,6 @@ display: flex;
 flex-direction: column;
 height: 100vh;
 width: 100vw;
-justify-content: center;
-align-items: center;
 background-color: lightgrey;
 box-sizing: border-box;
 font-family: "Now Bold";

@@ -103,8 +103,8 @@ export const StartPage = () => {
   return (
     <>
       <h1>Welcome</h1>
-      {errorMessage? <p>{errorMessage.message}</p>:''}
-      {!showRegister? 
+      {errorMessage ? <p>{errorMessage.message}</p> : ''}
+      {!showRegister ? 
       <>      
         <Form onSubmit={onLogin}>
           <label>
@@ -120,7 +120,7 @@ export const StartPage = () => {
           <StyledButton type='submit'>Log in</StyledButton>
         </Form>        
          <p>Not a member?</p>
-        <StyledButton onClick={() => setShowRegister(true)}>register!</StyledButton>
+        <StyledButton onClick={() => setShowRegister(true)}>Register</StyledButton>
         </>
         :
         <>

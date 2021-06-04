@@ -1,5 +1,4 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import listEndpoints from 'express-list-endpoints'
@@ -68,13 +67,13 @@ const User = mongoose.model('User', {
     required: true,
     unique: true,
     trim: true,
-    minlenght: 3,
+    //minlenght: 3,
     maxlenght: 30
   },
   password: {
     type: String,
     required: true,
-    minlenght: 5,
+    //minlenght: 5,
     maxlenght: 25
   },
   accessToken: {
@@ -105,7 +104,7 @@ const app = express()
 
 // Add middlewares to enable cors and json body parsing
 app.use(cors())
-app.use(bodyParser.json())
+app.use(express.json())
 
 // GET
 app.get('/', (req, res) => {
@@ -171,7 +170,7 @@ app.post('/register', async (req, res) => {
     if (error.code === 11000) {
       res.status(409).json({ success: false, message: 'Username already exists', error })
     } else {
-      res.status(400).json({ success: false, message: 'Sorry! Invalid request', error })
+      res.status(400).json({ success: false, message: 'Could not create user', error })
     }    
   }
 });
