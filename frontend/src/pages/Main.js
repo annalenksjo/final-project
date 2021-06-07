@@ -48,6 +48,9 @@ export const StartPage = () => {
             dispatch(user.actions.setAccessToken(data.accessToken))
             dispatch(user.actions.setErrors(null))
             console.log('login successful')
+            if (accessToken) {
+              history.push('/profile')
+            }
           })
          
         } else {
@@ -58,7 +61,6 @@ export const StartPage = () => {
         }
       })
       .catch()
-    history.push('/profile')
   }
 
   const onRegister = (event) => {
@@ -66,6 +68,7 @@ export const StartPage = () => {
 
     if (registerPassword !== passwordMatch) {
       setRegisterError('Passwords must match')
+      console.log('password dont match')
     } else {
       setRegisterError(null)
 
@@ -75,8 +78,8 @@ export const StartPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username,
-          password
+          username : registerUsername,
+          password : registerPassword
         })
       })
         .then(response => response.json())
@@ -87,9 +90,11 @@ export const StartPage = () => {
               dispatch(user.actions.setAccessToken(data.accessToken))
               dispatch(user.actions.setErrors(null))
               console.log('register successful')
+              console.log(data)
             })
           } else {
             dispatch(user.actions.setErrors(data))
+            console.log('line 94')
           }
         })
         .catch()

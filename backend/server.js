@@ -67,13 +67,13 @@ const User = mongoose.model('User', {
     required: true,
     unique: true,
     trim: true,
-    //minlenght: 3,
+    minlenght: 3,
     maxlenght: 30
   },
   password: {
     type: String,
     required: true,
-    //minlenght: 5,
+    minlenght: 5,
     maxlenght: 25
   },
   accessToken: {
@@ -173,7 +173,7 @@ app.post('/register', async (req, res) => {
       res.status(400).json({ success: false, message: 'Could not create user', error })
     }    
   }
-});
+})
 
 // USER LOGIN
 
