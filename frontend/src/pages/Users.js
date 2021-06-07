@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import { API_URL } from '../urls/urls'
 import { NavBar } from 'components/NavBar'
@@ -7,22 +8,16 @@ import { StyledButton } from 'components/Button'
 import { Form } from 'components/Form'
 
 export const Users = () => {
-  const [userList, setUserList] = useState([])
+
+  const [userList, setUserList] = useState([1])
   const [userSearch, setUserSearch] = useState('')
-  // const [search, performSearch] = useState(false)
 
   useEffect(() => {
     const fetchUserList = () => {
-        // fetch(API_URL(`users?useraccount=${userSearch}`))
-        // .then(response => response.json())
-        // .then (data => setUserList(data))
-        // console.log('searching')
-      
         fetch(API_URL('users'))
         .then(response => response.json())
         .then (data => setUserList(data))
-        console.log('not searching')
-       
+        console.log('not searching')       
     }
     fetchUserList()
   },[])
@@ -33,11 +28,8 @@ export const Users = () => {
     fetch(API_URL(`users?useraccount=${userSearch}`))
     .then(response => response.json())
     .then (data => setUserList(data))
-    console.log('searching')
-
   }
  
-
   return (
     <>
     <NavBar/>
@@ -50,12 +42,15 @@ export const Users = () => {
         value={userSearch} />
       </label>
       <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
+      {userList.length === 0 ? <p>No users found!</p> : '' }
     </Form>
       {userList.map(user => (
-        <div key={user.username}>
-          <p>{user.username}</p>
-        </div>
+        <Link key={user} to={() => `/users/${user}`}>
+          <p>{user}</p>
+        </Link>    
       ))}
     </>
   )
 }
+
+// component = {UserPage}

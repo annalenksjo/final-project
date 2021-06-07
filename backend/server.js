@@ -6,6 +6,8 @@ import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import dotenv from 'dotenv'
 
+import avatarData from './avatars.json'
+
 dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/challengeAppAPI'
@@ -79,8 +81,56 @@ const User = mongoose.model('User', {
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
-  }
+  },
 })
+
+// *** AVATAR SCHEMA & MODEL
+
+const AvatarImage = mongoose.model('AvatarImage', {
+  name:  String,
+  url: String
+  }
+)
+
+
+
+// const { Schema } = mongoose;
+
+// const avatarSchema = new Schema({
+
+// })
+
+
+
+// END AVATAR SCHEMA & MODEL ***
+
+
+
+// *** CHALLENGE SCHEMA & MODEL
+
+// const { Schema } = mongoose;
+
+//   const challengeSchema = new Schema({
+//     title:  {
+//       type: String,
+//       required: true,
+//     },
+//     author: String, // name of challenge creator
+//     description: String,
+//     comments: [{ body: String, date: Date }], // comments from other users?
+//     date: { type: Date, default: Date.now },
+//     active: Boolean,
+//     meta: {
+//       popularity: Number,
+//       players:  Number
+//     }
+//   });
+
+// const Challenge = mongoose.model('Challenge', challengeSchema);
+
+// END CHALLENGE SCHEMA & MODEL ***
+
+
 
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header('Authorization')
@@ -119,24 +169,31 @@ app.get('/', (req, res) => {
 // })
 
 
+app.get('/avatars', async (req, res) => {
+  const avatars = avatarData
+  res.json(avatars)
+})
 
 
-app.get('/users', authenticateUser)
+
+// app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
-  // to filter on useraccounts -> users?useraccount='value'
-  // should only send username (not accesT & pw)
+
   const { useraccount } = req.query
 
   try {
+    let usernames = []
     let allUsers = await User.find()
 
     if (useraccount) {
       allUsers = allUsers.filter((user) => user.username.toLowerCase()
         .includes(useraccount.toLowerCase())
       )
+    }
+    for (const user of allUsers) {
+      usernames.push(user.username)
     }    
-      res.json(allUsers)
-      // if there is no user (array.lenght = 0) räcker det o visa detta i FE?
+      res.json(usernames)
   } catch (error) {
       res.status(400).json({ success: false, message: 'Invalid request', error})
   }

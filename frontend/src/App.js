@@ -8,6 +8,7 @@ import { Profile } from "pages/Profile"
 import { Users } from "pages/Users"
 
 import user from './reducers/user'
+import { UserPage } from "pages/UserPage"
 
 const Main = styled.main` 
 display: flex;
@@ -39,6 +40,11 @@ export const App = () => {
             </Route>
             <Route path='/users' exact> 
               <Users/>
+            </Route>
+            <Route path={() => `/users/${user}`}> 
+              <UserPage
+                useraccount = {user}
+              />
             </Route> 
           </Main>
         </Switch>
