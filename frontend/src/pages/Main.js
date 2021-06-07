@@ -82,7 +82,12 @@ export const StartPage = () => {
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            console.log('user created')
+            batch(() => {
+              dispatch(user.actions.setUsername(data.username))
+              dispatch(user.actions.setAccessToken(data.accessToken))
+              dispatch(user.actions.setErrors(null))
+              console.log('register successful')
+            })
           } else {
             dispatch(user.actions.setErrors(data))
           }
@@ -128,7 +133,7 @@ export const StartPage = () => {
             <label>
             Choose username: 
               <Input onChange={(event) => setRegisterUsername(event.target.value)}
-            value={registerUsername} type="text"/>
+              value={registerUsername} type="text"/>
             </label>
             <label>
             Password:
