@@ -98,15 +98,15 @@ export const NavBar = () => {
     <>
       <Nav>
         <NavMenu>
-          <NavLink to='profile' >
+          <NavLink to='/profile' exact>
             Profile
           </NavLink>
-          <NavLink to='users' >
+          <NavLink to='/users' exact >
             Users
           </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to=''>Sign out</NavBtnLink>
+          <NavBtnLink to='/'>Sign out</NavBtnLink>
         </NavBtn>
       </Nav>
     </>

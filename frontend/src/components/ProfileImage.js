@@ -25,20 +25,26 @@ export const ProfileImage = () => {
   const [avatarList, setAvatarList] = useState('') 
 
   const fetchAvatars = () => {
-    fetch ('http://localhost:8080/avatars')
+    fetch ('http://localhost:8090/avatars')
       .then(res => res.json())
       .then (data => setAvatarList(data))
       .catch(err => console.error(err))
   }
+  fetchAvatars()
   
   
   return (
-    <Picture>
-      <Image/>
-    </Picture>
+    <>
+    {avatarList.map((avatar) => (
+    <div>
+      <p>{avatar.name}</p>
+    </div>
+    ))}
+    </>
   )
 }
 
+//<img src="https://uc2de770eec3ca2134141417726f.previews.dropboxusercontent.com/p/thumb/ABM1_5Ir7sO9NjOF4FxNLMTWfgXsxDtdrPVodqQF8MTYNb10sdrzNPDiSunuWfY3HIY8f0YkXgW5TZc8G4v0c1iLf9tfNjOFxFcVOcVsYhlGXD5mydj-SVDY9QfTfGEsWezrwaDWC-u_-Nimx6u3lTLUIjoexMBAQ63_6_AEjyoQAF2mbnyAFZZHKJ4qf_NtMQGzytCon8tyjY6uW5mzitbt-IXG5HReJMTriFwBF6lK9rRRKbjqVMt_DFNaLsyr_Oj-o5a3L3-QY75g9TdVGtI9y76yTCLP0u2xuHiOyyV3FYdjWVmFZesR65s1W4BkweNu2kI7QwIR9rgDoHBWw6ENU2zpnzw1QCMMivkfOsvX-g/p.png?fv_content=true&size_mode=5"/>
 
 
 // export const ProfileImage = styled.img`

@@ -11,11 +11,6 @@ export const Profile = () => {
       <NavBar />
       <p>Profile</p>
       <ProfileImage />
-      <StyledButton>
-        <Link to="/users">
-          Browse users
-        </Link>
-      </StyledButton>
     </>
   )
 }

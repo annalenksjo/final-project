@@ -82,6 +82,10 @@ const User = mongoose.model('User', {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
   },
+  profileImg: {
+    type: String
+
+  }
 })
 
 // *** AVATAR SCHEMA & MODEL
@@ -132,7 +136,7 @@ const AvatarImage = mongoose.model('AvatarImage', {
 
 
 
-const authenticateUser = async (req, res, next) => {
+  const authenticateUser = async (req, res, next) => {
   const accessToken = req.header('Authorization')
 
   try {
@@ -149,7 +153,7 @@ const authenticateUser = async (req, res, next) => {
 }
 
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8090
 const app = express()
 
 // Add middlewares to enable cors and json body parsing
@@ -190,22 +194,22 @@ app.get('/users', async (req, res) => {
         .includes(useraccount.toLowerCase())
       )
     }
-    for (const user of allUsers) {
-      usernames.push(user.username)
-    }    
-      res.json(usernames)
+    // for (const user of allUsers) {
+    //   usernames.push(user.username)
+    // }    
+      res.json(allUsers)
   } catch (error) {
       res.status(400).json({ success: false, message: 'Invalid request', error})
   }
 })
 
 
-app.get('/users/:userprofile', async (req, res) => {
-  const { userprofile } = req.params
+app.get('/users/:_id', async (req, res) => {
+  const { _id } = req.params
 
   try {    
-    if (userprofile) {
-      const userPage = await User.findOne(userprofile)
+    if (_id) {
+      const userPage = await User.findById(_id)
       res.json(userPage)
     } else {
       res.status(404).json({ error: 'Not found' })
