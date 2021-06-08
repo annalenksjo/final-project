@@ -199,6 +199,22 @@ app.get('/users', async (req, res) => {
   }
 })
 
+
+app.get('/users/:userprofile', async (req, res) => {
+  const { userprofile } = req.params
+
+  try {    
+    if (userprofile) {
+      const userPage = await User.findOne(userprofile)
+      res.json(userPage)
+    } else {
+      res.status(404).json({ error: 'Not found' })
+    }
+  } catch (error) {
+    res.status(400).json({ error: 'Invalid request' })
+  }
+})
+
 // DELETE
 
 // PATCH

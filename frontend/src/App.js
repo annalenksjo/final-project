@@ -41,10 +41,8 @@ export const App = () => {
             <Route path='/users' exact> 
               <Users/>
             </Route>
-            <Route path={() => `/users/${user}`}> 
-              <UserPage
-                useraccount = {user}
-              />
+            <Route path={() => `/users/${user}` }> 
+              <UserPage/>
             </Route> 
           </Main>
         </Switch>

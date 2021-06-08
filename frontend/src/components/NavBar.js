@@ -41,6 +41,9 @@ cursor: pointer;
 &.active {
 	color: #000000;
 }
+&:hover {
+  color: #000000;
+}
 `;
 
 export const NavMenu = styled.div`

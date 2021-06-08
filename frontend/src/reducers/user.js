@@ -7,7 +7,8 @@ const user = createSlice({
     accessToken: localStorage.getItem('accessToken') 
       ? localStorage.getItem('accessToken') 
       : null,
-    errors: null
+    errors: null,
+    browsedUser: null
   }, 
   reducers: {
     setUsername: (store, action) => {
@@ -19,6 +20,9 @@ const user = createSlice({
     },
     setErrors: (store, action) => {
       store.errors = action.payload
+    },
+    setBrowsedUser: (store, action) => {
+      store.browsedUser = action.payload
     }
   }
 })

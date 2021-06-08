@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { API_URL } from '../urls/urls'
@@ -6,11 +7,16 @@ import { NavBar } from 'components/NavBar'
 import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
 import { Form } from 'components/Form'
+import user from '../reducers/user'
 
 export const Users = () => {
 
   const [userList, setUserList] = useState([1])
   const [userSearch, setUserSearch] = useState('')
+  const [selectedUser, setSelectedUsed] = useState('')
+
+  const browsedUser = useSelector(store => store.user.browsedUser)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchUserList = () => {
@@ -29,6 +35,11 @@ export const Users = () => {
     .then(response => response.json())
     .then (data => setUserList(data))
   }
+
+  const onGoToUserProfile = (action) => {
+    dispatch(user.actions.setBrowsedUser(action))
+    console.log(action)
+  }
  
   return (
     <>
@@ -44,9 +55,13 @@ export const Users = () => {
       <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
       {userList.length === 0 ? <p>No users found!</p> : '' }
     </Form>
-      {userList.map(user => (
-        <Link key={user} to={() => `/users/${user}`}>
-          <p>{user}</p>
+      {userList.map(useraccount => (
+        <Link 
+          key={useraccount} 
+          to={() => `/users/${useraccount}`} 
+          onClick = {() => onGoToUserProfile(useraccount)}
+        >
+          <p>{useraccount}</p>
         </Link>    
       ))}
     </>
