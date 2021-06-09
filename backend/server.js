@@ -84,7 +84,10 @@ const User = mongoose.model('User', {
   },
   profileImg: {
     type: String
-
+  },
+  memberSince: {
+    type: Date,
+    default: Date.now
   }
 })
 
@@ -153,7 +156,7 @@ const AvatarImage = mongoose.model('AvatarImage', {
 }
 
 
-const port = process.env.PORT || 8090
+const port = process.env.PORT || 9000
 const app = express()
 
 // Add middlewares to enable cors and json body parsing
@@ -165,20 +168,15 @@ app.get('/', (req, res) => {
   res.send(listEndpoints(app))
 })
 
-//endpoint för att få tag på profilsidan, ska det vara på Id eller username?
 // app.get('/profile', authenticateUser)
 // app.get('/profile', async (req, res) => {
 //   const { _id } = req.params
-
 // })
-
 
 app.get('/avatars', async (req, res) => {
   const avatars = avatarData
   res.json(avatars)
 })
-
-
 
 // app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
@@ -203,7 +201,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
-
+// app.get('/users/:_id', authenticateUser)
 app.get('/users/:_id', async (req, res) => {
   const { _id } = req.params
 
@@ -220,6 +218,23 @@ app.get('/users/:_id', async (req, res) => {
 })
 
 // DELETE
+// app.delete('/users/:_id', authenticateUser)
+app.delete('/users/:_id', async (req, res) => {
+  const { _id } = req.params
+  try {
+    const deletedAccount = await User.findByIdAndDelete(_id)
+    if(deletedAccount) {
+      res.json({
+        success: true,
+        deletedAccount 
+      })
+    } else {
+      res.status(404).json({ success: false, message: 'Sorry, something went wrong', error })
+    }
+  } catch (error) {
+    res.status(400).json({ success: false, message: 'invalid request', error })
+  }
+})
 
 // PATCH
 
@@ -228,21 +243,23 @@ app.get('/users/:_id', async (req, res) => {
 // USER REGISTER
 app.post('/register', async (req, res) => {
   const { username, password } = req.body
+  console.log(req.body)
 
   try {
     const salt = bcrypt.genSaltSync()
-
-    const newUser = await new User({
-      username,
-      password: bcrypt.hashSync(password, salt)
-    }).save()
-
-    res.json({
-      success: true,
-      userID: newUser._id,
-      user: newUser.username,
-      accessToken: newUser.accessToken
-    })
+  
+      const newUser = await new User({
+        username,
+        password: bcrypt.hashSync(password, salt)
+      }).save()
+  
+      res.json({
+        success: true,
+        userID: newUser._id,
+        user: newUser.username,
+        accessToken: newUser.accessToken
+      })
+     
   } catch (error) {
     if (error.code === 11000) {
       res.status(409).json({ success: false, message: 'Username already exists', error })
@@ -253,7 +270,6 @@ app.post('/register', async (req, res) => {
 })
 
 // USER LOGIN
-
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 

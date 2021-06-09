@@ -94,6 +94,12 @@ margin-left: 24px;
 
 
 export const NavBar = () => {
+
+  const onLogOut = () => {
+    localStorage.clear()
+    console.log('logged out')
+  }
+
   return (
     <>
       <Nav>
@@ -106,7 +112,7 @@ export const NavBar = () => {
           </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/'>Sign out</NavBtnLink>
+          <NavBtnLink onClick={onLogOut} to='/'>Sign out</NavBtnLink>
         </NavBtn>
       </Nav>
     </>

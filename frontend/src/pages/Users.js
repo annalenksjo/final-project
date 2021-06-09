@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { API_URL } from '../urls/urls'
@@ -13,20 +13,17 @@ export const Users = () => {
 
   const [userList, setUserList] = useState([1])
   const [userSearch, setUserSearch] = useState('')
-  const [selectedUser, setSelectedUsed] = useState('')
 
-  const browsedUser = useSelector(store => store.user.browsedUser)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    const fetchUserList = () => {
-        fetch(API_URL('users'))
-        .then(response => response.json())
-        .then (data => setUserList(data))
-        console.log('not searching')       
-    }
-    fetchUserList()
-  },[])
+  // useEffect(() => {
+  //   const fetchUserList = () => {
+  //       fetch(API_URL('users'))
+  //       .then(response => response.json())
+  //       .then (data => setUserList(data)) 
+  //   }
+  //   fetchUserList()
+  // },[])
 
   const onSearch = (event) => {
     event.preventDefault()
@@ -44,9 +41,8 @@ export const Users = () => {
   return (
     <>
     <NavBar/>
-    <h1>A list of all the users</h1>
     <Form onSubmit={onSearch}>
-      <label> Search user
+      <label> Search users
         <Input 
         type="text"
         onChange={(event) => setUserSearch(event.target.value)}
@@ -54,18 +50,17 @@ export const Users = () => {
       </label>
       <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
       {userList.length === 0 ? <p>No users found!</p> : '' }
+      {userList.length > 1 ? <p>Found {userList.length} users</p> : '' }
     </Form>
-      {userList.map(useraccount => (
+      {userList.map(user => (
         <Link 
-          key={useraccount} 
-          to={() => `/users/${useraccount}`} 
-          onClick = {() => onGoToUserProfile(useraccount)}
+          key={user._id} 
+          to={() => `/users/${user.username}`} 
+          onClick = {() => onGoToUserProfile(user)}
         >
-          <p>{useraccount}</p>
+          <p>{user.username}</p>
         </Link>    
       ))}
     </>
   )
 }
-
-// component = {UserPage}

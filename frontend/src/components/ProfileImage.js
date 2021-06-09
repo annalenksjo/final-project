@@ -35,11 +35,11 @@ export const ProfileImage = () => {
   
   return (
     <>
-    {avatarList.map((avatar) => (
+    {/* {avatarList.map((avatar) => (
     <div>
       <p>{avatar.name}</p>
     </div>
-    ))}
+    ))} */}
     </>
   )
 }
