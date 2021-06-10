@@ -22,12 +22,12 @@ export const StartPage = () => {
   // exchange the forms to styled components RegisterForm and LoginForm
 
   return (
-    <main className='main-container'>
-      <section className='main-section'>
-        <h1>Welcome</h1>
+    <main className='main-main-container'>
+      <h1>Welcome</h1>
+      <section className='main-section-container'>
         {errorMessage ? <p>{errorMessage.message}</p> : ''}
-        {!showRegister ? 
-        <>      
+          {!showRegister ? 
+          <>      
           <LoginForm />    
           <p>Not a member?</p>
           <StyledButton onClick={() => setShowRegister(true)}>Register</StyledButton>
@@ -38,8 +38,8 @@ export const StartPage = () => {
           <StyledButton onClick={() => setShowRegister(false)}>Back</StyledButton>
           </>
           }
-      </section>
-    </main>   
+      </section> 
+    </main>  
   )
 }
 

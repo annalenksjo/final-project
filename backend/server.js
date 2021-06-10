@@ -14,49 +14,6 @@ const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/challengeAppAPI'
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
-// next step: add Challenge model & get for challenge
-// add authentication on those endpoints 
-// em: start on FE
-
-// const Challenge = mongoose.model('Challenge', {
-//   name: {
-//     type: String
-//   },
-//   image: {
-//     type: String // url or file
-//   },
-//   description: {
-//     type: String
-//   },
-//   goal: {
-//     type: Number
-//   },
-//   prize: {
-//     type: String
-//   }
-// })
-
-const Game = mongoose.model('Game', {
-    player1: {
-     type: String,
-     required: true
-    },
-    player2: {
-      type: String,
-      required: true
-     },
-  active: {
-    type: Boolean,
-  },
-  win: {
-    type: Boolean
-  },
-  gameStarted: {
-    type: Date,
-    default: Date.now
-  }
-})
-
 const User = mongoose.model('User', {
   username: {
     type: String, 
@@ -89,6 +46,31 @@ const User = mongoose.model('User', {
   }
 })
 
+const Game = mongoose.model('Game', {
+  player1: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    type: String,
+    required: true
+  },
+  player2: {
+    type: String,
+    required: true
+  },
+    active: {
+    type: Boolean,
+    default: true
+  },
+    win: {
+    type: Boolean,
+    default: null
+  },
+    gameStarted: {
+    type: Date,
+    default: Date.now
+  }
+})
+
 // *** AVATAR SCHEMA & MODEL
 
 const AvatarImage = mongoose.model('AvatarImage', {
@@ -96,21 +78,10 @@ const AvatarImage = mongoose.model('AvatarImage', {
   url: String
   }
 )
-
-
-
 // const { Schema } = mongoose;
-
 // const avatarSchema = new Schema({
-
 // })
-
-
-
 // END AVATAR SCHEMA & MODEL ***
-
-
-
 // *** CHALLENGE SCHEMA & MODEL
 
 // const { Schema } = mongoose;
@@ -153,7 +124,6 @@ const AvatarImage = mongoose.model('AvatarImage', {
   }
 }
 
-
 const port = process.env.PORT || 9000
 const app = express()
 
@@ -170,6 +140,12 @@ app.get('/', (req, res) => {
 app.get('/avatars', async (req, res) => {
   const avatars = avatarData
   res.json(avatars)
+})
+
+//Get Games
+app.get('/games', async (req, res) => {
+  let allGames = await Game.find()
+  res.json(allGames)
 })
 
 // Get User List
@@ -264,7 +240,6 @@ app.patch('/users/:_id', async (req, res) => {
 // User Register
 app.post('/register', async (req, res) => {
   const { username, password } = req.body
-  console.log(req.body)
 
   try {
     const salt = bcrypt.genSaltSync()
@@ -312,6 +287,28 @@ app.post('/login', async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({ success: false, message: 'Sorry! Invalid request', error });
+  }
+})
+
+//New Game
+app.post('/games', async (req, res) => {
+  const { player1, player2 } = req.body
+ 
+  try {
+        const newGame = await new Game({
+        player1,
+        player2
+        // player1: User.findById(user => user.userID)
+        // player2: User.findById(user => user.userID)
+      }).save()
+  
+      res.json({
+        success: true,
+        game: newGame
+      })
+     
+  } catch (error) {
+     res.status(400).json({ success: false, message: 'Could not create game', error }) 
   }
 })
 

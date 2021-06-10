@@ -8,7 +8,6 @@
 
 
 body {
-  
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -16,13 +15,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
- 
+  position: relative;
+  
   height: 100vh;
   color: #333;
   background-color: #f9b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 
@@ -31,30 +28,121 @@ code {
     monospace;
 }
 
-.main-container {
-  position: relative;
-  width: 50rem;
-  height: 25rem;
-  background-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(200px);
-  filter: blur();
+/* MAIN LAYOUT */
+
+.main-main-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18rem;
+  height: 40rem;
+  background-color: gray;
+}
+
+.main-section-container{ /*denna behöver växa med main-main-container*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18rem;
+  height: 20rem;
+  background-color: rgb(247, 103, 151);
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-
-
-/*** MEDIA QUIERYS ***/
+/*** MEDIA QUERIES ***/
 
 @media (min-width: 320px) {
-  .main-container {
+  .main-main-container {
     width: 18rem;
-  height: 20rem;
+    height: 40rem;
+  }
 
+  .main-section {
+    width: 18rem;
+    height: 20rem;
   }
 
 }
+
+@media (min-width: 375px) {
+  .main-main-container {
+    width: 21rem;
+    height: 40rem;
+  }
+
+  .main-section {
+    width: 21rem;
+    height: 23rem;
+  }
+}
+
+@media (min-width: 425px) {
+  .main-main-container {
+    width: 24rem;
+    height: 40rem;
+  }
+
+  .main-section {
+    width: 24rem;
+    height: 23rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-main-container {
+    width: 44rem;
+    height: 40rem;
+  } 
+
+  .main-section {
+    width: 44rem;
+    height: 33rem;
+    top: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-main-container {
+    width: 54rem;
+    height: 40rem;
+  }  
+
+  .main-section {
+    width: 54rem;
+    height: 45rem;
+    top: 400px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .main-main-container {
+    width: 78rem;
+    height: 50rem;
+  } 
+
+  .main-section {
+    width: 78rem;
+    height: 45rem;
+    top: 520px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .main-main-container {
+    width: 78rem;
+    height: 50rem;
+  } 
+
+  .main-section {
+    width: 78rem;
+    height: 45rem;
+    top: 50%;
+  }
+}
+
+
+
