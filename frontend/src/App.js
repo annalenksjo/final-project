@@ -10,16 +10,7 @@ import { Users } from "pages/Users"
 import user from './reducers/user'
 import { UserPage } from "pages/UserPage"
 
-const Main = styled.main` 
-display: flex;
-flex-direction: column;
-height: 100vh;
-width: 100vw;
-background-color: lightgrey;
-box-sizing: border-box;
-font-family: "Now Bold";
-color: #6A7885;
-`
+
 const reducer = combineReducers({
   user: user.reducer
 })
@@ -31,7 +22,7 @@ export const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
-          <Main>
+          <main>
             <Route path='/' exact>
               <StartPage/>
             </Route>     
@@ -44,7 +35,7 @@ export const App = () => {
             <Route path='/users/:userid'> 
               <UserPage/>
             </Route> 
-          </Main>
+          </main>
         </Switch>
         </Provider>
     </BrowserRouter>

@@ -8,6 +8,7 @@ import user from '../reducers/user'
 import { StyledButton } from './Button'
 import { Form } from './Form'
 import { Input } from './Input'
+import { Loader } from './Loader'
 
 export const RegisterForm = () => {
   const [ registerUsername, setRegisterUsername ] = useState('')
@@ -18,10 +19,13 @@ export const RegisterForm = () => {
   const accessToken = useSelector(store => store.user.accessToken)
   const errorMessage = useSelector(store => store.user.errors)
   const userMessage = useSelector(store => store.user.message)
+  const Loading = useSelector(store => store.user.loading)
+
   const history = useHistory()
   const dispatch = useDispatch()
 
   const onRegister = (event) => {
+    dispatch(user.actions.setLoading(true))
     event.preventDefault()
 
     if (registerPassword !== passwordMatch) {
@@ -55,32 +59,36 @@ export const RegisterForm = () => {
             })
           } else {
             dispatch(user.actions.setErrors(data))
-            console.log('line 94')
           }
         })
         .catch()
+        .finally(() => dispatch(user.actions.setLoading(false)))
     }    
   }
   
   return (
-    <Form onSubmit={onRegister}>
-      <label>
-      Choose username: 
-        <Input onChange={(event) => setRegisterUsername(event.target.value)}
-        value={registerUsername} type="text"/>
-      </label>
-      <label>
-      Password:
-        <Input onChange={(event) => setRegisterPassword(event.target.value)}
-        value={registerPassword} type="password"/>
-      </label>
-      <label>
-      Repeat password:
-        <Input onChange={(event) => setPasswordMatch(event.target.value)}
-        value={passwordMatch} type="password"/>
-      </label>
-      {registerError ? <p>{registerError}</p> : '' }
-      <StyledButton type="submit"> Sign up!</StyledButton>
-    </Form>
+    <>
+      {Loading? <Loader/> : 
+        <Form onSubmit={onRegister}>
+          <label>
+          Choose username: 
+            <Input onChange={(event) => setRegisterUsername(event.target.value)}
+            value={registerUsername} type="text"/>
+          </label>
+          <label>
+          Password:
+            <Input onChange={(event) => setRegisterPassword(event.target.value)}
+            value={registerPassword} type="password"/>
+          </label>
+          <label>
+          Repeat password:
+            <Input onChange={(event) => setPasswordMatch(event.target.value)}
+            value={passwordMatch} type="password"/>
+          </label>
+          {registerError ? <p>{registerError}</p> : '' }
+          <StyledButton type="submit"> Sign up!</StyledButton>
+        </Form>
+      }
+    </>
   )
 }

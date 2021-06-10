@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-
-  
-
 const Picture = styled.div`
   display: flex;
   justify-content: space-around;

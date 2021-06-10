@@ -9,8 +9,11 @@ const user = createSlice({
       : null,
     userID: null,
     errors: null,
-    browsedUser: null,
-    message: null
+    browsedUser:  localStorage.getItem('browsedUser') 
+    ? JSON.parse(localStorage.getItem('browsedUser'))
+    : null,
+    message: null,
+    loading: false
   }, 
   reducers: {
     setUsername: (store, action) => {
@@ -31,6 +34,10 @@ const user = createSlice({
     },
     setBrowsedUser: (store, action) => {
       store.browsedUser = action.payload
+      window.localStorage.setItem('browsedUser', JSON.stringify(action.payload))
+    },
+    setLoading: (store, action) => {
+      store.loading = action.payload
     }
   }
 })

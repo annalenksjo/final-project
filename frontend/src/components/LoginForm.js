@@ -7,18 +7,20 @@ import user from '../reducers/user'
 import { Form } from './Form'
 import { Input } from './Input'
 import { StyledButton } from './Button'
+import { Loader } from './Loader'
 
 export const LoginForm = () => {
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
 
   const accessToken = useSelector(store => store.user.accessToken)
-  const errorMessage = useSelector(store => store.user.errors)
-  const userMessage = useSelector(store => store.user.message)
+  const Loading = useSelector(store => store.user.loading)
+
   const history = useHistory()
   const dispatch = useDispatch()
 
   const onLogin = (event) => {
+    dispatch(user.actions.setLoading(true))  
     event.preventDefault()
     
     fetch(API_URL('login'), {
@@ -40,11 +42,10 @@ export const LoginForm = () => {
             dispatch(user.actions.setUserID(data.userID))
             dispatch(user.actions.setErrors(null))
             dispatch(user.actions.setUserMessage('Login successful'))
-            console.log('login successful')
             if (accessToken) {
-             setTimeout(() => {
-                history.push('/profile')
-              }, 3000)
+            //  setTimeout(() => {                
+            //   }, 3000)
+              history.push('/profile')
             }
           })
          
@@ -53,29 +54,29 @@ export const LoginForm = () => {
           dispatch(user.actions.setUserMessage('Login unsuccessful'))
           setUsername('')
           setPassword('')
-          console.log('login unsuccessful')
         }
       })
       .catch()
+      .finally(() => dispatch(user.actions.setLoading(false)))
   }
 
   return(
     <>
-    <Form onSubmit={onLogin}>
-      <label>
-      Username: 
-        <Input onChange={(event) => setUsername(event.target.value)}
-        value={username} type="text" required/>
-      </label>
-      <label>
-      Password:
-        <Input onChange={(event) => setPassword(event.target.value)}
-        value={password} type="password"/>
-      </label>
-      <StyledButton type='submit'>Log in</StyledButton>
-    </Form> 
-    {userMessage? <p>{userMessage}</p> : '' }
-    {errorMessage? <p>{errorMessage}</p> : '' }
+    {Loading? <Loader/> : 
+      <Form onSubmit={onLogin}>
+        <label>
+        Username: 
+          <Input onChange={(event) => setUsername(event.target.value)}
+          value={username} type="text" required/>
+        </label>
+        <label>
+        Password:
+          <Input onChange={(event) => setPassword(event.target.value)}
+          value={password} type="password"/>
+        </label>
+        <StyledButton type='submit'>Log in</StyledButton>
+      </Form>
+    }
   </>
   )
 }

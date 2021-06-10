@@ -36,32 +36,26 @@ mongoose.Promise = Promise
 //   }
 // })
 
-// const Game = mongoose.model('Game', {
-//   challenge: {
-//     // get object from the chosen challenge
-//   },
-//   players: {
-//      user1Object: {
-//       win: {
-//         type: Boolean
-//       },
-//       score: {
-//         type: Number
-//       }
-//     },
-//      user2Object: {
-//       win: {
-//         type: Boolean
-//       },
-//       score: {
-//         type: Number
-//       }
-//     }
-//   },
-//   active: {
-//     type: Boolean,
-//   }
-// })
+const Game = mongoose.model('Game', {
+    player1: {
+     type: String,
+     required: true
+    },
+    player2: {
+      type: String,
+      required: true
+     },
+  active: {
+    type: Boolean,
+  },
+  win: {
+    type: Boolean
+  },
+  gameStarted: {
+    type: Date,
+    default: Date.now
+  }
+})
 
 const User = mongoose.model('User', {
   username: {
@@ -84,6 +78,10 @@ const User = mongoose.model('User', {
   },
   profileImg: {
     type: String
+  },
+  motto: {
+    type: String,
+    default: ''
   },
   memberSince: {
     type: Date,
@@ -168,16 +166,13 @@ app.get('/', (req, res) => {
   res.send(listEndpoints(app))
 })
 
-// app.get('/profile', authenticateUser)
-// app.get('/profile', async (req, res) => {
-//   const { _id } = req.params
-// })
-
+// Get User Avatars
 app.get('/avatars', async (req, res) => {
   const avatars = avatarData
   res.json(avatars)
 })
 
+// Get User List
 // app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
 
@@ -201,6 +196,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
+// Get User Profile
 // app.get('/users/:_id', authenticateUser)
 app.get('/users/:_id', async (req, res) => {
   const { _id } = req.params
@@ -218,6 +214,7 @@ app.get('/users/:_id', async (req, res) => {
 })
 
 // DELETE
+// Delete User
 // app.delete('/users/:_id', authenticateUser)
 app.delete('/users/:_id', async (req, res) => {
   const { _id } = req.params
@@ -237,10 +234,34 @@ app.delete('/users/:_id', async (req, res) => {
 })
 
 // PATCH
+// Edit User Profile
+// app.patch('/users/:_id', authenticateUser)
+app.patch('/users/:_id', async (req, res) => {
+  const { _id } = req.params
+  try {
+    const updatedAccount = await User.findByIdAndUpdate(_id, {
+      // specify what the user can update, such as:
+      motto: req.body.motto
+    },
+    {
+      // new: true // to return the new document and not the orginal one
+    }
+    )
+    if(updatedAccount) {
+      res.json({
+        success: true,
+        updatedAccount 
+      })
+    } else {
+      res.status(404).json({ success: false, message: 'Sorry, something went wrong', error })
+    }
+  } catch (error) {
+    res.status(400).json({ success: false, message: 'invalid request', error })
+  }
+})
 
 // POST
-
-// USER REGISTER
+// User Register
 app.post('/register', async (req, res) => {
   const { username, password } = req.body
   console.log(req.body)
@@ -269,7 +290,7 @@ app.post('/register', async (req, res) => {
   }
 })
 
-// USER LOGIN
+// User Login
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
