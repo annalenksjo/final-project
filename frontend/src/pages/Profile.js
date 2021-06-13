@@ -7,6 +7,8 @@ import { NavBar } from 'components/NavBar'
 import { StyledButton } from 'components/Button'
 import { API_URL } from 'urls/urls'
 import { Loader } from 'components/Loader'
+import { Main } from '../pages/Main'
+import { InnerMain } from '../pages/Main'
 import user from 'reducers/user'
 
 
@@ -52,29 +54,41 @@ export const Profile = () => {
       // .finally(() => dispatch(labyrinth.actions.setLoading(false)))
        }
 
+    const onShowStatistics = () => {
+      dispatch(user.actions.setLoading(true))   
+          fetch(API_URL(`games`))
+          .then(response => response.json())
+          .then (data => console.log(data))
+          .finally(() => dispatch(user.actions.setLoading(false)))
+          //data.filter(data.player1 === UserID)
+    }
+
   return (
     <>
-      {Loading? <Loader/> :
-      <>
-        <NavBar />
-        <h2>My Profile</h2>
-        <p>Username: {LoggedInUser}</p>
-        <p>Member since: </p>
-        <StyledButton onClick={() => onEditAccount()}>Edit profile</StyledButton>
-        {showConfirmation? <div>
-          <p>Are you sure?</p>
-          <StyledButton onClick={() => onDeleteAccount()}>Yes</StyledButton>
-          <StyledButton onClick={() => setShowConfirmation(false)}>No</StyledButton>
-        </div> 
-        : <StyledButton onClick={() => setShowConfirmation(true)}>Delete Account</StyledButton>}        
-        <ProfileImage />
-        </>
-      }
+    <NavBar />
+      <Main>
+        <InnerMain>
+          {Loading? <Loader/> :
+          <>          
+            <h2>Min profil</h2>
+            <p>Användarnamn: {LoggedInUser}</p>
+            <p>Medlem sedan: </p>
+            <StyledButton onClick={() => onShowStatistics()}>Mina fågelspaningar</StyledButton>
+            <StyledButton onClick={() => onEditAccount()}>Redigera profil</StyledButton>
+            
+            {showConfirmation? <div>
+              <p>Är du säker?</p>
+              <StyledButton onClick={() => onDeleteAccount()}>Ja, ta bort mitt konto</StyledButton>
+              <StyledButton onClick={() => setShowConfirmation(false)}>Avbryt</StyledButton>
+            </div> 
+            : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}        
+            <ProfileImage />
+            </>
+          }
+          </InnerMain>
+      </Main>
     </>
   )
 }
 
-//profilpicture
-//username
-//statestic card
-//presentationtext
+// Add possibility to edit something on profile and the delete functionality should be on the edit page/component

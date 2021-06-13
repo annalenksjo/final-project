@@ -2,10 +2,13 @@ import React from "react"
 import { Provider } from 'react-redux'
 import {configureStore, combineReducers } from '@reduxjs/toolkit'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import styled from 'styled-components'
+
 import { StartPage } from "pages/Main"
+import { LogIn } from "pages/LogIn"
 import { Profile } from "pages/Profile"
+import { SignUp } from "pages/SignUp"
 import { Users } from "pages/Users"
+import { GardenBirds } from "pages/GardenBirds"
 
 import user from './reducers/user'
 import { UserPage } from "pages/UserPage"
@@ -22,20 +25,27 @@ export const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
-          <main>
             <Route path='/' exact>
               <StartPage/>
-            </Route>     
+            </Route>
+            <Route path='/loggain' exact> 
+              <LogIn/>
+            </Route>
+            <Route path='/skapakonto' exact> 
+              <SignUp/>
+            </Route>
             <Route path='/profile' exact> 
               <Profile/>
             </Route>
-            <Route path='/users' exact> 
+            <Route path='/toplist' exact> 
               <Users/>
             </Route>
             <Route path='/users/:userid'> 
               <UserPage/>
-            </Route> 
-          </main>
+            </Route>
+            <Route path='/tradgardsfaglar'> 
+              <GardenBirds/>
+            </Route>  
         </Switch>
         </Provider>
     </BrowserRouter>

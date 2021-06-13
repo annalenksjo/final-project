@@ -7,6 +7,7 @@ import crypto from 'crypto'
 import dotenv from 'dotenv'
 
 import avatarData from './avatars.json'
+import birdData from './gardenbirds.json'
 
 dotenv.config()
 
@@ -43,33 +44,37 @@ const User = mongoose.model('User', {
   memberSince: {
     type: Date,
     default: Date.now
+  },
+  birdsSeen: {
+    type: Number,
+    default: 0
   }
 })
 
-const Game = mongoose.model('Game', {
-  player1: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    type: String,
-    required: true
-  },
-  player2: {
-    type: String,
-    required: true
-  },
-    active: {
-    type: Boolean,
-    default: true
-  },
-    win: {
-    type: Boolean,
-    default: null
-  },
-    gameStarted: {
-    type: Date,
-    default: Date.now
-  }
-})
+// const Game = mongoose.model('Game', {
+//   player1: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'User',
+//     required: true
+//   },
+//   player2: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'User',
+//     required: true
+//   },
+//     active: {
+//     type: Boolean,
+//     default: true
+//   },
+//     win: {
+//     type: Boolean,
+//     default: null
+//   },
+//     gameStarted: {
+//     type: Date,
+//     default: Date.now
+//   }
+// })
 
 // *** AVATAR SCHEMA & MODEL
 
@@ -78,6 +83,12 @@ const AvatarImage = mongoose.model('AvatarImage', {
   url: String
   }
 )
+
+const GardenBirds = mongoose.model('gardenBirds', {
+  art:  String
+  }
+)
+
 // const { Schema } = mongoose;
 // const avatarSchema = new Schema({
 // })
@@ -124,7 +135,7 @@ const AvatarImage = mongoose.model('AvatarImage', {
   }
 }
 
-const port = process.env.PORT || 9000
+const port = process.env.PORT || 9090
 const app = express()
 
 // Add middlewares to enable cors and json body parsing
@@ -142,10 +153,35 @@ app.get('/avatars', async (req, res) => {
   res.json(avatars)
 })
 
+// Get Gardenbirds
+app.get('/gardenbirds', async (req, res) => {
+  const gardenBirds = birdData
+  res.json(gardenBirds)
+})
+
 //Get Games
 app.get('/games', async (req, res) => {
+  // add param so can display stats. Previous games & ongoing game
   let allGames = await Game.find()
   res.json(allGames)
+})
+
+// Get Games for one user
+// app.get('/games/:_id', authenticateUser)
+app.get('/games/:_id', async (req, res) => {
+  const { _id } = req.params
+  // Now it finds the game with a specific ID
+
+  try {    
+    if (_id) {
+      const userGames = await Game.findById(_id)
+      res.json(userGames)
+    } else {
+      res.status(404).json({ error: 'Not found' })
+    }
+  } catch (error) {
+    res.status(400).json({ error: 'Invalid request' })
+  }
 })
 
 // Get User List
@@ -155,18 +191,18 @@ app.get('/users', async (req, res) => {
   const { useraccount } = req.query
 
   try {
-    let usernames = []
-    let allUsers = await User.find()
+    let allUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen: -1 }) 
+    let topUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen: -1 }).limit(10)
 
     if (useraccount) {
       allUsers = allUsers.filter((user) => user.username.toLowerCase()
         .includes(useraccount.toLowerCase())
       )
-    }
-    // for (const user of allUsers) {
-    //   usernames.push(user.username)
-    // }    
       res.json(allUsers)
+    } else {
+      res.json(topUsers)
+    }
+      
   } catch (error) {
       res.status(400).json({ success: false, message: 'Invalid request', error})
   }
@@ -200,6 +236,25 @@ app.delete('/users/:_id', async (req, res) => {
       res.json({
         success: true,
         deletedAccount 
+      })
+    } else {
+      res.status(404).json({ success: false, message: 'Sorry, something went wrong', error })
+    }
+  } catch (error) {
+    res.status(400).json({ success: false, message: 'invalid request', error })
+  }
+})
+
+//Delete game
+// app.delete('/games/:_id', authenticateUser)
+app.delete('/games/:_id', async (req, res) => {
+  const { _id } = req.params
+  try {
+    const deletedGame = await Game.findByIdAndDelete(_id)
+    if(deletedGame) {
+      res.json({
+        success: true,
+        deletedGame 
       })
     } else {
       res.status(404).json({ success: false, message: 'Sorry, something went wrong', error })
@@ -290,16 +345,37 @@ app.post('/login', async (req, res) => {
   }
 })
 
+// Add birdsSeen
+// app.post('/users/:_id/addbird', authenticateUser)
+app.post('/users/:_id/addbird', async (req, res) => {
+  const { _id } = req.params
+  
+  try {
+    const updatedBirds = await User.findByIdAndUpdate( {_id}, {$inc: { birdsSeen:1 }} )
+    if(updatedBirds) {
+      res.json({
+        success: true,
+        updatedBirds 
+      })
+    } else {
+      res.status(404).json({ success: false, message: 'Sorry, something went wrong', error })
+    }
+  } catch (error) {
+    res.status(400).json({ success: false, message: 'invalid request', error })
+  }
+})
+
 //New Game
 app.post('/games', async (req, res) => {
+  // one player should only be able to have one active game
   const { player1, player2 } = req.body
  
   try {
         const newGame = await new Game({
         player1,
         player2
-        // player1: User.findById(user => user.userID)
-        // player2: User.findById(user => user.userID)
+        //  player1: User.findOne(user => user.username),
+        //  player2: User.findOne(user => user.username)
       }).save()
   
       res.json({

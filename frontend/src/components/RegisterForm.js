@@ -71,24 +71,25 @@ export const RegisterForm = () => {
       {Loading? <Loader/> : 
         <Form onSubmit={onRegister}>
           <label>
-          Choose username: 
+          Välj användarnam: 
             <Input onChange={(event) => setRegisterUsername(event.target.value)}
             value={registerUsername} type="text"/>
           </label>
           <label>
-          Password:
+          Lösenord:
             <Input onChange={(event) => setRegisterPassword(event.target.value)}
             value={registerPassword} type="password"/>
           </label>
           <label>
-          Repeat password:
+          Bekräfta lösenord:
             <Input onChange={(event) => setPasswordMatch(event.target.value)}
             value={passwordMatch} type="password"/>
           </label>
           {registerError ? <p>{registerError}</p> : '' }
-          <StyledButton type="submit"> Sign up!</StyledButton>
+          <StyledButton type="submit"> Registrera!</StyledButton>
         </Form>
       }
+      <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
     </>
   )
 }

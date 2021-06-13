@@ -43,8 +43,6 @@ export const LoginForm = () => {
             dispatch(user.actions.setErrors(null))
             dispatch(user.actions.setUserMessage('Login successful'))
             if (accessToken) {
-            //  setTimeout(() => {                
-            //   }, 3000)
               history.push('/profile')
             }
           })
@@ -65,18 +63,19 @@ export const LoginForm = () => {
     {Loading? <Loader/> : 
       <Form onSubmit={onLogin}>
         <label>
-        Username: 
+        Användarnamn: 
           <Input onChange={(event) => setUsername(event.target.value)}
           value={username} type="text" required/>
         </label>
         <label>
-        Password:
+        Lösenord:
           <Input onChange={(event) => setPassword(event.target.value)}
           value={password} type="password"/>
         </label>
         <StyledButton type='submit'>Log in</StyledButton>
       </Form>
     }
+    <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
   </>
   )
 }

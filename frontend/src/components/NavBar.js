@@ -1,120 +1,82 @@
 import React from 'react'
-import { NavLink as Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
+import { StyledButton } from './Button';
 
-
-// const StyledNavBar = styled.nav`
-//     width: 100%;
-//     background-color: white;
-// `
-
-// const Container = styled.div`
-//     max-width: 1200px;
-//     margin: auto;
-//     padding: 1rem;
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-evenly;
-//     flex-wrap: wrap;
-// `
 
 export const Nav = styled.nav`
-background: #DE6E4B;
-height: 100px;
+//background: #A7DEC6;
+background: #95D5B2;
+position: fixed;
+top: 0;
+left: 0;
+height: 120px;
+width: 100%;
 display: flex;
 justify-content: space-between;
-padding: 0.2rem calc((100vw - 1000px) / 2);
-z-index: 12;
-/* Third Nav */
-/* justify-content: flex-start; */
+align-items: center;
+z-index: 1;
+border-radius: 0 0 30px 30px; 
+padding: 0 60px 0 80px;
 `;
 
 export const NavLink = styled(Link)`
-color: #808080;
+//color: #808080;
+color: #1B4332;
 display: flex;
 align-items: center;
 text-decoration: none;
+font-size: 25px;
 padding: 0 1rem;
 height: 100%;
 cursor: pointer;
 &.active {
-	color: #000000;
+	color: #081C15;
 }
 &:hover {
-  color: #000000;
-}
+  color: #081C15;
+} 
 `;
 
 export const NavMenu = styled.div`
 display: flex;
 align-items: center;
-margin-right: -24px;
-/* Second Nav */
-/* margin-right: 24px; */
-/* Third Nav */
-/* width: 100vw;
-white-space: nowrap; */
-@media screen and (max-width: 768px) {
-	display: none;
-}
+justify-content: flex-end;
+padding-left: 10px;
 `;
 
-export const NavBtn = styled.nav`
+export const LinkContainer = styled.div`
 display: flex;
-align-items: center;
-margin-right: 24px;
-/* Third Nav */
-/* justify-content: flex-end;
-width: 100vw; */
-@media screen and (max-width: 768px) {
-	display: none;
-}
-`;
+flex-direction: row;
+`
 
-export const NavBtnLink = styled(Link)`
-border-radius: 4px;
-background: #808080;
-padding: 10px 22px;
-color: #000000;
-outline: none;
-border: none;
-cursor: pointer;
-transition: all 0.2s ease-in-out;
-text-decoration: none;
-/* Second Nav */
-margin-left: 24px;
-&:hover {
-	transition: all 0.2s ease-in-out;
-	background: #fff;
-	color: #808080;
-}
-`;
-
-
+export const Logo = styled.h1`
+font-size: 50px;
+color: #1B4332;
+`
 
 export const NavBar = () => {
 
   const onLogOut = () => {
     localStorage.clear()
-    console.log('logged out')
   }
 
   return (
-    <>
       <Nav>
-        <NavMenu>
+        <Logo>Fågelspaning</Logo>
+         <LinkContainer>
           <NavLink to='/profile' exact>
-            Profile
+            Profil
           </NavLink>
-          <NavLink to='/users' exact >
-            Users
+          <NavLink to='/toplist' exact >
+            Topplista
           </NavLink>
-        </NavMenu>
-        <NavBtn>
-          <NavBtnLink onClick={onLogOut} to='/'>Sign out</NavBtnLink>
-        </NavBtn>
+          <NavLink to='/tradgardsfaglar' exact>
+            Fågelarter
+          </NavLink>
+          <NavLink onClick={onLogOut} to='/'>Logga ut</NavLink>
+        </LinkContainer>
       </Nav>
-    </>
-  );
-};
+  )
+}
