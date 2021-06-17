@@ -61,6 +61,7 @@ export const Profile = () => {
     }
 
     const Date = userData.memberSince
+    const BirdArray = userData.birdsSeen
 
     // const onEditAccount = () => {
     //   console
@@ -98,9 +99,14 @@ export const Profile = () => {
             : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}
             </StyledDiv>
             <h3>Mina fågelspaningar</h3>
-            <h5>Antal: Gör en map här:</h5>
+            <h5>Antal:  </h5>
             <Container>                           
               <ListContainer>
+                {/* {BirdArray.map(bird => 
+                  <>
+                    <p>{bird}</p>
+                  </>
+                )} */}
                 <h4>Fågelart</h4>
                 <StyledButton>
                   Läs mer 

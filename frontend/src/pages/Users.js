@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import Polaroid from "react-polaroid";
 
 import { API_URL } from '../urls/urls'
-import { Main } from '../pages/Main'
+import { Main, AboutSection } from '../pages/Main'
 import { InnerMain } from '../pages/Main'
 import { NavBar } from 'components/NavBar'
 import { NavLink } from 'components/NavBar'
@@ -13,14 +12,11 @@ import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
 import { Form } from 'components/Form'
 import { Loader } from 'components/Loader'
-import { Container, ListContainer } from './GardenBirds';
+import { Header } from 'components/Header'
+import { Subtext } from 'components/Subtext'
+import { Dialog } from '../components/Dialog'
 import user from '../reducers/user'
 
-const TextBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-`
 
 export const Users = () => {
   const [userList, setUserList] = useState([])
@@ -66,50 +62,57 @@ export const Users = () => {
       <InnerMain>
       {Loading? <Loader/> :
       <>
-      <h1>Topplista 🦉</h1>
+      <Header>Topplista 🦉</Header>
+      <AboutSection>
+        <img src="https://via.placeholder.com/300"/>
+        <Subtext>
+          Här kan du se vem som leder fågelspaningsligan! Ju fler fågelarter du sett desto högre upp hamnar du på topplistan. 
+        </Subtext>
+      </AboutSection>
         <Form onSubmit={onSearch}>
-          <label> Sök användare:
             <Input 
             type="text"
             onChange={(event) => setUserSearch(event.target.value)}
-            value={userSearch} />
-          </label>
+            value={userSearch} placeholder="Sök på användare"/>
           <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
           {userList.length === 0 ? <p>Hittade inga användare!</p> : '' }
         </Form>
       </>
-    }
-    <Container>
+      }
+      <UserMapContainer>
       {userList.map(user => (
-          <ListContainer>
-          <Polaroid key={user._id}
-            imgSrc={"https://img-premium.flaticon.com/png/128/3560/premium/3560332.png?token=exp=1623852494~hmac=b4fcd3ef37d33834a2118864b9065ee5"}  
-            height={250}            
-            width={250}
-            frontText={`${user.username}, antal sedda fåglar: ${user.birdsSeen.length}`}
-            style={
-              {
-                fontSize: 16,
-              }
-            }
-          >
-            </Polaroid>
-            {/* <TextBox>
-              <h4>Antal sedda fåglar: {user.birdsSeen.length}</h4>
-            </TextBox> */}
-            <StyledButton>
-              <Link              
-                to={() => `/users/${user.username}`} 
-                onClick = {() => onGoToUserProfile(user)}
+        <>
+          <Dialog
+            title={`${user.username}`}
+            subheading={`Antal spaningar: ${user.birdsSeen.length}`}
+            image={"https://img-premium.flaticon.com/png/128/3560/premium/3560332.png?token=exp=1623852494~hmac=b4fcd3ef37d33834a2118864b9065ee5"}
+            link={`/users/${user.username}`}
+            button1="Se profil"
+          />
+          <UserMapButtonContainer>
+          <StyledButton>
+            <Link              
+              to={() => `/users/${user.username}`} 
+              onClick = {() => onGoToUserProfile(user)}
               >
-                Gå till profil
-              </Link>
-            </StyledButton>
-          </ListContainer>
+              Gå till profil
+            </Link>
+          </StyledButton>
+          </UserMapButtonContainer>
+        </>
       ))}
-      </Container>
+      </UserMapContainer>
       </InnerMain>
     </Main>
     </>
   )
 }
+
+const UserMapContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const UserMapButtonContainer = styled.div`
+  
+`;

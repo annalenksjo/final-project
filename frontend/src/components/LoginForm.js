@@ -60,17 +60,11 @@ export const LoginForm = () => {
     <>
     {Loading? <Loader/> :
       <>
-        <Form onSubmit={onLogin}>
-          <label>
-          Användarnamn: 
+        <Form onSubmit={onLogin}> 
             <Input onChange={(event) => setUsername(event.target.value)}
-            value={username} type="text" required/>
-          </label>
-          <label>
-          Lösenord:
+            value={username} type="text" required placeholder="Användarnamn"/>
             <Input onChange={(event) => setPassword(event.target.value)}
-            value={password} type="password"/>
-          </label>
+            value={password} type="password" placeholder="Lösenord"/>
           {error ? <p>{error.message}</p> : ''}
           <StyledButton type='submit'>Logga in</StyledButton>
           <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>

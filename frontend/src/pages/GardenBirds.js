@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import Polaroid from "react-polaroid";
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -11,32 +11,20 @@ import { Main } from '../pages/Main'
 import { InnerMain } from '../pages/Main'
 import { Form } from '../components/Form'
 import { Input } from '../components/Input'
-import { blue } from '@material-ui/core/colors';
+import { Header } from '../components/Header'
+import { Subtext } from '../components/Subtext'
+import { Dialog } from '../components/Dialog'
 import user from 'reducers/user'
 
 
 export const GardenBirds = () => {
   const [birdList, setBirdList] = useState([])
-  //const [birdSearch, setBirdSearch] = useState('')
+  const [birdSearch, setBirdSearch] = useState('')
   const [chosenBird, setChosenBird] = useState('')
   const dispatch = useDispatch()
   const history = useHistory()
 
   const loggedInUserID = useSelector(store => store.user.loggedInUser.userID)
-
-  const onAddBird = () => {
-    fetch(API_URL(`users/${loggedInUserID}/addbird/`), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        birdId : chosenBird
-      })
-    })
-    .then (response => response.json())
-    .then (data => console.log(data))
-  }
   
   useEffect(() => {
     const fetchGardenBirds = () => {
@@ -55,66 +43,48 @@ export const GardenBirds = () => {
     history.push(`/tradgardsfaglar/${action.name}`)
   }
 
+  const onSearch = (event) => {
+    dispatch(user.actions.setLoading(true))
+    event.preventDefault()
+
+    fetch(API_URL(`birds?birdsearch=${birdSearch}`))
+    .then(response => response.json())
+    .then (data => setBirdList(data))
+    .finally(() => dispatch(user.actions.setLoading(false)))
+  }
+
   return (
   <>
     <NavBar/>
     <BirdsListMain>
       <InnerMain>
-        <h1>Här är 40 av våra vanligaste svenska fåglar</h1>
-        <h3>Tryck på bilden för mer information om fågeln!</h3>
-        {/* <Form >
-          <label> Sök fågel:
+        <Header>Här är 40 av våra vanligaste svenska fåglar</Header>
+        <Subtext>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
+          Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
+          <br></br><br></br>
+          Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!</Subtext>
+        <Form onSubmit={onSearch}>
             <Input 
             type="text"
             onChange={(event) => setBirdSearch(event.target.value)}
-            value={birdSearch} 
+            value={birdSearch}
+            placeholder="Sök" 
             />
-          </label>
           <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
           {birdList.length === 0 ? <p>Hittade inga fåglar!</p> : '' }
-        </Form> */}
+        </Form>
         <Container>
         {birdList.map(bird => (
           <>
-          <ListContainer key={bird._id}>
-          <StyledPolaroid
-            imgSrc={bird.image}
-            height={500}            
-            width={500}
-            frontText={bird.name}
-            backText={bird.description}
-            value={bird._id}
-            onClick={() => onGetBirdPage(bird)}
-            style={
-              {
-                fontSize: 24,
-              }
-            }
-          />
-          <StyledButton
-            onClick={(event) => {
-              onAddBird(event.target.value)
-              setChosenBird(event.target.value)
-              }}             
+            <Dialog
+              title={bird.name}
+              image={bird.image}
+              button1="Mer info"
+            />
+            <StyledButton onClick={() => onGetBirdPage(bird)}             
             value={bird._id}>
-            Lägg till i samling</StyledButton>
-          </ListContainer>
-          {/* <BirdListContainer>
-                <h2>{bird.name}</h2>
-                <BirdImg src={bird.image}/>
-                <p>{bird.description}</p>
-                <StyledButton 
-                  onClick={(event) => {
-                    onAddBird()
-                    setChosenBird(event.target.value)
-                  }}             
-                  value={bird.name}
-                >              
-                Lägg till i samling
-                </StyledButton>
-          </BirdListContainer> */}
+              Info</StyledButton>
           </>
-
         ))}
         </Container>
       </InnerMain>

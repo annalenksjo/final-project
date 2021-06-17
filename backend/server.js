@@ -56,7 +56,7 @@ const User = mongoose.model('User', {
   profileImg: {
     type: String
   },
-  motto: {
+  info: {
     type: String,
     default: ''
   },
@@ -111,8 +111,7 @@ app.get('/birds', async (req, res) => {
   try {
     let allBirds = await Birds.find().sort({ name: 1 }) 
     if (birdsearch) {
-      allBirds = allBirds.filter((birds) => birds.name.toLowerCase()
-      .includes(birdsearch.toLowerCase)
+      allBirds = allBirds.filter((birds) => birds.name.toLowerCase().includes(birdsearch.toLowerCase())
       )
       res.json(allBirds)
     } else {
@@ -269,6 +268,9 @@ app.post('/login', async (req, res) => {
           userID: user._id,
           username: user.username,
           accessToken: user.accessToken,
+          info: user.info,
+          memberSince: user.memberSince,
+          birdsSeen: user.birdsSeen
         })
        } else {
       res.status(404).json({ success: false, message: 'Fel användarnamn eller lösenord, prova igen.' })
@@ -286,6 +288,14 @@ app.post('/users/:_id/addbird/', async (req, res) => {
   
   try {
     const birdToAdd = await Birds.findById(birdId)
+    // const user = await User.findById(_id)
+
+    // if (user.birdsSeen) {
+    //   res.json({
+    //     success: true
+    //   })
+    //  } else {
+    //   res.status(404).json({ success: false, message: 'Du har redan den här fågeln i din samling' })
 
     await User.findByIdAndUpdate(_id, {
       $push: {
