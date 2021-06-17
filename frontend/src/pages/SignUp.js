@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { StyledButton } from '../components/Button'
 import { RegisterForm } from 'components/RegisterForm'
 import { Main } from '../pages/Main'
 import { InnerMain } from '../pages/Main'

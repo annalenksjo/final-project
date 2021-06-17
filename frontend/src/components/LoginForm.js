@@ -13,8 +13,9 @@ export const LoginForm = () => {
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
 
-  const accessToken = useSelector(store => store.user.accessToken)
+  const loggedInUser = useSelector(store => store.user.loggedInUser)
   const Loading = useSelector(store => store.user.loading)
+  const error = useSelector(store => store.user.errors)
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -37,12 +38,9 @@ export const LoginForm = () => {
       .then(data => {
         if (data.success) {
           batch(() => {
-            dispatch(user.actions.setUsername(data.username))
-            dispatch(user.actions.setAccessToken(data.accessToken))
-            dispatch(user.actions.setUserID(data.userID))
+            dispatch(user.actions.setloggedInUser(data))
             dispatch(user.actions.setErrors(null))
-            dispatch(user.actions.setUserMessage('Login successful'))
-            if (accessToken) {
+            if (loggedInUser.accessToken) {
               history.push('/profile')
             }
           })
@@ -60,22 +58,25 @@ export const LoginForm = () => {
 
   return(
     <>
-    {Loading? <Loader/> : 
-      <Form onSubmit={onLogin}>
-        <label>
-        Användarnamn: 
-          <Input onChange={(event) => setUsername(event.target.value)}
-          value={username} type="text" required/>
-        </label>
-        <label>
-        Lösenord:
-          <Input onChange={(event) => setPassword(event.target.value)}
-          value={password} type="password"/>
-        </label>
-        <StyledButton type='submit'>Log in</StyledButton>
-      </Form>
+    {Loading? <Loader/> :
+      <>
+        <Form onSubmit={onLogin}>
+          <label>
+          Användarnamn: 
+            <Input onChange={(event) => setUsername(event.target.value)}
+            value={username} type="text" required/>
+          </label>
+          <label>
+          Lösenord:
+            <Input onChange={(event) => setPassword(event.target.value)}
+            value={password} type="password"/>
+          </label>
+          {error ? <p>{error.message}</p> : ''}
+          <StyledButton type='submit'>Logga in</StyledButton>
+          <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
+        </Form>        
+      </>
     }
-    <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
   </>
   )
 }

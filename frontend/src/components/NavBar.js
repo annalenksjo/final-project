@@ -6,8 +6,7 @@ import { StyledButton } from './Button';
 
 
 export const Nav = styled.nav`
-//background: #A7DEC6;
-background: #95D5B2;
+background: #90e0ef;
 position: fixed;
 top: 0;
 left: 0;
@@ -22,8 +21,7 @@ padding: 0 60px 0 80px;
 `;
 
 export const NavLink = styled(Link)`
-//color: #808080;
-color: #1B4332;
+color: #0077b6;
 display: flex;
 align-items: center;
 text-decoration: none;
@@ -32,10 +30,10 @@ padding: 0 1rem;
 height: 100%;
 cursor: pointer;
 &.active {
-	color: #081C15;
+	color: #03045e;
 }
 &:hover {
-  color: #081C15;
+  color: #03045e;
 } 
 `;
 
@@ -53,7 +51,7 @@ flex-direction: row;
 
 export const Logo = styled.h1`
 font-size: 50px;
-color: #1B4332;
+color: #0077b6;
 `
 
 export const NavBar = () => {

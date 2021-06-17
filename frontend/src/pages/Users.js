@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+import Polaroid from "react-polaroid";
 
 import { API_URL } from '../urls/urls'
 import { Main } from '../pages/Main'
@@ -12,7 +13,7 @@ import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
 import { Form } from 'components/Form'
 import { Loader } from 'components/Loader'
-import { Card } from 'components/Card'
+import { Container, ListContainer } from './GardenBirds';
 import user from '../reducers/user'
 
 const TextBox = styled.div`
@@ -22,10 +23,12 @@ const TextBox = styled.div`
 `
 
 export const Users = () => {
-  const [userList, setUserList] = useState([1])
+  const [userList, setUserList] = useState([])
   const [userSearch, setUserSearch] = useState('')
+
   const Loading = useSelector(store => store.user.loading)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   //order this list based on birds seen. 
   // need infinite scrolling or pagination or something
@@ -50,6 +53,7 @@ export const Users = () => {
   }
 
   const onGoToUserProfile = (action) => {
+    // history.push(`/users/${action.username}`)
     dispatch(user.actions.setLoading(true))
     dispatch(user.actions.setBrowsedUser(action))
     dispatch(user.actions.setLoading(false))
@@ -75,22 +79,35 @@ export const Users = () => {
         </Form>
       </>
     }
+    <Container>
       {userList.map(user => (
-        <Card key={user._id}>
-          <TextBox>
-            <h2>{user.username}</h2>
-            <h4>Antal sedda fåglar: {user.birdsSeen}</h4>
-          </TextBox>
-          <StyledButton>
-            <Link              
-              to={() => `/users/${user.username}`} 
-              onClick = {() => onGoToUserProfile(user)}
-            >
-              Gå till profil
-            </Link>
-          </StyledButton>
-        </Card>
+          <ListContainer>
+          <Polaroid key={user._id}
+            imgSrc={"https://img-premium.flaticon.com/png/128/3560/premium/3560332.png?token=exp=1623852494~hmac=b4fcd3ef37d33834a2118864b9065ee5"}  
+            height={250}            
+            width={250}
+            frontText={`${user.username}, antal sedda fåglar: ${user.birdsSeen.length}`}
+            style={
+              {
+                fontSize: 16,
+              }
+            }
+          >
+            </Polaroid>
+            {/* <TextBox>
+              <h4>Antal sedda fåglar: {user.birdsSeen.length}</h4>
+            </TextBox> */}
+            <StyledButton>
+              <Link              
+                to={() => `/users/${user.username}`} 
+                onClick = {() => onGoToUserProfile(user)}
+              >
+                Gå till profil
+              </Link>
+            </StyledButton>
+          </ListContainer>
       ))}
+      </Container>
       </InnerMain>
     </Main>
     </>

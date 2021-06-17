@@ -9,6 +9,7 @@ import { Profile } from "pages/Profile"
 import { SignUp } from "pages/SignUp"
 import { Users } from "pages/Users"
 import { GardenBirds } from "pages/GardenBirds"
+import { BirdPage } from "pages/BirdPage"
 
 import user from './reducers/user'
 import { UserPage } from "pages/UserPage"
@@ -43,9 +44,12 @@ export const App = () => {
             <Route path='/users/:userid'> 
               <UserPage/>
             </Route>
-            <Route path='/tradgardsfaglar'> 
+            <Route path='/tradgardsfaglar' exact> 
               <GardenBirds/>
-            </Route>  
+            </Route>
+            <Route path='/tradgardsfaglar/:birdid'> 
+              <BirdPage/>
+            </Route>    
         </Switch>
         </Provider>
     </BrowserRouter>

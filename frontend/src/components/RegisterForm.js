@@ -17,7 +17,7 @@ export const RegisterForm = () => {
   const [ registerError, setRegisterError ] = useState(null)
 
   const accessToken = useSelector(store => store.user.accessToken)
-  const errorMessage = useSelector(store => store.user.errors)
+  const error = useSelector(store => store.user.errors)
   const userMessage = useSelector(store => store.user.message)
   const Loading = useSelector(store => store.user.loading)
 
@@ -29,7 +29,7 @@ export const RegisterForm = () => {
     event.preventDefault()
 
     if (registerPassword !== passwordMatch) {
-      setRegisterError('Passwords must match')
+      setRegisterError('Lösenorden måste vara samma')
     } else {
       setRegisterError(null)
 
@@ -49,13 +49,12 @@ export const RegisterForm = () => {
             batch(() => {
               dispatch(user.actions.setUsername(data.username))
               dispatch(user.actions.setAccessToken(data.accessToken))
+              dispatch(user.actions.setloggedInUser(data))
               dispatch(user.actions.setErrors(null))
               dispatch(user.actions.setUserMessage('Register successful'))
               console.log('register successful')
               console.log(data)
-              if (accessToken) {
-                history.push('/profile')
-              }
+              history.push('/profile')            
             })
           } else {
             dispatch(user.actions.setErrors(data))
@@ -86,10 +85,12 @@ export const RegisterForm = () => {
             value={passwordMatch} type="password"/>
           </label>
           {registerError ? <p>{registerError}</p> : '' }
+          {error ? <p>{error.message}</p> : ''}
           <StyledButton type="submit"> Registrera!</StyledButton>
+          <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
         </Form>
       }
-      <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
+      
     </>
   )
 }
