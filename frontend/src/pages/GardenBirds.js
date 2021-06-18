@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { API_URL } from '../urls/urls'
 import { StyledButton } from '../components/Button'
 import { NavBar, NavLink } from '../components/NavBar.js'
-import { Main, InnerMain } from '../components/MainContainers'
+import { Main, InnerMainLoggedIn, OnClickDiv } from '../components/MainContainers'
 import { SearchForm } from '../components/Form'
 import { Input } from '../components/Input'
 import { Header } from '../components/Header'
@@ -47,13 +47,15 @@ export const GardenBirds = () => {
     .then(response => response.json())
     .then (data => setBirdList(data))
     .finally(() => dispatch(user.actions.setLoading(false)))
+
+    setBirdSearch('')
   }
 
   return (
   <>
     <NavBar/>
     <BirdsListMain>
-      <InnerMain>
+      <InnerMainLoggedIn>
         <Header>Här är 40 av våra vanligaste svenska fåglar</Header>
         <Subtext>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
           Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
@@ -71,7 +73,7 @@ export const GardenBirds = () => {
         </SearchForm>
         <Container>
         {birdList.map(bird => (
-          <NavLink 
+          <OnClickDiv 
             onClick={() => onGetBirdPage(bird)}             
             value={bird._id}
             key={bird._id}
@@ -80,10 +82,10 @@ export const GardenBirds = () => {
               title={bird.name}
               image={bird.image}
             />
-          </NavLink>
+          </OnClickDiv>
         ))}
         </Container>
-      </InnerMain>
+      </InnerMainLoggedIn>
     </BirdsListMain> 
   </>     
   )

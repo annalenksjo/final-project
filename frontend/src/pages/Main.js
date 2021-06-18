@@ -14,12 +14,15 @@ const LinksContainer = styled.div`
   align-items: center;
 `
 const StartImage = styled.img`
-  width: 90%;
+  width: 100%;
   margin-bottom: 10px;
 `
 const FirstpageNavlink = styled(NavLink)`
   color: #FF7460;
   margin: 0;
+  &:hover {
+    opacity: 0.8;
+  }
 `
 const Logotype = styled.img`
   width: 200px;
@@ -40,7 +43,7 @@ export const StartPage = () => {
         <AboutSection>        
           <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>
             <Header>Fram med kikaren, nu kör vi!</Header>
-            <FirstpageSubtext>Denna app listar de vanligaste trädgårdsfåglarna som förekommer i Sverige. Här kan du markera vilka fåglar du sett i din trädgård eller omgivning. Det finns också plats att fylla på med egna mera ovanliga arter.</FirstpageSubtext>
+            <FirstpageSubtext>Denna app listar de vanligaste trädgårdsfåglarna som förekommer i Sverige. Här kan du markera vilka fåglar du sett i din trädgård eller omgivning.</FirstpageSubtext>
         </AboutSection>
         <LinksContainer>
             <FirstpageNavlink onClick={() => history.push('/loggain')}>Redan fågelspanare?</FirstpageNavlink>

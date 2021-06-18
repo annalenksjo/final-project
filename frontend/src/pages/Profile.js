@@ -9,7 +9,7 @@ import { StyledButton } from 'components/Button'
 import { Dialog } from 'components/Dialog'
 import { API_URL } from 'urls/urls'
 import { Loader } from 'components/Loader'
-import { InnerMain, Main } from 'components/MainContainers'
+import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 
 import user from 'reducers/user'
@@ -100,13 +100,13 @@ export const Profile = () => {
     <>
     <NavBar />
       <Main>
-        <InnerMain>
+        <InnerMainLoggedIn>
           {Loading? <Loader/> :
           <> 
             <StyledDiv>
             <div>     
               <h2>Min profil: {userData.username}</h2>
-              <p>Medlem sedan: {moment(Date).format('ll')}</p>
+              {/* <p>Medlem sedan: {moment(Date).format('ll')}</p> */}
             </div>  
             {showConfirmation? <div>
               <p>Är du säker?</p>
@@ -115,14 +115,14 @@ export const Profile = () => {
             </div> 
             : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}
             </StyledDiv>
-            <h3>Mina fågelspaningar</h3>
-            <h5>Antal: {BirdArray.length}</h5>
+            <h3>Mina fågelspaningar ({BirdArray.length} av 40 möjliga)</h3>
             <Container>                           
               <ListContainer>
                 {userData.birdsSeen && userData.birdsSeen.map(bird =>
                   <NavLink
                     key={bird._id}
-                    to={`tradgardsfaglar/${bird.name}`}
+                    to={`fagelbiblioteket/${bird.name}`}
+                    onClick={() => dispatch(user.actions.setBrowsedBird(bird))}
                   >
                     <Dialog
                       title={bird.name}
@@ -139,7 +139,7 @@ export const Profile = () => {
             <StyledButton onClick={() => history.push('/fagelbiblioteket')}>Till Fågelbiblioteket</StyledButton>
           </>
           }
-          </InnerMain>
+          </InnerMainLoggedIn>
       </Main>
     </>
   )

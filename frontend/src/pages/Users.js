@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
+import { useHistory, Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 import { API_URL } from '../urls/urls'
 import { AboutSection } from '../components/MainContainers'
-import { InnerMain, Main } from 'components/MainContainers'
+import { InnerMainLoggedIn, Main, OnClickDiv } from 'components/MainContainers'
 import { NavBar } from 'components/NavBar'
 import { NavLink } from 'components/NavBar'
 import { Input } from 'components/Input'
@@ -23,6 +24,7 @@ export const Users = () => {
 
   const Loading = useSelector(store => store.user.loading)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     const fetchUserList = () => {
@@ -41,10 +43,12 @@ export const Users = () => {
     .then(response => response.json())
     .then (data => setUserList(data))
     .finally(() => dispatch(user.actions.setLoading(false)))
+
+    setUserSearch('')
   }
 
   const onGoToUserProfile = (action) => {
-    // history.push(`/users/${action.username}`)
+    history.push(`/users/${action.username}`)
     dispatch(user.actions.setLoading(true))
     dispatch(user.actions.setBrowsedUser(action))
     dispatch(user.actions.setLoading(false))
@@ -54,7 +58,7 @@ export const Users = () => {
     <>
     <NavBar/>
     <Main>
-      <InnerMain>
+      <InnerMainLoggedIn>
       {Loading? <Loader/> :
       <>
       <Header>Topplista</Header>
@@ -76,21 +80,20 @@ export const Users = () => {
       }
       <UserMapContainer>
       {userList.map(user => (
-        <>
-          <NavLink          
-              to={() => `/users/${user.username}`} 
+          <OnClickDiv          
+              //to={() => `/users/${user.username}`} 
               onClick = {() => onGoToUserProfile(user)}
+              key={user._id}
               >
           <Dialog
             title={`${user.username}`}
-            subheading={`Antal spaningar: ${user.birdsSeen.length}`}
+            subheading={`Spaningar: ${user.birdsSeen.length}/40`}
             image={"https://img-premium.flaticon.com/png/128/3560/premium/3560332.png?token=exp=1623852494~hmac=b4fcd3ef37d33834a2118864b9065ee5"}
           />
-          </NavLink>  
-        </>
+          </OnClickDiv> 
       ))}
       </UserMapContainer>
-      </InnerMain>
+      </InnerMainLoggedIn>
     </Main>
     </>
   )

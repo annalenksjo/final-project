@@ -40,17 +40,17 @@ export const LoginForm = () => {
           batch(() => {
             dispatch(user.actions.setloggedInUser(data))
             dispatch(user.actions.setErrors(null))
-            if (loggedInUser.accessToken) {
-              history.push('/minsida')
-            }
-          })
-         
+          })        
         } else {
           dispatch(user.actions.setErrors(data))
           dispatch(user.actions.setUserMessage('Login unsuccessful'))
           setUsername('')
           setPassword('')
         }
+        if (loggedInUser && loggedInUser.accessToken) {
+          console.log('successful')
+          history.push('/minsida')
+        } 
       })
       .catch()
       .finally(() => dispatch(user.actions.setLoading(false)))
@@ -68,7 +68,7 @@ export const LoginForm = () => {
           {error ? <p>{error.message}</p> : ''}
           <StyledButton type='submit'>Logga in</StyledButton>
           <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
-        </Form>        
+        </Form>     
       </>
     }
   </>

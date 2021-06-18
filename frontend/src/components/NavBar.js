@@ -1,6 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+
+import user from '../reducers/user'
 
 export const Nav = styled.nav`
   position: fixed;
@@ -50,8 +53,10 @@ export const Logo = styled.img`
 `
 
 export const NavBar = () => {
+  const dispatch = useDispatch()
 
   const onLogOut = () => {
+    dispatch(user.actions.setloggedInUser(null))
     localStorage.clear()
   }
 

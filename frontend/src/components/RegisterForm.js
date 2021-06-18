@@ -6,9 +6,10 @@ import { API_URL } from '../urls/urls'
 import user from '../reducers/user'
 
 import { StyledButton } from './Button'
-import { Form } from './Form'
+import { HeighForm } from './Form'
 import { Input } from './Input'
 import { Loader } from './Loader'
+
 
 export const RegisterForm = () => {
   const [ registerUsername, setRegisterUsername ] = useState('')
@@ -66,7 +67,7 @@ export const RegisterForm = () => {
   return (
     <>
       {Loading? <Loader/> : 
-        <Form onSubmit={onRegister}>
+        <HeighForm onSubmit={onRegister}>
             <Input onChange={(event) => setRegisterUsername(event.target.value)}
             value={registerUsername} type="text" placeholder="Användarnamn"/>
             <Input onChange={(event) => setRegisterPassword(event.target.value)}
@@ -77,7 +78,7 @@ export const RegisterForm = () => {
           {error ? <p>{error.message}</p> : ''}
           <StyledButton type="submit"> Registrera!</StyledButton>
           <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
-        </Form>
+        </HeighForm>
       }
       
     </>

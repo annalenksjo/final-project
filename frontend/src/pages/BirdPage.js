@@ -9,7 +9,7 @@ import { StyledButton } from '../components/Button'
 import { NavBar } from '../components/NavBar'
 import { Header } from '../components/Header'
 import { Subtext } from '../components/Subtext'
-import { Main, InnerMain, AboutSection } from 'components/MainContainers'
+import { Main, InnerMainLoggedIn, AboutSection } from 'components/MainContainers'
 
 export const BirdPage = () => {
   const history = useHistory()
@@ -50,7 +50,7 @@ export const BirdPage = () => {
 
      return (
       <Main>
-        <InnerMain>
+        <InnerMainLoggedIn>
         {Loading? <Loader/> :
           <>
             <NavBar/>
@@ -66,12 +66,12 @@ export const BirdPage = () => {
                 </StyledButton>
               }
               <br></br>
-              <StyledButton onClick={() => history.push('/fagelbiblioteket')}>Tillbaka</StyledButton>
+              <StyledButton onClick={() => history.go(-1)}>Tillbaka</StyledButton>
               </Subtext>
             </AboutSection>
           </>
         }
-        </InnerMain>      
+        </InnerMainLoggedIn>      
       </Main>
     )
 }

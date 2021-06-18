@@ -21,12 +21,23 @@ export const InnerMain = styled.section`
   align-items: center;
 `
 
-// section containing illustration and text on start, log in and register page
+export const InnerMainLoggedIn = styled(InnerMain)`
+  padding-top: 200px;
+`
 
+// section containing illustration and text on start, log in and register page
 export const AboutSection = styled.section`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px;
+`
+// Wrapper for Dialog to use onClick functionality
+export const OnClickDiv = styled.div`
+  border: none;
+  :hover {
+    cursor:pointer
+  }
 `

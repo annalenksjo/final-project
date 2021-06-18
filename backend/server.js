@@ -177,7 +177,7 @@ app.get('/users/:_id', async (req, res) => {
       for(const bird of userPage.birdsSeen) {
         const birdObject = await Birds.findById(bird)
         birdArray.push(birdObject)
-      }
+      } 
       res.json({
         info: userPage.info,
         username: userPage.username,
