@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { API_URL } from '../urls/urls'
-import { Main, AboutSection } from '../pages/Main'
-import { InnerMain } from '../pages/Main'
+import { AboutSection } from '../components/MainContainers'
+import { InnerMain, Main } from 'components/MainContainers'
 import { NavBar } from 'components/NavBar'
 import { NavLink } from 'components/NavBar'
 import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
-import { Form } from 'components/Form'
+import { SearchForm } from 'components/Form'
 import { Loader } from 'components/Loader'
 import { Header } from 'components/Header'
 import { Subtext } from 'components/Subtext'
@@ -24,10 +23,6 @@ export const Users = () => {
 
   const Loading = useSelector(store => store.user.loading)
   const dispatch = useDispatch()
-  const history = useHistory()
-
-  //order this list based on birds seen. 
-  // need infinite scrolling or pagination or something
 
   useEffect(() => {
     const fetchUserList = () => {
@@ -62,43 +57,36 @@ export const Users = () => {
       <InnerMain>
       {Loading? <Loader/> :
       <>
-      <Header>Topplista 🦉</Header>
+      <Header>Topplista</Header>
       <AboutSection>
-        <img src="https://via.placeholder.com/300"/>
+        <img src="https://via.placeholder.com/300" alt="Fågelspaning prispall"/>
         <Subtext>
           Här kan du se vem som leder fågelspaningsligan! Ju fler fågelarter du sett desto högre upp hamnar du på topplistan. 
         </Subtext>
       </AboutSection>
-        <Form onSubmit={onSearch}>
+        <SearchForm onSubmit={onSearch}>
             <Input 
             type="text"
             onChange={(event) => setUserSearch(event.target.value)}
             value={userSearch} placeholder="Sök på användare"/>
           <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
           {userList.length === 0 ? <p>Hittade inga användare!</p> : '' }
-        </Form>
+        </SearchForm>
       </>
       }
       <UserMapContainer>
       {userList.map(user => (
         <>
+          <NavLink          
+              to={() => `/users/${user.username}`} 
+              onClick = {() => onGoToUserProfile(user)}
+              >
           <Dialog
             title={`${user.username}`}
             subheading={`Antal spaningar: ${user.birdsSeen.length}`}
             image={"https://img-premium.flaticon.com/png/128/3560/premium/3560332.png?token=exp=1623852494~hmac=b4fcd3ef37d33834a2118864b9065ee5"}
-            link={`/users/${user.username}`}
-            button1="Se profil"
           />
-          <UserMapButtonContainer>
-          <StyledButton>
-            <Link              
-              to={() => `/users/${user.username}`} 
-              onClick = {() => onGoToUserProfile(user)}
-              >
-              Gå till profil
-            </Link>
-          </StyledButton>
-          </UserMapButtonContainer>
+          </NavLink>  
         </>
       ))}
       </UserMapContainer>
@@ -113,6 +101,6 @@ const UserMapContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-const UserMapButtonContainer = styled.div`
+// const UserMapButtonContainer = styled.div`
   
-`;
+// `;

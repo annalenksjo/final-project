@@ -13,5 +13,4 @@ export const Input = styled.input`
   color: #0C4458;
   font-size: 18px;
   padding: 14px;
-  margin-bottom: 20px;
 `

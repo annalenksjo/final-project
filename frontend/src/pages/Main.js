@@ -1,53 +1,33 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { NavLink } from '../components/NavBar'
 import { Header } from '../components/Header'
 import { Subtext } from '../components/Subtext'
+import { Main, InnerMain, AboutSection } from '../components/MainContainers'
 import '../index.css'
 
-export const Main = styled.main`
-  background: linear-gradient(179.96deg, #CBECFE 0.04%, rgba(243, 249, 252, 0) 194.85%);
-  padding: 40px;
-  width: 100vw;
-  height: 100%;
-`
-
-export const InnerMain = styled.main`
-  //background: #90e0ef;
-  border-radius: 80px;
-  padding: 120px 60px;
-  margin-top: 150px;
-`
-const StartHeader = styled.header`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-`
-const Links = styled.div`
-display: flex;
-`
-
-const StartImage = styled.img`
-  max-width: 50%;
-  border-radius: 10px;
-  margin-right: 20px;
-`
-
-export const AboutSection = styled.section`
+const LinksContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin: 60px 20px 20px 20px;
 `
-
-const Title = styled.h1`
-  font-size: 30px;
-  margin-left: 20px;
-  color: #023e8a;
+const StartImage = styled.img`
+  width: 90%;
+  margin-bottom: 10px;
+`
+const FirstpageNavlink = styled(NavLink)`
+  color: #FF7460;
+  margin: 0;
+`
+const Logotype = styled.img`
+  width: 200px;
+  margin: 20px 0 0 20px;
+`
+const FirstpageSubtext = styled(Subtext)`
+  font-size: 18px;
+  margin: 10px 0 5px 0;
 `
 
 export const StartPage = () => {
@@ -55,21 +35,17 @@ export const StartPage = () => {
 
   return (
     <Main>
-      <InnerMain>
-       <StartHeader>
-          <Title>Fågelspanarna</Title>
-          <Links>
-            <NavLink onClick={() => history.push('/loggain')}>Logga in</NavLink>
-            <NavLink onClick={() => history.push('skapakonto')}>Skapa konto</NavLink>
-          </Links>
-        </StartHeader>      
+       <Logotype src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></Logotype>
+      <InnerMain>  
         <AboutSection>        
-          <StartImage className="placeholder-image" src="https://landetsfria.nu/wp-content/uploads/sites/2/2020/02/f4382a109815c3a9508917f55ca9425b-1036x700.jpg"></StartImage>
-          <div>
-            <Header>Trädgårdens fåglar</Header>
-            <Subtext>Denna app listar de vanligaste trädgårdsfåglarna som förekommer i Sverige. Här kan du markera vilka fåglar du sett i din trädgård eller omgivning. Det finns också plats att fylla på med egna mera ovanliga arter.</Subtext>
-          </div>
+          <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>
+            <Header>Fram med kikaren, nu kör vi!</Header>
+            <FirstpageSubtext>Denna app listar de vanligaste trädgårdsfåglarna som förekommer i Sverige. Här kan du markera vilka fåglar du sett i din trädgård eller omgivning. Det finns också plats att fylla på med egna mera ovanliga arter.</FirstpageSubtext>
         </AboutSection>
+        <LinksContainer>
+            <FirstpageNavlink onClick={() => history.push('/loggain')}>Redan fågelspanare?</FirstpageNavlink>
+            <FirstpageNavlink onClick={() => history.push('skapakonto')}>Bli en fågelspanare!</FirstpageNavlink>
+        </LinksContainer>
       </InnerMain>
     </Main>  
   )

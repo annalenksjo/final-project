@@ -1,20 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
 import styled from 'styled-components'
-import { StyledButton } from './Button';
 
 export const Nav = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  height: 120px;
+  height: 140px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  border-radius: 0 0 30px 30px; 
   padding: 0 60px 0 80px;
   background-color: #FAE5A2;
 `;
@@ -48,9 +45,8 @@ export const LinkContainer = styled.div`
   flex-direction: row;
 `
 
-export const Logo = styled.h1`
-  font-size: 40px;
-  color: #0C4458;
+export const Logo = styled.img`
+  width: 350px;
 `
 
 export const NavBar = () => {
@@ -61,15 +57,15 @@ export const NavBar = () => {
 
   return (
       <Nav>
-        <Logo>Fågelspanarna</Logo>
+        <Logo src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></Logo>
          <LinkContainer>
-          <NavLink to='/profile' exact>
-            Profil
+          <NavLink to='/minsida'>
+            Min sida
           </NavLink>
-          <NavLink to='/toplist' exact >
+          <NavLink to='/topplistan' >
             Topplistan
           </NavLink>
-          <NavLink to='/tradgardsfaglar' exact>
+          <NavLink to='/fagelbiblioteket'>
             Fågelbiblioteket
           </NavLink>
           <NavLink onClick={onLogOut} to='/'>Logga ut</NavLink>

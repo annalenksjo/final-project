@@ -29,25 +29,25 @@ export const App = () => {
             <Route path='/' exact>
               <StartPage/>
             </Route>
-            <Route path='/loggain' exact> 
+            <Route path='/loggain'> 
               <LogIn/>
             </Route>
-            <Route path='/skapakonto' exact> 
+            <Route path='/skapakonto'> 
               <SignUp/>
             </Route>
-            <Route path='/profile' exact> 
+            <Route path='/minsida'> 
               <Profile/>
             </Route>
-            <Route path='/toplist' exact> 
+            <Route path='/topplistan'> 
               <Users/>
             </Route>
             <Route path='/users/:userid'> 
               <UserPage/>
             </Route>
-            <Route path='/tradgardsfaglar' exact> 
+            <Route path='/fagelbiblioteket' exact> 
               <GardenBirds/>
             </Route>
-            <Route path='/tradgardsfaglar/:birdid'> 
+            <Route path='/fagelbiblioteket/:birdid'> 
               <BirdPage/>
             </Route>    
         </Switch>

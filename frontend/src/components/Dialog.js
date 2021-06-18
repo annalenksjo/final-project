@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom'
 
 const Container = styled.div`
-  margin-top: 20px;
   border-radius: 24px;
   border: 2px solid #0C4458;
   text-align: left;
-  padding: 20px;
+  padding: 40px 20px;
   opacity: 100%;
   width: 220px;
-  box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%),
-    0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+  &:hover {
+  background-color: rgb(255,244,241, 0.4);
+  }
 `;
 
 const TextContent = styled.div``;
@@ -28,9 +28,9 @@ const Button = styled.button`
   font-weight: 500px;
   margin: 40px 0 0 10px;
   padding: 5px;
-
   &:hover {
     background-color: #fafafa;
+    cursor:pointer;
   }
 `;
 
@@ -58,7 +58,7 @@ const Image = styled.img`
   max-width: 100%;
 `;
 
-export const Dialog = ({ title, subheading, image, link, button1, button2 }) => {
+export const Dialog = ({ title, subheading, image, link, button1, button1Click, button2, button2Click }) => {
   return (
     <Container>
       <TextContent>
@@ -70,8 +70,8 @@ export const Dialog = ({ title, subheading, image, link, button1, button2 }) => 
       </ImageContainer>
       <ButtonContainer>
         {link && <Link to={link}>{button1}</Link>}
-        {button1 && <Button>{button1}</Button>}
-        {button2 && <Button>{button2}</Button>}
+        {button1 && <Button onClick={button1Click}>{button1}</Button>}
+        {button2 && <Button onClick={button2Click}>{button2}</Button>}
       </ButtonContainer>
     </Container>
   );

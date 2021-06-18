@@ -4,14 +4,13 @@ import { useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import moment from 'moment'
 
-import { NavBar } from 'components/NavBar'
+import { NavBar, NavLink } from 'components/NavBar'
 import { StyledButton } from 'components/Button'
+import { Dialog } from 'components/Dialog'
 import { API_URL } from 'urls/urls'
 import { Loader } from 'components/Loader'
-import { Main } from '../pages/Main'
-import { InnerMain } from '../pages/Main'
+import { InnerMain, Main } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
-
 
 import user from 'reducers/user'
 
@@ -22,12 +21,10 @@ const StyledDiv = styled.div`
   margin-bottom: 20px;
 `
 
-
 export const Profile = () => {
   const LoggedInUser = useSelector(store => store.user.loggedInUser)
   const LoggedInUserID = useSelector(store => store.user.loggedInUser.userID)
   const Loading = useSelector(store => store.user.loading)
-
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [userData, setUserData] = useState({})
 
@@ -41,7 +38,7 @@ export const Profile = () => {
         .then (data => setUserData(data)) 
     }
     fetchUserProfile()
-  },[])
+  },[LoggedInUserID])
 
   const onDeleteAccount = () => {
     dispatch(user.actions.setLoading(true))  
@@ -51,7 +48,6 @@ export const Profile = () => {
         'Content-Type': 'application/json'
       }
     }
-
     fetch(API_URL(`users/${LoggedInUserID}`), options)
       .then (response => response.json())
       .then (data => console.log(data))
@@ -60,8 +56,29 @@ export const Profile = () => {
     history.push('/')
     }
 
-    const Date = userData.memberSince
-    const BirdArray = userData.birdsSeen
+    // const onDeleteBird = (bird) => {
+    //   fetch(API_URL(`users/${LoggedInUserID}/addbird/`), {
+    //     method: 'DELETE',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //       birdId : bird
+    //     })
+    //   })
+    //   .then (response => response.json())
+    //   .then (data => console.log(data))
+    // }  
+
+    const Date = LoggedInUser.memberSince
+    const BirdArray = LoggedInUser.birdsSeen    
+    // const onGetBirdPage = (action) => {
+    //   dispatch(user.actions.setLoading(true))
+    //   dispatch(user.actions.setBrowsedBird(action))
+    //   dispatch(user.actions.setLoading(false))
+    //   console.log(action)
+    //   history.push(`/fagelbiblioteket/${action.name}`)
+    // }
 
     // const onEditAccount = () => {
     //   console
@@ -99,21 +116,27 @@ export const Profile = () => {
             : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}
             </StyledDiv>
             <h3>Mina fågelspaningar</h3>
-            <h5>Antal:  </h5>
+            <h5>Antal: {BirdArray.length}</h5>
             <Container>                           
               <ListContainer>
-                {/* {BirdArray.map(bird => 
-                  <>
-                    <p>{bird}</p>
-                  </>
-                )} */}
-                <h4>Fågelart</h4>
-                <StyledButton>
-                  Läs mer 
-                </StyledButton>   
+                {userData.birdsSeen && userData.birdsSeen.map(bird =>
+                  <NavLink
+                    key={bird._id}
+                    to={`tradgardsfaglar/${bird.name}`}
+                  >
+                    <Dialog
+                      title={bird.name}
+                      image={bird.image}
+                      // button1={`👀 x 2`}
+                      // button1Click={() => console.log('hej')} 
+                      // button2={'Ta bort från lista'}
+                      // button2Click={() => onDeleteBird(bird)}
+                    />
+                  </NavLink>          
+                )}  
               </ListContainer>
             </Container>
-            <StyledButton onClick={() => history.push('/tradgardsfaglar')}>Lägg till fler fåglar</StyledButton>
+            <StyledButton onClick={() => history.push('/fagelbiblioteket')}>Till Fågelbiblioteket</StyledButton>
           </>
           }
           </InnerMain>

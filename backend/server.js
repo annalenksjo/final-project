@@ -139,6 +139,9 @@ app.get('/birds/:_id', async (req, res) => {
   }
 })
 
+// Loop Birds Array
+//app.get('/user/birds')
+
 // Get User List
 // app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
@@ -170,7 +173,18 @@ app.get('/users/:_id', async (req, res) => {
   try {    
     if (_id) {
       const userPage = await User.findById(_id)
-      res.json(userPage)
+      const birdArray = []
+      for(const bird of userPage.birdsSeen) {
+        const birdObject = await Birds.findById(bird)
+        birdArray.push(birdObject)
+      }
+      res.json({
+        info: userPage.info,
+        username: userPage.username,
+        memberSince: userPage.memberSince,
+        _id: userPage._id,
+        birdsSeen: birdArray
+      })
     } else {
       res.status(404).json({ error: 'Not found' })
     }
@@ -194,6 +208,25 @@ app.delete('/users/:_id', async (req, res) => {
     } else {
       res.status(404).json({ success: false, message: 'Sorry, something went wrong', error })
     }
+  } catch (error) {
+    res.status(400).json({ success: false, message: 'invalid request', error })
+  }
+})
+
+//Delete Bird from user array
+// app.delete('/users/:_id', authenticateUser)
+app.delete('/users/:_id/addbird/', async (req, res) => {
+  const { _id } = req.params
+  const { birdId } = req.body
+  
+  try {
+    const birdToDelete = await Birds.findById(birdId)
+    await User.findByIdAndUpdate(_id, {
+      $pull: {
+        birdsSeen: birdToDelete._id
+      }
+    })
+    res.status(200).json({ success: true, message: 'Borttagen', birdToDelete})
   } catch (error) {
     res.status(400).json({ success: false, message: 'invalid request', error })
   }
@@ -288,15 +321,6 @@ app.post('/users/:_id/addbird/', async (req, res) => {
   
   try {
     const birdToAdd = await Birds.findById(birdId)
-    // const user = await User.findById(_id)
-
-    // if (user.birdsSeen) {
-    //   res.json({
-    //     success: true
-    //   })
-    //  } else {
-    //   res.status(404).json({ success: false, message: 'Du har redan den här fågeln i din samling' })
-
     await User.findByIdAndUpdate(_id, {
       $push: {
         birdsSeen: birdToAdd

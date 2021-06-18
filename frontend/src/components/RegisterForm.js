@@ -16,9 +16,7 @@ export const RegisterForm = () => {
   const [ passwordMatch, setPasswordMatch ] = useState('')
   const [ registerError, setRegisterError ] = useState(null)
 
-  const accessToken = useSelector(store => store.user.accessToken)
   const error = useSelector(store => store.user.errors)
-  const userMessage = useSelector(store => store.user.message)
   const Loading = useSelector(store => store.user.loading)
 
   const history = useHistory()
@@ -54,7 +52,7 @@ export const RegisterForm = () => {
               dispatch(user.actions.setUserMessage('Register successful'))
               console.log('register successful')
               console.log(data)
-              history.push('/profile')            
+              history.push('/minsida')            
             })
           } else {
             dispatch(user.actions.setErrors(data))

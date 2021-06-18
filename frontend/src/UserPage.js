@@ -30,7 +30,7 @@ export const UserPage = () => {
         .finally(() => dispatch(user.actions.setLoading(false)))
     }
     fetchUserProfile()
-  },[browsedUser._id, dispatch])
+  },[LoggedInUserID])
 
   if(browsedUser) {
     return (

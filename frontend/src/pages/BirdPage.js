@@ -9,8 +9,7 @@ import { StyledButton } from '../components/Button'
 import { NavBar } from '../components/NavBar'
 import { Header } from '../components/Header'
 import { Subtext } from '../components/Subtext'
-import { Main, AboutSection } from './Main'
-import { InnerMain } from './Main'
+import { Main, InnerMain, AboutSection } from 'components/MainContainers'
 
 export const BirdPage = () => {
   const history = useHistory()
@@ -21,7 +20,6 @@ export const BirdPage = () => {
   const loggedInUserBirdsArray = useSelector(store => store.user.loggedInUser.birdsSeen)
   const Loading = useSelector(store => store.user.loading)
   const browsedBird = useSelector(store => store.user.browsedBird)
-  //const browsedBirdId = useSelector(store => store.user.browsedBird._id)
   
   useEffect(() => {
     dispatch(user.actions.setLoading(true))
@@ -32,7 +30,7 @@ export const BirdPage = () => {
         .finally(() => dispatch(user.actions.setLoading(false)))
     }
     fetchBirdPage()
-  },[])
+  },[browsedBird._id, dispatch])
 
   const onAddBird = () => {
     fetch(API_URL(`users/${loggedInUserID}/addbird/`), {
@@ -58,7 +56,7 @@ export const BirdPage = () => {
             <NavBar/>
             <Header>{birdData.name}</Header>
             <AboutSection>
-              <img src={birdData.image}/>
+              <img src={birdData.image} alt={birdData.name}/>
               <Subtext>{birdData.description}
               <br></br><br></br>
               {alreadyAdded?
@@ -68,7 +66,7 @@ export const BirdPage = () => {
                 </StyledButton>
               }
               <br></br>
-              <StyledButton onClick={() => history.push('/tradgardsfaglar')}>Tillbaka</StyledButton>
+              <StyledButton onClick={() => history.push('/fagelbiblioteket')}>Tillbaka</StyledButton>
               </Subtext>
             </AboutSection>
           </>

@@ -6,3 +6,10 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
 `
+
+export const SearchForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+`
