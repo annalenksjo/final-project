@@ -15,6 +15,7 @@ export const BirdPage = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [birdData, setBirdData] = useState ({})
+  const [added, setAdded] = useState (false)
 
   const loggedInUserID = useSelector(store => store.user.loggedInUser.userID)
   const loggedInUserBirdsArray = useSelector(store => store.user.loggedInUser.birdsSeen)
@@ -43,7 +44,7 @@ export const BirdPage = () => {
       })
     })
     .then (response => response.json())
-    .then (data => console.log(data))
+    .then (data => data.success? setAdded(true) : setAdded(false) )
   }
 
   const alreadyAdded = loggedInUserBirdsArray.includes(browsedBird._id)
@@ -61,9 +62,16 @@ export const BirdPage = () => {
               <br></br><br></br>
               {alreadyAdded?
               <>Du har redan denna fågel i din samling.</>
-                : <StyledButton onClick={() => onAddBird()}>
-                Lägg till i min samling
+                :
+                <>
+                {added? 
+                <Subtext>Tillagd!</Subtext>
+                :
+                <StyledButton onClick={() => onAddBird()}>
+                  Lägg till i min samling
                 </StyledButton>
+              }
+              </>
               }
               <br></br>
               <StyledButton onClick={() => history.go(-1)}>Tillbaka</StyledButton>

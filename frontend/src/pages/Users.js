@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
-import { useHistory, Link} from 'react-router-dom'
-import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { API_URL } from '../urls/urls'
 import { AboutSection } from '../components/MainContainers'
 import { InnerMainLoggedIn, Main, OnClickDiv } from 'components/MainContainers'
 import { NavBar } from 'components/NavBar'
-import { NavLink } from 'components/NavBar'
 import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
 import { SearchForm } from 'components/Form'
@@ -80,8 +79,7 @@ export const Users = () => {
       }
       <UserMapContainer>
       {userList.map(user => (
-          <OnClickDiv          
-              //to={() => `/users/${user.username}`} 
+          <OnClickDiv
               onClick = {() => onGoToUserProfile(user)}
               key={user._id}
               >

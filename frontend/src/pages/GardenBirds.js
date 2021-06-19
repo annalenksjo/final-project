@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Polaroid from "react-polaroid";
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 import { API_URL } from '../urls/urls'
 import { StyledButton } from '../components/Button'
-import { NavBar, NavLink } from '../components/NavBar.js'
+import { NavBar } from '../components/NavBar.js'
 import { Main, InnerMainLoggedIn, OnClickDiv } from '../components/MainContainers'
 import { SearchForm } from '../components/Form'
 import { Input } from '../components/Input'
@@ -35,7 +35,6 @@ export const GardenBirds = () => {
     dispatch(user.actions.setLoading(true))
     dispatch(user.actions.setBrowsedBird(action))
     dispatch(user.actions.setLoading(false))
-    console.log(action)
     history.push(`/fagelbiblioteket/${action.name}`)
   }
 

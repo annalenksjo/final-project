@@ -66,6 +66,7 @@ const User = mongoose.model('User', {
   },
   birdsSeen: [{
     type: mongoose.Schema.Types.ObjectId,
+    unique: true, //does this work
     ref: 'Birds'
   }]
 })
@@ -321,12 +322,21 @@ app.post('/users/:_id/addbird/', async (req, res) => {
   
   try {
     const birdToAdd = await Birds.findById(birdId)
+    // const User = await User.findById(_id)
+    // const userBirdArray = User.birdsSeen
+
+    // userBirdArray.includes(birdId) {
+    //   //do this
+    // } else {
+    //   // do not execute, send error code. duplicates not allowed
+    // }
+    
     await User.findByIdAndUpdate(_id, {
       $push: {
         birdsSeen: birdToAdd
       }
     })
-    res.status(200).json({ success: true, message: 'Tillagd', birdToAdd})
+    res.status(200).json({ success: true, message: 'Tillagd', User})
 
   } catch (error) {
     res.status(400).json({ success: false, message: 'invalid request', error })

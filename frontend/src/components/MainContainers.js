@@ -1,9 +1,8 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 
 // main container with the background
 export const Main = styled.main`
-  background: linear-gradient(179.96deg, #CBECFE 0.04%, rgba(243, 249, 252, 0) 194.85%);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -12,6 +11,8 @@ export const Main = styled.main`
 `
 
 export const InnerMain = styled.section`
+  background: linear-gradient(179.96deg, #CBECFE 0.04%, rgba(243, 249, 252, 0) 194.85%);
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

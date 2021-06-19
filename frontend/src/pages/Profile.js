@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory} from 'react-router-dom'
-import styled from 'styled-components'
-import moment from 'moment'
+import styled from 'styled-components/macro'
 
-import { NavBar, NavLink } from 'components/NavBar'
+import { NavBar } from 'components/NavBar'
 import { StyledButton } from 'components/Button'
 import { Dialog } from 'components/Dialog'
 import { API_URL } from 'urls/urls'
 import { Loader } from 'components/Loader'
 import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
+import { ProfileImage } from 'components/ProfileImage'
+import { HTwo, HThree } from 'components/Text'
 
 import user from 'reducers/user'
 
@@ -20,6 +21,14 @@ const StyledDiv = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 `
+const ProfileInfoDiv = styled(StyledDiv)`
+flex-direction: column;
+background-color: red;
+align-items: center;
+height: 200px;
+
+`
+
 
 export const Profile = () => {
   const LoggedInUser = useSelector(store => store.user.loggedInUser)
@@ -70,15 +79,14 @@ export const Profile = () => {
     //   .then (data => console.log(data))
     // }  
 
-    const Date = LoggedInUser.memberSince
-    const BirdArray = LoggedInUser.birdsSeen    
-    // const onGetBirdPage = (action) => {
-    //   dispatch(user.actions.setLoading(true))
-    //   dispatch(user.actions.setBrowsedBird(action))
-    //   dispatch(user.actions.setLoading(false))
-    //   console.log(action)
-    //   history.push(`/fagelbiblioteket/${action.name}`)
-    // }
+       const BirdArray = LoggedInUser.birdsSeen
+
+    const onGetBirdPage = (action) => {
+      dispatch(user.actions.setLoading(true))
+      dispatch(user.actions.setBrowsedBird(action))
+      dispatch(user.actions.setLoading(false))
+      history.push(`/fagelbiblioteket/${action.name}`)
+    }
 
     // const onEditAccount = () => {
     //   console
@@ -103,11 +111,12 @@ export const Profile = () => {
         <InnerMainLoggedIn>
           {Loading? <Loader/> :
           <> 
+           <ProfileInfoDiv>     
+              <ProfileImage/>
+              <HTwo>{userData.username}</HTwo>
+              <HThree>Mina fågelspaningar {BirdArray.length} av 40 möjliga</HThree>
+            </ProfileInfoDiv>  
             <StyledDiv>
-            <div>     
-              <h2>Min profil: {userData.username}</h2>
-              {/* <p>Medlem sedan: {moment(Date).format('ll')}</p> */}
-            </div>  
             {showConfirmation? <div>
               <p>Är du säker?</p>
               <StyledButton onClick={() => onDeleteAccount()}>Ja, ta bort konto</StyledButton>
@@ -115,14 +124,14 @@ export const Profile = () => {
             </div> 
             : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}
             </StyledDiv>
-            <h3>Mina fågelspaningar ({BirdArray.length} av 40 möjliga)</h3>
+            
             <Container>                           
               <ListContainer>
                 {userData.birdsSeen && userData.birdsSeen.map(bird =>
-                  <NavLink
+                  <OnClickDiv
                     key={bird._id}
-                    to={`fagelbiblioteket/${bird.name}`}
-                    onClick={() => dispatch(user.actions.setBrowsedBird(bird))}
+                    onClick={() => onGetBirdPage(bird)}
+                    //to={`/fagelbiblioteket${bird.name}`}
                   >
                     <Dialog
                       title={bird.name}
@@ -132,7 +141,7 @@ export const Profile = () => {
                       // button2={'Ta bort från lista'}
                       // button2Click={() => onDeleteBird(bird)}
                     />
-                  </NavLink>          
+                  </OnClickDiv>          
                 )}  
               </ListContainer>
             </Container>

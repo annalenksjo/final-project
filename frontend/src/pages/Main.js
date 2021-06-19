@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 import { NavLink } from '../components/NavBar'
 import { Header } from '../components/Header'
-import { Subtext } from '../components/Subtext'
+import { HThree } from '../components/Text'
 import { Main, InnerMain, AboutSection } from '../components/MainContainers'
 import '../index.css'
 
@@ -28,7 +28,7 @@ const Logotype = styled.img`
   width: 200px;
   margin: 20px 0 0 20px;
 `
-const FirstpageSubtext = styled(Subtext)`
+const FirstpageSubtext = styled(HThree)`
   font-size: 18px;
   margin: 10px 0 5px 0;
 `
@@ -46,8 +46,8 @@ export const StartPage = () => {
             <FirstpageSubtext>Denna app listar de vanligaste trädgårdsfåglarna som förekommer i Sverige. Här kan du markera vilka fåglar du sett i din trädgård eller omgivning.</FirstpageSubtext>
         </AboutSection>
         <LinksContainer>
-            <FirstpageNavlink onClick={() => history.push('/loggain')}>Redan fågelspanare?</FirstpageNavlink>
-            <FirstpageNavlink onClick={() => history.push('skapakonto')}>Bli en fågelspanare!</FirstpageNavlink>
+            <FirstpageNavlink onClick={() => history.push('/loggain')} to='/loggain'>Redan fågelspanare?</FirstpageNavlink>
+            <FirstpageNavlink onClick={() => history.push('skapakonto')} to='/skapakonto'>Bli en fågelspanare!</FirstpageNavlink>
         </LinksContainer>
       </InnerMain>
     </Main>  

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 // input for log in and sign up
 export const Input = styled.input`

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -14,11 +14,18 @@ export const LoginForm = () => {
   const [ password, setPassword ] = useState('')
 
   const loggedInUser = useSelector(store => store.user.loggedInUser)
+  // const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
   const Loading = useSelector(store => store.user.loading)
   const error = useSelector(store => store.user.errors)
 
   const history = useHistory()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (loggedInUser && loggedInUser.accessToken) {
+      history.push('/minsida')
+    }
+  },[loggedInUser, history])
 
   const onLogin = (event) => {
     dispatch(user.actions.setLoading(true))  
@@ -47,10 +54,10 @@ export const LoginForm = () => {
           setUsername('')
           setPassword('')
         }
-        if (loggedInUser && loggedInUser.accessToken) {
-          console.log('successful')
-          history.push('/minsida')
-        } 
+        // if (loggedInUser && loggedInUser.accessToken) {
+        //   console.log('successful')
+        //   history.push('/minsida')
+        // } 
       })
       .catch()
       .finally(() => dispatch(user.actions.setLoading(false)))

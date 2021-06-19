@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import moment from 'moment'
 
 import { API_URL } from '../urls/urls'
 import user from 'reducers/user'
@@ -10,7 +9,7 @@ import { StyledButton } from '../components/Button'
 import { Dialog } from '../components/Dialog'
 import { NavBar } from '../components/NavBar'
 import { Subtext } from '../components/Subtext'
-import { Main, InnerMainLoggedIn } from 'components/MainContainers'
+import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 
 export const UserPage = () => {
@@ -20,7 +19,6 @@ export const UserPage = () => {
   const browsedUser = useSelector(store => store.user.browsedUser)
   const Loading = useSelector(store => store.user.loading)
 
-  const Date = browsedUser.memberSince
   const BirdArray = browsedUser.birdsSeen
   
   useEffect(() => {
@@ -34,6 +32,14 @@ export const UserPage = () => {
     fetchUserProfile()
   },[])
 
+  const onGetBirdPage = (action) => {
+    dispatch(user.actions.setLoading(true))
+    dispatch(user.actions.setBrowsedBird(action))
+    dispatch(user.actions.setLoading(false))
+    console.log(action)
+    history.push(`/fagelbiblioteket/${action.name}`)
+  }
+
   if(browsedUser) {
     return (
       <Main>
@@ -42,7 +48,6 @@ export const UserPage = () => {
           <>
             <NavBar/>
             <h2>Användarnamn: {browsedUser.username}</h2>
-            {/* <Subtext>Medlem sedan: {moment(Date).format('ll')} </Subtext> */}
             
             {BirdArray.length === 0 ? <Subtext>
               {browsedUser.username} verkar inte ha några spaningar i sin lista ännu.
@@ -54,15 +59,20 @@ export const UserPage = () => {
             <Container>                           
             <ListContainer>
               {browsedUser.birdsSeen && browsedUser.birdsSeen.map(bird =>
-                <Dialog
-                    key={bird._id}
-                    title={bird.name}
-                    image={bird.image}
-                    // button1={`👀 x 2`}
-                    // button1Click={() => console.log('hej')} 
-                    // button2={'Ta bort från lista'}
-                    // button2Click={() => onDeleteBird(bird)}
-                  />          
+                <OnClickDiv 
+                  key={bird._id} 
+                  onClick={() => onGetBirdPage(bird)}
+                >
+                  <Dialog
+                      key={bird._id}
+                      title={bird.name}
+                      image={bird.image}
+                      // button1={`👀 x 2`}
+                      // button1Click={() => console.log('hej')} 
+                      // button2={'Ta bort från lista'}
+                      // button2Click={() => onDeleteBird(bird)}
+                    />   
+                </OnClickDiv>       
               )}  
             </ListContainer>
           </Container>
