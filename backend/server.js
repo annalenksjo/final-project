@@ -67,6 +67,7 @@ const User = mongoose.model('User', {
   birdsSeen: [{
     type: mongoose.Schema.Types.ObjectId,
     unique: true, //does this work
+    default: [],
     ref: 'Birds'
   }]
 })

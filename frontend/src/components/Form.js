@@ -8,7 +8,6 @@ export const Form = styled.form`
   align-items: center;
   width: 100%;
   height: 250px;
-  
 `
 //signup form container
 export const HeighForm = styled(Form)`
@@ -17,7 +16,11 @@ export const HeighForm = styled(Form)`
 
 export const SearchForm = styled.form`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  margin: 10px 0;
+  @media(min-width: 768px) {
+    flex-direction: row;
+  }
 `

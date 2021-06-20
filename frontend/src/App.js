@@ -10,6 +10,7 @@ import { SignUp } from "pages/SignUp"
 import { Users } from "pages/Users"
 import { GardenBirds } from "pages/GardenBirds"
 import { BirdPage } from "pages/BirdPage"
+import { HamburgerMenuOpen } from "pages/HamburgerMenuOpen"
 
 import user from './reducers/user'
 import { UserPage } from "pages/UserPage"
@@ -34,6 +35,9 @@ export const App = () => {
             </Route>
             <Route path='/skapakonto'> 
               <SignUp/>
+            </Route>
+            <Route path='/meny'> 
+              <HamburgerMenuOpen/>
             </Route>
             <Route path='/minsida'> 
               <Profile/>

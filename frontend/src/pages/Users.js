@@ -11,10 +11,25 @@ import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
 import { SearchForm } from 'components/Form'
 import { Loader } from 'components/Loader'
-import { Header } from 'components/Header'
+import { Header } from 'components/Text'
 import { Subtext } from 'components/Subtext'
 import { Dialog } from '../components/Dialog'
 import user from '../reducers/user'
+
+const UsersInnerMain = styled(InnerMainLoggedIn)`
+  padding-top: 130px;
+`
+const HighScoreImage = styled.img`
+  width: 100%;
+  margin: 15px 0 15px 0;
+`
+
+const UserSearchForm = styled(SearchForm)`
+  height: 120px;
+  width: 100%;
+  padding: 0 10px 0 10px;
+  justify-content: space-between;
+`
 
 
 export const Users = () => {
@@ -57,24 +72,24 @@ export const Users = () => {
     <>
     <NavBar/>
     <Main>
-      <InnerMainLoggedIn>
+      <UsersInnerMain>
       {Loading? <Loader/> :
       <>
       <Header>Topplista</Header>
       <AboutSection>
-        <img src="https://via.placeholder.com/300" alt="Fågelspaning prispall"/>
+        <HighScoreImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623940639/topplista_pldnzu.png" alt="Fågelspaning prispall"/>
         <Subtext>
           Här kan du se vem som leder fågelspaningsligan! Ju fler fågelarter du sett desto högre upp hamnar du på topplistan. 
         </Subtext>
       </AboutSection>
-        <SearchForm onSubmit={onSearch}>
+        <UserSearchForm  onSubmit={onSearch}>
             <Input 
             type="text"
             onChange={(event) => setUserSearch(event.target.value)}
             value={userSearch} placeholder="Sök på användare"/>
           <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
           {userList.length === 0 ? <p>Hittade inga användare!</p> : '' }
-        </SearchForm>
+        </UserSearchForm>
       </>
       }
       <UserMapContainer>
@@ -86,12 +101,12 @@ export const Users = () => {
           <Dialog
             title={`${user.username}`}
             subheading={`Spaningar: ${user.birdsSeen.length}/40`}
-            image={"https://img-premium.flaticon.com/png/128/3560/premium/3560332.png?token=exp=1623852494~hmac=b4fcd3ef37d33834a2118864b9065ee5"}
+            image={"https://res.cloudinary.com/mittbildmoln/image/upload/v1623940616/fagelholk_xtv0tw.png"}
           />
           </OnClickDiv> 
       ))}
       </UserMapContainer>
-      </InnerMainLoggedIn>
+      </UsersInnerMain>
     </Main>
     </>
   )
@@ -99,7 +114,12 @@ export const Users = () => {
 
 const UserMapContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
+  @media(min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
 // const UserMapButtonContainer = styled.div`

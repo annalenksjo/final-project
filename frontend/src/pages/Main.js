@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { NavLink } from '../components/NavBar'
-import { Header } from '../components/Header'
-import { HThree } from '../components/Text'
+import { Header, HThree } from '../components/Text'
 import { Main, InnerMain, AboutSection } from '../components/MainContainers'
 import '../index.css'
 
@@ -16,12 +15,26 @@ const LinksContainer = styled.div`
 const StartImage = styled.img`
   width: 100%;
   margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    max-width: 40%;
+    padding: 20px;
+  }
 `
 const FirstpageNavlink = styled(NavLink)`
   color: #FF7460;
   margin: 0;
   &:hover {
     opacity: 0.8;
+  }
+`
+const TextContainer = styled.div`
+ display: flex;
+ flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+    padding: 20px 80px;
   }
 `
 const Logotype = styled.img`
@@ -42,8 +55,10 @@ export const StartPage = () => {
       <InnerMain>  
         <AboutSection>        
           <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>
+          <TextContainer> 
             <Header>Fram med kikaren, nu kör vi!</Header>
             <FirstpageSubtext>Denna app listar de vanligaste trädgårdsfåglarna som förekommer i Sverige. Här kan du markera vilka fåglar du sett i din trädgård eller omgivning.</FirstpageSubtext>
+          </TextContainer> 
         </AboutSection>
         <LinksContainer>
             <FirstpageNavlink onClick={() => history.push('/loggain')} to='/loggain'>Redan fågelspanare?</FirstpageNavlink>

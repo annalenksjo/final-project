@@ -30,13 +30,12 @@ export const UserPage = () => {
         .finally(() => dispatch(user.actions.setLoading(false)))
     }
     fetchUserProfile()
-  },[])
+  },[browsedUser._id, dispatch])
 
   const onGetBirdPage = (action) => {
     dispatch(user.actions.setLoading(true))
     dispatch(user.actions.setBrowsedBird(action))
     dispatch(user.actions.setLoading(false))
-    console.log(action)
     history.push(`/fagelbiblioteket/${action.name}`)
   }
 
@@ -64,7 +63,6 @@ export const UserPage = () => {
                   onClick={() => onGetBirdPage(bird)}
                 >
                   <Dialog
-                      key={bird._id}
                       title={bird.name}
                       image={bird.image}
                       // button1={`👀 x 2`}

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import { RegisterForm } from 'components/RegisterForm'
-import { Header } from 'components/Header'
+import { Header } from 'components/Text'
 import { InnerMain, Main, AboutSection } from 'components/MainContainers'
 
 const SignUpWelcomeSection = styled(AboutSection)`

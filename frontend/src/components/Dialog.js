@@ -56,6 +56,7 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   max-width: 100%;
+  max-height: 150px;
 `;
 
 export const Dialog = ({ title, subheading, image, link, button1, button1Click, button2, button2Click }) => {

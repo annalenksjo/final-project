@@ -7,7 +7,7 @@ import user from 'reducers/user'
 import { Loader } from '../components/Loader'
 import { StyledButton } from '../components/Button'
 import { NavBar } from '../components/NavBar'
-import { Header } from '../components/Header'
+import { Header, HTwo } from '../components/Text'
 import { Subtext } from '../components/Subtext'
 import { Main, InnerMainLoggedIn, AboutSection } from 'components/MainContainers'
 
@@ -47,7 +47,7 @@ export const BirdPage = () => {
     .then (data => data.success? setAdded(true) : setAdded(false) )
   }
 
-  const alreadyAdded = loggedInUserBirdsArray.includes(browsedBird._id)
+  const alreadyAdded = loggedInUserBirdsArray && loggedInUserBirdsArray.includes(browsedBird._id)
 
      return (
       <Main>
@@ -58,7 +58,7 @@ export const BirdPage = () => {
             <Header>{birdData.name}</Header>
             <AboutSection>
               <img src={birdData.image} alt={birdData.name}/>
-              <Subtext>{birdData.description}
+              <HTwo>{birdData.description}
               <br></br><br></br>
               {alreadyAdded?
               <>Du har redan denna fågel i din samling.</>
@@ -75,7 +75,7 @@ export const BirdPage = () => {
               }
               <br></br>
               <StyledButton onClick={() => history.go(-1)}>Tillbaka</StyledButton>
-              </Subtext>
+              </HTwo>
             </AboutSection>
           </>
         }

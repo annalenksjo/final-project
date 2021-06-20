@@ -54,10 +54,6 @@ export const LoginForm = () => {
           setUsername('')
           setPassword('')
         }
-        // if (loggedInUser && loggedInUser.accessToken) {
-        //   console.log('successful')
-        //   history.push('/minsida')
-        // } 
       })
       .catch()
       .finally(() => dispatch(user.actions.setLoading(false)))

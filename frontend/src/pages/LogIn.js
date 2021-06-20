@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import { InnerMain, Main, AboutSection } from 'components/MainContainers'
 
 import { LoginForm } from 'components/LoginForm'
-import { Header } from 'components/Header'
+import { Header } from 'components/Text'
 
 const LoginWelcomeSection = styled(AboutSection)`
  margin: 50px 0 0 0;

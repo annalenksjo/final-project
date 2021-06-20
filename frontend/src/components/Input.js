@@ -10,4 +10,7 @@ export const Input = styled.input`
   color: #0C4458;
   font-size: 18px;
   padding: 13px;
+  @media(min-width: 768px) {
+   margin: 0 10px;
+  }
 `

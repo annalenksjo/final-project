@@ -34,6 +34,11 @@ export const AboutSection = styled.section`
   justify-content: center;
   align-items: center;
   padding: 10px;
+  @media(min-width: 768px) {
+    flex-direction: row;
+    max-width: 80%;
+    margin: auto;
+  }
 `
 // Wrapper for Dialog to use onClick functionality
 export const OnClickDiv = styled.div`

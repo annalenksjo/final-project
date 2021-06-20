@@ -15,6 +15,10 @@ import { HTwo, HThree } from 'components/Text'
 
 import user from 'reducers/user'
 
+const ProfileInnerMain = styled(InnerMainLoggedIn)`
+  padding-top: 100px;
+`
+
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -23,15 +27,13 @@ const StyledDiv = styled.div`
 `
 const ProfileInfoDiv = styled(StyledDiv)`
 flex-direction: column;
-background-color: red;
 align-items: center;
 height: 200px;
 
 `
 
-
 export const Profile = () => {
-  const LoggedInUser = useSelector(store => store.user.loggedInUser)
+  //const LoggedInUser = useSelector(store => store.user.loggedInUser)
   const LoggedInUserID = useSelector(store => store.user.loggedInUser.userID)
   const Loading = useSelector(store => store.user.loading)
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -79,8 +81,6 @@ export const Profile = () => {
     //   .then (data => console.log(data))
     // }  
 
-       const BirdArray = LoggedInUser.birdsSeen
-
     const onGetBirdPage = (action) => {
       dispatch(user.actions.setLoading(true))
       dispatch(user.actions.setBrowsedBird(action))
@@ -108,13 +108,20 @@ export const Profile = () => {
     <>
     <NavBar />
       <Main>
-        <InnerMainLoggedIn>
+        <ProfileInnerMain>
           {Loading? <Loader/> :
           <> 
            <ProfileInfoDiv>     
               <ProfileImage/>
               <HTwo>{userData.username}</HTwo>
-              <HThree>Mina fågelspaningar {BirdArray.length} av 40 möjliga</HThree>
+              <>
+              {!userData.birdsSeen? 
+              <HThree>Du har inga fågelspaningar ännu!</HThree>
+              : 
+              <HThree>Mina fågelspaningar: {userData.birdsSeen && userData.birdsSeen.length} av 40 möjliga</HThree>
+              
+              }
+              </>              
             </ProfileInfoDiv>  
             <StyledDiv>
             {showConfirmation? <div>
@@ -148,7 +155,7 @@ export const Profile = () => {
             <StyledButton onClick={() => history.push('/fagelbiblioteket')}>Till Fågelbiblioteket</StyledButton>
           </>
           }
-          </InnerMainLoggedIn>
+          </ProfileInnerMain>
       </Main>
     </>
   )

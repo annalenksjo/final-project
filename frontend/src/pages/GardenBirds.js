@@ -10,7 +10,7 @@ import { NavBar } from '../components/NavBar.js'
 import { Main, InnerMainLoggedIn, OnClickDiv } from '../components/MainContainers'
 import { SearchForm } from '../components/Form'
 import { Input } from '../components/Input'
-import { Header } from '../components/Header'
+import { Header } from '../components/Text'
 import { Subtext } from '../components/Subtext'
 import { Dialog } from '../components/Dialog'
 import user from 'reducers/user'
@@ -53,7 +53,7 @@ export const GardenBirds = () => {
   return (
   <>
     <NavBar/>
-    <BirdsListMain>
+    <Main>
       <InnerMainLoggedIn>
         <Header>Här är 40 av våra vanligaste svenska fåglar</Header>
         <Subtext>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
@@ -85,7 +85,7 @@ export const GardenBirds = () => {
         ))}
         </Container>
       </InnerMainLoggedIn>
-    </BirdsListMain> 
+    </Main> 
   </>     
   )
 }
@@ -106,11 +106,16 @@ export const ListContainer = styled.div`
   margin: 20px;
   justify-content: center;
   align-items: center;
+  @media(min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `
 
 export const BirdsListMain = styled(Main)`
   display: flex;
   justify-content: center;
+  padding-top: 200px;
 `
 
 export const StyledPolaroid = styled(Polaroid)`
