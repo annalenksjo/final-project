@@ -6,12 +6,11 @@ export const Main = styled.main`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `
 
 export const InnerMain = styled.section`
-  background: linear-gradient(179.96deg, #CBECFE 0.04%, rgba(243, 249, 252, 0) 194.85%);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -36,10 +35,23 @@ export const AboutSection = styled.section`
   padding: 10px;
   @media(min-width: 768px) {
     flex-direction: row;
-    max-width: 80%;
-    margin: auto;
   }
 `
+export const CardWrapperDiv = styled.div`
+box-sizing: border-box;
+border-radius: 24px;
+border: 2px solid #0C4458;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 30px 30px;
+opacity: 100%;
+margin: 20px;
+&:hover {
+background-color: rgb(255,244,241, 0.4);
+}
+`
+
 // Wrapper for Dialog to use onClick functionality
 export const OnClickDiv = styled.div`
   border: none;

@@ -11,7 +11,9 @@ import { Loader } from 'components/Loader'
 import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 import { ProfileImage } from 'components/ProfileImage'
-import { HTwo, HThree } from 'components/Text'
+import { Header, HTwo, HThree } from 'components/Text'
+import { Input } from 'components/Input'
+import { Form } from 'components/Form'
 
 import user from 'reducers/user'
 
@@ -19,17 +21,21 @@ const ProfileInnerMain = styled(InnerMainLoggedIn)`
   padding-top: 100px;
 `
 
-const StyledDiv = styled.div`
+const StyledDivRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
 `
-const ProfileInfoDiv = styled(StyledDiv)`
-flex-direction: column;
-align-items: center;
-height: 200px;
 
+const ProfileInfoDiv = styled(StyledDivRow)`
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+`
+const SearchBirdsForm = styled(Form)`
+  height: 120px;
+  padding: 0 10px 0 10px;
 `
 
 export const Profile = () => {
@@ -38,6 +44,8 @@ export const Profile = () => {
   const Loading = useSelector(store => store.user.loading)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [userData, setUserData] = useState({})
+  const [birdSearch, setBirdSearch] = useState('')
+  const [birdList, setBirdList] = useState([])
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -88,6 +96,18 @@ export const Profile = () => {
       history.push(`/fagelbiblioteket/${action.name}`)
     }
 
+    const onSearch = (event) => {
+      dispatch(user.actions.setLoading(true))
+      event.preventDefault()
+  
+      fetch(API_URL(`birds?birdsearch=${birdSearch}`))
+      .then(response => response.json())
+      .then (data => setBirdList(data))
+      .finally(() => dispatch(user.actions.setLoading(false)))
+  
+      setBirdSearch('')
+    }
+
     // const onEditAccount = () => {
     //   console
     //   // dispatch(labyrinth.actions.setLoading(true))  
@@ -123,14 +143,23 @@ export const Profile = () => {
               }
               </>              
             </ProfileInfoDiv>  
-            <StyledDiv>
+            <StyledDivRow>
             {showConfirmation? <div>
               <p>Är du säker?</p>
               <StyledButton onClick={() => onDeleteAccount()}>Ja, ta bort konto</StyledButton>
               <StyledButton onClick={() => setShowConfirmation(false)}>Avbryt</StyledButton>
             </div> 
             : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}
-            </StyledDiv>
+            </StyledDivRow>
+            <SearchBirdsForm onSubmit={onSearch}>
+              <Header>Fågelspaningar</Header>
+              <Input 
+                type="text"
+                onChange={(event) => setBirdSearch(event.target.value)}
+                value={birdSearch}
+                placeholder="Sök" 
+              />
+            </SearchBirdsForm>
             
             <Container>                           
               <ListContainer>
@@ -152,7 +181,6 @@ export const Profile = () => {
                 )}  
               </ListContainer>
             </Container>
-            <StyledButton onClick={() => history.push('/fagelbiblioteket')}>Till Fågelbiblioteket</StyledButton>
           </>
           }
           </ProfileInnerMain>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { API_URL } from '../urls/urls'
 import user from 'reducers/user'
@@ -49,16 +50,29 @@ export const BirdPage = () => {
 
   const alreadyAdded = loggedInUserBirdsArray && loggedInUserBirdsArray.includes(browsedBird._id)
 
+  const BirdPageInnerMain = styled(InnerMainLoggedIn)`
+  padding-top: 100px;
+`
+
+  const BirdImg = styled.img`
+    max-height: 100%; 
+    max-width: 100%;
+    padding: 10px;
+  `
+  const AdjustedHTwo = styled(HTwo)`
+    padding: 5px;
+  `
+
      return (
       <Main>
-        <InnerMainLoggedIn>
+        <BirdPageInnerMain>
         {Loading? <Loader/> :
           <>
             <NavBar/>
             <Header>{birdData.name}</Header>
             <AboutSection>
-              <img src={birdData.image} alt={birdData.name}/>
-              <HTwo>{birdData.description}
+              <BirdImg src={birdData.image} alt={birdData.name}/>
+              <AdjustedHTwo>{birdData.description}
               <br></br><br></br>
               {alreadyAdded?
               <>Du har redan denna fågel i din samling.</>
@@ -75,11 +89,11 @@ export const BirdPage = () => {
               }
               <br></br>
               <StyledButton onClick={() => history.go(-1)}>Tillbaka</StyledButton>
-              </HTwo>
+              </AdjustedHTwo>
             </AboutSection>
           </>
         }
-        </InnerMainLoggedIn>      
+        </BirdPageInnerMain>      
       </Main>
     )
 }

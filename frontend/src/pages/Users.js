@@ -18,10 +18,17 @@ import user from '../reducers/user'
 
 const UsersInnerMain = styled(InnerMainLoggedIn)`
   padding-top: 130px;
+  @media(min-width: 768px){
+    padding-top: 200px;
+  }
 `
 const HighScoreImage = styled.img`
   width: 100%;
   margin: 15px 0 15px 0;
+  @media(min-width: 768px){
+    width: 40%;
+    margin: 15px 20px;
+  }
 `
 
 const UserSearchForm = styled(SearchForm)`
@@ -29,6 +36,10 @@ const UserSearchForm = styled(SearchForm)`
   width: 100%;
   padding: 0 10px 0 10px;
   justify-content: space-between;
+  @media(min-width: 768px){
+    width: 80%;
+    max-width: 800px;
+  }
 `
 
 
@@ -79,7 +90,7 @@ export const Users = () => {
       <AboutSection>
         <HighScoreImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623940639/topplista_pldnzu.png" alt="Fågelspaning prispall"/>
         <Subtext>
-          Här kan du se vem som leder fågelspaningsligan! Ju fler fågelarter du sett desto högre upp hamnar du på topplistan. 
+        <br></br> Här kan du se vem som leder fågelspaningsligan! <br></br><br></br> Ju fler fågelarter du sett desto högre upp hamnar du på topplistan. 
         </Subtext>
       </AboutSection>
         <UserSearchForm  onSubmit={onSearch}>
