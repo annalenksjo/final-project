@@ -1,0 +1,199 @@
+[  
+  { 
+    "name": "Gräsand",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760003/grasand_hibwh5.png",
+    "description":"Gräsanden är en andfågel och den bor nästan överallt där det finns vatten, både i skärgården och i sjöar i hela landet. Den äter mest alger och andra vattenväxter och ibland en och annan insekt. De flesta stannar kvar i Sverige under vintern, men några flyttar lite längre söderut i Europa. Gräsänder är inte särskillt skygga för människor och de uppskattar att vi bjuder dem på en bit mat. Bjud då gärna på majs eller kokt ris, men inte bröd för det kan Gräsanden få ont i magen av."
+  },
+  {
+    "name": "Fasan",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/fasan_qhvtxm.png",
+    "description": "Fasanen tillhör hönsfåglar och du hittar den lättast i södra Sverige. Den spatserar gärna omkring på öppna ängs- och betesmarker. Den tycker bäst om att äta växter och frön, men ibland äter den också insekter. Fasanen stannar i Sverige under vintern."
+  },
+  {
+    "name": "Nötskrika",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/notskrika_ojusg3.png",
+    "description":"Nötskrikan är en kråkfågel med färgglad fjäderdräkt. Den finns i hela Sverige och du hittar den oftast i skogen, gärna i skogar där det finns många ekar för Nötskrikan tycker mycket om ekollon, men den äter också gärna bär, insekter och daggmaskar."
+  },
+  {
+    "name": "Gråsparv",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/grasparv_sity71.png",
+    "description":"Gråsparven är en liten fågel som ingår i fågelfamiljen sparvfinkar. Den trivs ofta bra där det finns människor, i städer och samhällen, i hela Sverige. Gråsparven äter frön, frukter och insekter, men också godsaker som den hittar i soptunnor. På vintern stannar den i Sverige."
+  },
+  {
+    "name": "Kungsfiskare",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/kunsfiskare_qgvdy2.png",
+    "description":"Den här fågeln finns i södra Sverige upp till ungefär Västmanland. Favoritmaten är småfisk så du hittar den nära vattendrag, helst på platser där vattnet står stilla. Den ingår i familjen praktfåglar och med sin vackra fjäderdräkt ser den nästan exotisk ut, men den stannar i Sverige hela vintern."
+  },
+  {
+    "name": "Knölsvan",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760003/knolsvan_e3qvny.png",
+    "description":"Knölsvanen är en andfågel som finns i nästan hela landet. Du hittar den vid sjöar eller andra vattendrag där den gärna äter vattenväxter och gräs. Knölsvanen är inte så rädd för människor och den befinner sig gärna vid badstränder. Där letar den efter tappade glassar och annat gott på marken. Vill du mata knölsvanen så tänk på att inte mata den med bröd, det kan den få ont i magen av. Mata hellre med kokt ris eller majs, men om knölsvanen har ungar så är det bäst att du håller dig lite på avstånd. Under vintern flyttar knölsvanen till södra Sverige eller Danmark, där vattnet inte fryser."
+  },
+  {
+    "name": "Korp",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/korp_wlqf2n.png",
+    "description": "Korpen är en stor svart kråkfågel som finns i hela landet. Den äter gärna vad som helst som den kan få tag på, insekter, frukt, eller människomat. Korpen är intelligent och bra på problemlösning, men också kända för att stjäla och gömma glänsande föremål. Under vintern stannar korpen i Sverige. "
+  },
+  {
+    "name": "Rödhake",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/rodhake_ewqmpu.png",
+    "description": "Rödhaken ingår i familjen flugsnappare och du hittar den i hela landet, både inne i landet och ute på öar. Den tycker om att äta insekter och larver. På vintern så flyger den ner till de varmare Medelhavsländerna."
+  },
+  {
+    "name": "Koltrast",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760003/koltrast_pthyxc.png",
+    "description": "Koltrasten är en väldigt vanlig fågel och som det hörs på namnet så ingår den i familjen trastar. Den finns i hela landet, men lite färre i norra Sverige. Den äter bär, frön, insekter och maskar. Koltrasten stannar i Sverige på vintern."
+  },
+  {
+    "name": "Stork",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/stork_snzq4p.png",
+    "description": "Den här stora fågeln kan du bara se i södra Sverige. Som det hörs på namnet så ingår Storken i familjen storkfåglar. Den bor ofta i närheten av människor, taket på en gammal ladugård är perfekt för storken att bygga sitt bo på. Storken äter insekter, grodor och ormar. På vintern tycker storken att det blir för kallt i sverige, då flyttar den enda till södra Afrika, Iran eller Indien. "
+  },
+  {
+    "name": "Stare",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/stare_fwsfmo.png",
+    "description": "Staren ingår i familjen starar, den är vanlig i södra och mellersta delarna av landet, och mer ovanlig i de norra. Den äter insekter, larver, sniglar, bär och frön. När hösten kommmer flyttar staren söderut tillsammans med andra starar i jättestora flockar, det kan vara riktigt häftigt att se."
+  },
+  {
+    "name": "Gärdsmyg",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/gardesmyg_mtt4ae.png",
+    "description": "Gärdsmygen är en liten fågel som tillhör familjen gärdsmygar. Du hittar den ofta i skogen, både i lövskog och barrskog. Den finns i stora delar av landet, förutom norra Sverige. Gärdsmygen äter spindlar och andra insekter. På vintern så stannar den i Sverige."
+  },
+  {
+    "name": "Entita",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/entita_amdehr.png",
+    "description": "Entitan är en liten fågel som ingår i familjen mesar. Du hittar den bara i södra Sverige och den tycker om att äta insekter och olika sorters växtfrön. Den stannar i Sverige under vintern."
+  },
+  {
+    "name": "Bofink",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/bofink_vb0rw3.png",
+    "description": "Bofinken ingår i familjen finkar och du kan se den i hela Sverige, men inte lika lätt i de norra delarna. Den är en av Sveriges vanligaste fåglar och tycker om att äta frön och insekter. Under vintern så flyttar den ner i mellersta Europa."
+  },
+  {
+    "name": "Sädesärla",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/sadesarla_tmhhxw.png",
+    "description": "Sädesärlan är väldigt vanlig i hela Sverige. Den är en liten fågel som ingår i familjen ärlor. Du känner igen den på den svartvita fjäderdräkten och den vippiga stjärt. Framförallt äter den insekter, och brukar gå på åkrar efter en traktor för att hitta maskar och annat gott. På vintern blir det för kallt i Sverige för sädesärlan, då flyttar den söderut för att sen komma tillbaka igen till våren."
+  },
+  {
+    "name": "Talltita",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760006/talltita_kvrfmg.png",
+    "description": "Talltitan är en liten fågel i familjen mesar. Den finns i hela Sverige förutom på Öland och Gotland. Favoritmaten är insekter, spindlar, fjärilslarver, granfrön och bär. På vintern stannar den i Sverige."
+  },
+  {
+    "name": "Gröngöling",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760003/grongoling_l078vn.png",
+    "description": "Gröngölingen ingår i familjen hackspettar och du känner igen den på dess gröna fjäderdräkt och det röda huvudet. Gröngölingen finns i södra och mellersta Sverige där den är vanlig. Ibland kan man även se den i norra Sverige. Den äter myror och andra insekter som den hittar när den hakar i träd och bark. Gröngölingen stannar i Sverige under vintern."
+  },
+  {
+    "name": "Större Hackspett",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760006/storhackspatt_yyurha.png",
+    "description": "Större hackspett är en fågelart inom familjen hackspettar. När du går i skogen kan du höra hur den hackar efter skalbaggar, myror, bladlöss och andra smaskiga insekter. Den äter också bär som till exempel blåbär och lingon. Den stannar i Sverige på vintern och då kan du ha turen att se den hängandes från en talgboll eller sittandes och knapra i sig frön vid fågelbordet."
+  },
+  {
+    "name": "Stjärtmes",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/stjartmes_xtxkp9.png",
+    "description": "Stjärtmes är en tätting och den enda europeiska representanten för familjen stjärtmesar. Den är mycket liten med en stjärt som utgör mer än halva kroppslängden. Stjärtmesen förekommer i Europa och Asien österut till Japan. Den är en insektsätare året runt som lever främst av leddjur och föredrar ägg och larver av malar och fjärilar. På hösten kan den även äta växter."
+  },
+  {
+    "name": "Björktrast",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760001/bjorktrast_qa8dsx.png",
+    "description": "Björktrast är en i familjen trastar och den vanligaste av trastsorterna i Sverige. Du hittar den i hela landet, från norr till söder. Björktrasten älskar att äta daggmask, men äter också gärna många andra sorters smådjur, till exempel insekter och spindlar. Björktraster som bor norr om Mora tycker att vintern blir för kall och därför flyttar de söderut när kylan kommer"
+  },
+  {
+    "name": "Skata",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/skata_dxmgaa.png",
+    "description": "Skatan är en fågel i familjen kråkfåglar. I både Sverige och Europa är Skatan lätt att få syn på. Skatan är allätare och ses ofta hoppa runt på marken och leta efter insekter och andra mumsbitar. Precis som Korpen är skatan förtjust i föremål som glänser som de gärna tjuvar och gömmer i sitt bo."
+  },
+  {
+    "name": "Skrattmås",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/skrattmas_lv2yw6.png",
+    "description": "Skrattmås är en vanligt fågel som tillhör familjen måsfåglar. Favoritmaten är småfisk så du hittar skrattmåsen där det finns vatten. Skrattmåsen har ett speciellt läte, som att den skrattar och det är därifrån den fått sitt namn. Skrattmåsen stannar i Sverige på vintern. "
+  },
+  {
+    "name": "Rörhöna",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/rorhona_hbcbes.png",
+    "description": "Rörhöna är en fågel i familjen rallar som förekommer i Europa, Asien och Afrika. Den ser lite ut som en höna och det är därför den har fått sitt namn. Den äter olika växter och mindre vattenlevande djur och insekter."
+  },
+  {
+    "name": "Sothöna",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623761770/sothona_b18cbj.png",
+    "description": "Sothöna är en fågel som bor där det finns vatten, och den tillhör familjen rallar. Den har en rund kroppsform, svarta fjädrar och vit näbb, och nickar med huvudet när den simmar. Arten häckar i Nordafrika, Asien och söderut till Australien och Nya Zeeland. Den äter växter, som vattenväxter och alger när den dyker, gräs och liknande på land, och smådjur som exempelvis insekter och musslor."
+  },
+  {
+    "name": "Kanadagås",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760003/kanadagas_tqeca6.png",
+    "description": "Kanadagås är en fågel inom familjen gäss. Det är en vanlig fågel. Den har fått sitt namn eftersom den från början bara fanns i Nordamerika. Mne numera finns den hos oss i Europa och även i Nya Zeeland. Födan består främst av gräs och andra växter samt deras rötter, men ibland äter den också små insekter och fisk."
+  },
+  {
+    "name": "Skedand",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/skedand_fczlnp.png",
+    "description": "Skedand är en simmande and och den finns i stora delar av norra halvklotet. De flesta av dem flyttar från Sverige på vintern till varmare länder i söder. Skedanden har en stora och bred näbb, som också gett den dess namn. Skedanden förekommer i öppen, näringsrik våtmark. Den letar mat genom att beta vattenväxter, ofta genom att svänga näbben från sida till sida, men äter även blötdjur och insekter under häckningsperioden."
+  },
+  {
+    "name": "Häger",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/hager_i3t6sk.png",
+    "description": "Hägrar är en fågelfamilj inom pelikanfåglar. Hägrar finns över nästan hela jorden utom på de allra kallaste platserna. De är vanligast i tropiska områden. Hägrarna äter mest fisk, men även kräldjur, grodor, maskar, blötdjur, insekter och annat smaskigt de får tag på."
+  },
+  {
+    "name": "Ringduva",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/ringduva_t0iboe.png",
+    "description": "Ringduva är den största och mest utspridda duvarten i Europa. Ringduvan finns i de flesta typer av skog och finns numera även där vi människor bor, och i parker och trädgårdar. Ringduvan är växtätare och lever nästan bara av olika växter som spannmål, frukter, ärtor, frön, bär, skott och knoppar, men även andra små växtdelar ingår i dieten."
+  },
+  {
+    "name": "Sparvuggla",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760005/sparvuggla_r990f0.png",
+    "description": "Sparvuggla är en jätteliten uggla som finns i Europa och norra Asien. Den häckar i barr- och blandskogar och livnär sig på småfåglar och smågnagare. Ugglor är svåra att se, men om du har tur kanske du får syn på en!"
+  },
+  {
+    "name": "Ladusvala",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760006/ladusvala_hf0npa.png",
+    "description": "Ladusvala är den allra vanligaste fågelarten i familjen svalor.Ladusvalan är en tätting med ett speciellt utseende med blå ovansida, lång, djupt delad stjärt och böjda spetsiga vingar. Den finns i Europa, Asien, Afrika och Amerika, så nästan överallt på jorden! Denna art tycker om att vara nära människor, och dess vana att äta insekter har gjort att människorna tycker om den."
+  },
+  {
+    "name": "Sidensvans",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/sidensvans_hte7q2.png",
+    "description": "Sidensvans är en fågel som ingår i familjen sidensvansar. Arten häckar i de nordligaste delarna av Eurasien och nordvästra Nordamerika. Den har en väldigt len och vacker fjäderdräkt som siden, och en liten tofs på huvudet. Vintertid kan den ses i stora flockar längre söderut. Sidensvansen är insektsätare under häckningssäsongen men livnär sig mest av bär och frukt."
+  },
+  {
+    "name": "Näcktergal",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/nacktergal_idnwrn.png",
+    "description": "Näcktergal  är en fågelart där hanen har en väldigt speciell och vacker sång som den ofta sjunger på nattetid. Den tillhör familjen flugsnappare. Fågeln häckar i norra och östra Europa österut till västra Asien. Vintertid flyttar den till Mellanöstern och nordöstra Afrika. Födan består av insekter, maskar, spindlar och bär."
+  },
+  {
+    "name": "Rödstjärt",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760004/rodstjart_rrzxem.png",
+    "description": "Rödstjärt är en insektsätande fågel som tillhör familjen flugsnappare. Den heter så eftersom den har röda stjärtfjädrar. Den är en flyttfågel som häckar i stora delar av Europa och Centralasien, och även i allra nordligaste Afrika. Den övervintrar främst i Centralafrika."
+  },
+  {
+    "name": "Törnsångare",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760006/tornsangare_w7nxmq.png",
+    "description": "Törnsångare  är en fågel som tillhör familjen sylvior. Den häckar för det mesta i öppna landskap med buskar och snår, i stora delar av Europa, österut till bergstrakter i Centralasien samt i Marocko och Algeriet i nordvästra Afrika. Vintertid flyttar den till tropiska Afrika där det är riktigt varmt och skönt. Törnsångaren lever av insekter och deras larver, spindlar och bär."
+  },
+  {
+    "name": "Talgoxe",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760006/talgoxe_wfdpnk.png",
+    "description":"Talgoxe är en fågel inom familjen mesar. Den är vanlig i hela Europa, västra, centrala och norra Asien och delar av Nordafrika och förekommer i alla sorters skogslandskap. Talgoxen brukar stanna i Sverige under vintern. På sommaren äter talgoxar främst insekter och spindlar som de fångar genom att plocka dem från löv."
+  },
+  {
+    "name": "Grönfink",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/gronfink_jrsaru.png",
+    "description":"Grönfink är en fågel som hör till familjen finkar som mest finns i Europa. Vintertid flyttar många söderut, men det är bara de som bor allra längst norrut som alltid flyttar söderut. De tycker om att äta frön, späda knoppar och bär. Den äter dock även insekter, och ungarna matas mest med insekter."
+  },
+  {
+    "name": "Domherre",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760002/domherre_awbdls.png",
+    "description":"Domherre är en stor och kraftig fink som och den finns i Europa och Asien. Domherren är enkel att känna igen på sitt röda bröst. Domherren är framför allt en så kallad stannfågel men om det är en väldigt kall vinter så kan den också flytta söderut. Med sin tjocka näbb specialiserar den sig på föda från frön, knoppar, bär."
+  },
+  {
+    "name": "Gulsparv",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760003/gulsparv_xrlpwp.png",
+    "description":"Gulsparv är en stor och långstjärtad sparv inom familjen fältsparvar. Den finns i stora delar av Europa och i Väst- och Centralasien. De allra flesta av de som bor i Europa är stannfåglar under vintern. De äter mycket frön, framförallt de som har mycket olja i sig som de från kålväxter."
+  },
+  {
+    "name": "Knipa",
+    "image": "https://res.cloudinary.com/mittbildmoln/image/upload/v1623760003/knipa_eqxhgl.png",
+    "description":"Knipa är en andfågel som förekommer i Skandinavien, norra Ryssland och norra Nordamerika. Knipan är en flyttfågel och äter små fiskar, snäckor, kräftdjur, växtdelar och insekter samt deras larver."
+  }
+]
+  
+  
