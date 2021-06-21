@@ -52,50 +52,83 @@ export const BirdPage = () => {
   const alreadyAdded = loggedInUserBirdsArray && loggedInUserBirdsArray.includes(browsedBird._id)
 
   const BirdPageInnerMain = styled(InnerMainLoggedIn)`
-  padding-top: 100px;
+    @media(min-width: 768px) {
+        flex-direction: column;
+      }
 `
+
+  const Content = styled(AboutSection)`
+    @media(min-width: 768px) {
+      margin: 40px 10px;
+    } 
+    @media (min-width: 1024px) {
+      max-width: 1200px;
+    }
+  `
 
   const BirdImg = styled.img`
     max-height: 100%; 
     max-width: 100%;
-    padding: 10px;
+    margin: 10px;
+    @media (min-width: 768px) {
+      width: 50%;
+      margin: 0 10px;
+    }
+    @media (min-width: 1024px) {
+      width: 40%;
+      margin: 20px;
+    }
   `
+
   const AdjustedHTwo = styled(HTwo)`
     padding: 5px;
+    font-size: 18px;
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 20px;
+    }
+    @media (min-width: 1440px) {
+      font-size: 22px;
+      padding: 0 40px;
+    }
+  `
+
+  const Button = styled(StyledButton)`
+    margin: 6px 0;
   `
 
      return (
       <Main>
-        <BirdPageInnerMain>
         {Loading? <Loader/> :
           <>
             <NavBar/>
+            <BirdPageInnerMain>
             <Header>{birdData.name}</Header>
-            <AboutSection>
+            <Content>
               <BirdImg src={birdData.image} alt={birdData.name}/>
               <AdjustedHTwo>{birdData.description}
-              <br></br><br></br>
-              {alreadyAdded?
+              <br></br><br></br>           
+              </AdjustedHTwo>
+            </Content>
+            {alreadyAdded?
               <>Du har redan denna fågel i din samling.</>
                 :
-                <>
-                {added? 
+                <></>
+              } 
+              {added? 
                 <Subtext>Tillagd!</Subtext>
                 :
-                <StyledButton onClick={() => onAddBird()}>
+                <Button onClick={() => onAddBird()}>
                   Lägg till i min samling
-                </StyledButton>
-              }
-              </>
-              }
-              <br></br>
-              <StyledButton onClick={() => history.go(-1)}>Tillbaka</StyledButton>
-              </AdjustedHTwo>
-            </AboutSection>
+                </Button>
+                }
+              <Button onClick={() => history.go(-1)}>Tillbaka</Button>
+              </BirdPageInnerMain>
           </>
-        }
-        <Footer/>
-        </BirdPageInnerMain>      
+        }   
+        <Footer/>     
       </Main>
     )
 }

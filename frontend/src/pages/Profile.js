@@ -8,7 +8,7 @@ import { StyledButton } from 'components/Button'
 import { Dialog } from 'components/Dialog'
 import { API_URL } from 'urls/urls'
 import { Loader } from 'components/Loader'
-import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
+import { Main, InnerMainLoggedIn, OnClickDiv, StyledDivRow, ProfileInfoDiv  } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 import { ProfileImage } from 'components/ProfileImage'
 import { Header, HTwo, HThree, P } from 'components/Text'
@@ -18,42 +18,37 @@ import { Footer } from 'components/Footer'
 
 import user from 'reducers/user'
 
-const ProfileInnerMain = styled(InnerMainLoggedIn)`
-  padding-top: 100px;
-  @media (min-width: 768px) {
-    padding-top: 200px;
-  }
-`
-
-const StyledDivRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`
-
-const ProfileInfoDiv = styled(StyledDivRow)`
-  flex-direction: column;
-  align-items: center;
-  height: 180px;
-  padding: 0 5px 0 5px;
-`
 const SearchBirdsForm = styled(Form)`
-  height: 120px;
-  padding: 0 35px 0 35px;
-  @media (max-width: 768px) {
-    flex-dirextion: row;
+  height: 60px;
+  padding: 0 20px 0 20px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin: 40px 0 30px 0;
   }
+  @media (min-width: 1024px) {
+    margin: 60px 0 40px 0;
+  }
+`
+
+const Wrapper = styled(OnClickDiv)`
+  @media(min-width: 768px) {
+    max-width: 30%;
+    min-width: min-content;
+  }
+  @media(min-width: 1024px) {
+    min-width: 25%;
+    max-width: 25%;
+  }
+`
+const Button = styled(StyledButton)`
+  margin: 10px 4px;
 `
 
 export const Profile = () => {
-  //const LoggedInUser = useSelector(store => store.user.loggedInUser)
   const LoggedInUserID = useSelector(store => store.user.loggedInUser.userID)
   const Loading = useSelector(store => store.user.loading)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [userData, setUserData] = useState({})
-  const [birdSearch, setBirdSearch] = useState('')
-  const [birdList, setBirdList] = useState([])
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -83,20 +78,6 @@ export const Profile = () => {
     history.push('/')
     }
 
-    // const onDeleteBird = (bird) => {
-    //   fetch(API_URL(`users/${LoggedInUserID}/addbird/`), {
-    //     method: 'DELETE',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //       birdId : bird
-    //     })
-    //   })
-    //   .then (response => response.json())
-    //   .then (data => console.log(data))
-    // }  
-
     const onGetBirdPage = (action) => {
       dispatch(user.actions.setLoading(true))
       dispatch(user.actions.setBrowsedBird(action))
@@ -104,95 +85,57 @@ export const Profile = () => {
       history.push(`/fagelbiblioteket/${action.name}`)
     }
 
-    const onSearch = (event) => {
-      dispatch(user.actions.setLoading(true))
-      event.preventDefault()
-  
-      fetch(API_URL(`birds?birdsearch=${birdSearch}`))
-      .then(response => response.json())
-      .then (data => setBirdList(data))
-      .finally(() => dispatch(user.actions.setLoading(false)))
-  
-      setBirdSearch('')
-    }
-
-    // const onEditAccount = () => {
-    //   console
-    //   // dispatch(labyrinth.actions.setLoading(true))  
-    //   // const options = {
-    //   //   method: 'Patch',
-    //   //   headers: {
-    //   //     'Content-Type': 'application/json'
-    //   //   }
-    //   // }
-  
-    //   // fetch(API_URL(`users/${UserID}`), options)
-    //   //   .then (response => response.json())
-    //   //   .then (data => console.log(data))
-    //   // .finally(() => dispatch(labyrinth.actions.setLoading(false)))
-    //    }
-
-  return (
+   return (
     <>
     <NavBar />
       <Main>
-        <ProfileInnerMain>
+        <InnerMainLoggedIn>
           {Loading? <Loader/> :
           <> 
-           <ProfileInfoDiv>    
+            <ProfileInfoDiv>    
               <ProfileImage/>
-              <Header>{userData.username}</Header>
-                           
+              <Header>{userData.username}</Header>                           
             </ProfileInfoDiv>  
             <StyledDivRow>
-            {showConfirmation? <div>
-              <p>Är du säker?</p>
-              <StyledButton onClick={() => onDeleteAccount()}>Ja, ta bort konto</StyledButton>
-              <StyledButton onClick={() => setShowConfirmation(false)}>Avbryt</StyledButton>
-            </div> 
-            : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}
+            {showConfirmation? 
+              <div>
+                <HThree>Är du säker?</HThree>
+                <div>
+                  <Button onClick={() => onDeleteAccount()}>Ja, ta bort konto</Button>
+                  <Button onClick={() => setShowConfirmation(false)}>Avbryt</Button>
+                </div> 
+              </div>
+            : <Button onClick={() => setShowConfirmation(true)}>Ta bort konto</Button>}
             </StyledDivRow>
-            <SearchBirdsForm onSubmit={onSearch}>
+            <SearchBirdsForm>
             <>
               {!userData.birdsSeen? 
               <HThree>Du har inga fågelspaningar ännu!</HThree>
               : 
-              <P>Mina fågelspaningar: {userData.birdsSeen && userData.birdsSeen.length} av 40</P>
-              
+              <HTwo>Mina fågelspaningar:<br></br> {userData.birdsSeen && userData.birdsSeen.length} av 40</HTwo>
               }
-              </> 
-              <Input 
-                type="text"
-                onChange={(event) => setBirdSearch(event.target.value)}
-                value={birdSearch}
-                placeholder="Sök" 
-              />
+              </>
             </SearchBirdsForm>
             
-            <Container>                           
+            <Container>                         
               <ListContainer>
                 {userData.birdsSeen && userData.birdsSeen.map(bird =>
-                  <OnClickDiv
+                  <Wrapper
                     key={bird._id}
                     onClick={() => onGetBirdPage(bird)}
-                    //to={`/fagelbiblioteket${bird.name}`}
                   >
                     <Dialog
                       title={bird.name}
                       image={bird.image}
-                      // button1={`👀 x 2`}
-                      // button1Click={() => console.log('hej')} 
-                      // button2={'Ta bort från lista'}
-                      // button2Click={() => onDeleteBird(bird)}
                     />
-                  </OnClickDiv>          
+                  </Wrapper>          
                 )}  
               </ListContainer>
             </Container>
           </>
           }
           <Footer/>
-          </ProfileInnerMain>
+          </InnerMainLoggedIn>
       </Main>
     </>
   )

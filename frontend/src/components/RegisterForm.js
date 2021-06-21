@@ -9,6 +9,7 @@ import { StyledButton } from './Button'
 import { HeighForm } from './Form'
 import { Input } from './Input'
 import { Loader } from './Loader'
+import { P } from './Text'
 
 
 export const RegisterForm = () => {
@@ -74,13 +75,12 @@ export const RegisterForm = () => {
             value={registerPassword} type="password" placeholder="Lösenord"/>
             <Input onChange={(event) => setPasswordMatch(event.target.value)}
             value={passwordMatch} type="password" placeholder="Upprepa lösenord"/>
-          {registerError ? <p>{registerError}</p> : '' }
-          {error ? <p>{error.message}</p> : ''}
+          {registerError ? <P>{registerError}</P> : '' }
+          {error ? <P>{error.message}</P> : ''}
           <StyledButton type="submit"> Registrera!</StyledButton>
           <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
         </HeighForm>
       }
-      
     </>
   )
 }

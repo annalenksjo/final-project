@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 import user from '../reducers/user'
 import { Main } from '../components/MainContainer'
+import { Logotype } from '../components/Logotype'
 import { Nav, Logo, StyledNavLink } from '../components/NavBar'
 
 const HamburgerMenuMain = styled(Main)`
@@ -17,6 +18,7 @@ const HamburgerMenuMain = styled(Main)`
     padding: 240px 0 180px 0;
   }
 `
+
 const CloseCross = styled.img`
   width: 30px;
   :hover {
@@ -26,6 +28,7 @@ const CloseCross = styled.img`
     width: 40px;
   }
 `
+
 const LinkDiv = styled.div`
   align-items: center;
   display: flex;
@@ -52,7 +55,7 @@ export const HamburgerMenuOpen = () => {
   return (
     <HamburgerMenuMain>
       <Nav>
-        <Logo src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></Logo>
+        <Logotype />
         <CloseCross onClick={() => history.go(-1)} src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624115424/cross_msucvi.png"></CloseCross>
       </Nav>
       <LinkDiv>
@@ -68,6 +71,5 @@ export const HamburgerMenuOpen = () => {
           <HamburgerNavLink onClick={onLogOut} to='/'>Logga ut</HamburgerNavLink>¨
           </LinkDiv>
     </HamburgerMenuMain>
-
   )
 }

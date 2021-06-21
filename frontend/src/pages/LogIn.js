@@ -1,22 +1,22 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import { InnerMain, Main, AboutSection } from 'components/MainContainers'
-
+import { InnerMain, Main } from 'components/MainContainers'
+import { Logotype } from 'components/Logotype'
 import { LoginForm } from 'components/LoginForm'
 import { Header } from 'components/Text'
 
 const LoginWelcomeSection = styled.div`
   margin: 50px 0 0 0;
-  height: 100vh;
   display: flex;
-  justify-items: center; 
+  justify-content: center; 
   flex-direction: column;
   align-items: center;  
   width: 100%;
   @media (min-width: 768px) {
-    margin-top: 200px;
     flex-direction: row;
+    margin: 0;
+    padding: 0 20px;
   }
 `
 const LoginFormContainer = styled.div`
@@ -26,23 +26,29 @@ const LoginFormContainer = styled.div`
   @media (min-width: 768px) {
     max-width: 500px;
   }
+  @media (min-width: 1024px) {
+    padding-top: 20px;
+  }
 `
-const Logotype = styled.img`
-  width: 200px;
-  margin: 20px 0 0 20px;
-`
+
 const StartImage = styled.img`
   display: none;
   @media (min-width: 768px) {
     display: flex;
+    max-width: 60%;
+    padding: 30px 10px 0 10px;
+    height: fit-content;
+  }
+  @media (min-width: 1024px) {
     max-width: 40%;
   }
 `
 
 export const LogIn = () => {
+  
   return (
     <Main>
-        <Logotype src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></Logotype>
+        <Logotype />
       <InnerMain>
         <LoginWelcomeSection>        
             <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>

@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 
 export const StyledButton = styled.button`
-  width: 100%;
+  width: 300px;
   font-size: 16px;
   color: #0C4458;
   font-family: 'Quicksand', sans-serif;
@@ -16,7 +16,10 @@ export const StyledButton = styled.button`
   }
   @media(min-width: 768px) {
     max-width: 240px;
-    padding: 8px 22px;
     font-size: 18px;
+  }
+  @media(min-width: 1440px) {
+    font-size: 20px;
+    max-width: 250px;
   }
 `

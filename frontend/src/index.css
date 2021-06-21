@@ -2,140 +2,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Nunito', sans-serif;
-
+  font-family: "Nunito", "sans-serif";
   background: linear-gradient(179.96deg, #CBECFE 0.04%, rgba(243, 249, 252, 0) 194.85%);
   background-repeat: no-repeat;
-  min-height: 100%;
- 
-  /*position: relative;*/
-  
-  /*height: 100vh;*/
-  
-  /* background-color: #DAEAE3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+  height: 100vh;
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-/* MAIN LAYOUT */
-/*  */
-/* .main-main-container {
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 280px;
-  height: 800px;
-  background-color: #3f725b;
-  border-radius: 30px;
-   */
-
-
-
-/* absolute positioned elements */
-
-
-/*.main-section-container{ /*denna behöver växa med main-main-container
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  height: 50%;
-  background-color: rgb(247, 103, 151);
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
-  border-radius: 9px;
-  overflow: hidden;
-}*/
-
-/* .placeholder-image {
-  background-color: #333;
-  width: 220px;
-  position: absolute;
-  left: 50%;
-  top: 150px;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%)
-  
-} */
-
-/* navigator a {
-  text-decoration: none;
-  color: black;
-  margin-right: 10px;
-}
-
-a:hover {
-  color: lightgray;
-  opacity: 0.6;
-}
-
-
-/*** MEDIA QUERIES ***/
-/* 
-@media (min-width: 375px) {
-  .main-main-container {
-    width: 320px;
-    height: 800px;
-  }
-} */
-/* 
-@media (min-width: 425px) {
-  .main-main-container {
-    width: 380px;
-    height: 800px;
-  }
-}
-
-@media (min-width: 768px) {
-  .main-main-container {
-    width: 680px;
-    height: 700px;
-  }
-} */
-/* 
-@media (min-width: 1024px) {
-  .main-main-container {
-    width: 880px;
-    height: 700px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .main-main-container {
-    width: 1180px;
-    height: 900px;
-  }  
-}
-
-@media (min-width: 2560px) {
-  .main-main-container {
-    width: 2180px;
-    height: 1300px;
-  } 
-} */ 
 
 
 

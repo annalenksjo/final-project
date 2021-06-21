@@ -24,3 +24,14 @@ export const SearchForm = styled.form`
     flex-direction: row;
   }
 `
+
+export const UserSearchForm = styled(SearchForm)`
+  height: 120px;
+  width: 100%;
+  padding: 0 10px 0 10px;
+  justify-content: flex-start;
+  @media(min-width: 768px){
+    width: 80%;
+    max-width: 800px;
+  }
+`

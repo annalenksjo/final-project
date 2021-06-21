@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom'
 
 import { CardWrapperDiv } from '../components/MainContainers'
 
+const TextContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 10px 0;
 
-const TextContent = styled.div``;
+`
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
+`
 
 const Button = styled.button`
   border: none;
@@ -23,33 +28,51 @@ const Button = styled.button`
     background-color: #fafafa;
     cursor:pointer;
   }
-`;
+`
 
 const Title = styled.div`
-  font-size: 20px;
+  font-size: 26px;
+  font-weight: bold;
   margin: 0;
   margin-bottom: 10px;
-  color: #0C4458
-`;
+  color: #0C4458;
+  @media(min-width: 768px) {
+    font-size: 30px;
+  }
+  @media(min-width: 1024px) {
+    font-size: 34px;
+  }
+`
 
 const SubHeading = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   margin: 0;
   color: rgba(12, 68, 88, 0.6);
-`;
+  @media(min-width: 768px) {
+    font-size: 20px;
+  }
+`
 
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
-`;
-
+`
 
 const Image = styled.img`
   max-width: 100%;
-`;
+`
+const Image2 = styled.img`
+  width: 50%;
+  @media(min-width: 768px) {
+    width: 70%;
+  }
+  @media(min-width: 1440px) {
+    width: 220px;
+  }
+`
 
-export const Dialog = ({ title, subheading, image, link, button1, button1Click, button2, button2Click }) => {
+export const Dialog = ({ title, subheading, image, image2, button1, button2 }) => {
   return (
     <CardWrapperDiv>
       <TextContent>
@@ -59,10 +82,12 @@ export const Dialog = ({ title, subheading, image, link, button1, button1Click, 
       <ImageContainer>
         {image && <Image src={image}></Image>}
       </ImageContainer>
+      <ImageContainer>
+        {image2 && <Image2 src={image2}></Image2>}
+      </ImageContainer>
       <ButtonContainer>
-        {link && <Link to={link}>{button1}</Link>}
-        {button1 && <Button onClick={button1Click}>{button1}</Button>}
-        {button2 && <Button onClick={button2Click}>{button2}</Button>}
+        {button1 && <Button>{button1}</Button>}
+        {button2 && <Button>{button2}</Button>}
       </ButtonContainer>
     </CardWrapperDiv>
   );

@@ -16,11 +16,8 @@ export const Hamburger = styled.img`
   }
 `
 
-
 export const HamburgerMenu = () => {
-
   const history = useHistory()
-
 
   return (
     <Hamburger onClick={() => history.push('/meny')} src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624115425/hamburgermenu_c9pfxi.png"></Hamburger>

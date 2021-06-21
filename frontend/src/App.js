@@ -15,7 +15,6 @@ import { HamburgerMenuOpen } from "pages/HamburgerMenuOpen"
 import user from './reducers/user'
 import { UserPage } from "pages/UserPage"
 
-
 const reducer = combineReducers({
   user: user.reducer
 })
@@ -23,6 +22,7 @@ const reducer = combineReducers({
 const store = configureStore({ reducer })
 
 export const App = () => {
+  
   return (
     <BrowserRouter>
       <Provider store={store}>
@@ -55,6 +55,6 @@ export const App = () => {
               <BirdPage/>
             </Route>    
         </Switch>
-        </Provider>
-    </BrowserRouter>
-  )}
+      </Provider>
+  </BrowserRouter>
+)}

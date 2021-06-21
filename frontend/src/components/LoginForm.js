@@ -8,6 +8,7 @@ import { Form } from './Form'
 import { Input } from './Input'
 import { StyledButton } from './Button'
 import { Loader } from './Loader'
+import { P } from './Text'
 
 export const LoginForm = () => {
   const [ username, setUsername ] = useState('')
@@ -68,7 +69,7 @@ export const LoginForm = () => {
             value={username} type="text" required placeholder="Användarnamn"/>
             <Input onChange={(event) => setPassword(event.target.value)}
             value={password} type="password" placeholder="Lösenord"/>
-          {error ? <p>{error.message}</p> : ''}
+          {error ? <P>{error.message}</P> : ''}
           <StyledButton type='submit'>Logga in</StyledButton>
           <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
         </Form>     

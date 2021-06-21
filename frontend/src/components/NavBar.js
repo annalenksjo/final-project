@@ -5,6 +5,7 @@ import styled from 'styled-components/macro'
 
 import user from '../reducers/user'
 import { HamburgerMenu } from './HamburgerMenu'
+import { Logotype } from './Logotype'
 
 export const Nav = styled.nav`
   position: fixed;
@@ -16,17 +17,18 @@ export const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  padding: 0 20px 0 20px;
+  padding: 0 20px 0 10px;
   background-color: #FAE5A2;
 
   @media (min-width: 768px) {
     height: 140px;
-    padding: 0 60px 0 80px;
+    padding: 0 60px 0 0px;
   }
-`;
+`
 
 export const StyledNavLink = styled(NavLink)`
   color: #0C4458;
+  font-family: 'Quicksand', sans-serif;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -37,15 +39,14 @@ export const StyledNavLink = styled(NavLink)`
   &:hover {
     color: #03045e;
   } 
-`;
-
+`
 
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-left: 10px;
-`;
+`
 
 export const LinkContainer = styled.div`
 display: none;
@@ -72,7 +73,7 @@ export const NavBar = () => {
 
   return (
       <Nav>
-        <Logo src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></Logo>
+        <Logotype />
          <HamburgerMenu/>
          <LinkContainer>
           <StyledNavLink to='/minsida' activeStyle={{
@@ -92,7 +93,6 @@ export const NavBar = () => {
           </StyledNavLink>
           <StyledNavLink onClick={onLogOut} to='/'>Logga ut</StyledNavLink>
         </LinkContainer>
-        
       </Nav>
   )
 }

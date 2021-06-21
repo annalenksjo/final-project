@@ -7,15 +7,60 @@ import styled from 'styled-components/macro'
 import { API_URL } from '../urls/urls'
 import { StyledButton } from '../components/Button'
 import { NavBar } from '../components/NavBar.js'
-import { Main, InnerMainLoggedIn, OnClickDiv } from '../components/MainContainers'
-import { SearchForm } from '../components/Form'
+import { Main, InnerMainLoggedIn, OnClickDiv, ProfileInfoDiv } from '../components/MainContainers'
+import { UserSearchForm } from '../components/Form'
 import { Input } from '../components/Input'
-import { Header } from '../components/Text'
-import { Subtext } from '../components/Subtext'
+import { Header, HThree } from '../components/Text'
 import { Dialog } from '../components/Dialog'
 import { Footer } from '../components/Footer'
 import user from 'reducers/user'
 
+const TopInfoDiv = styled(ProfileInfoDiv)`
+  height: 300px;
+  justify-content: space-evenly;
+  @media (min-width: 768px) {
+    height: 450px;
+  }
+`
+
+export const Container = styled.section` 
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+`
+
+export const ListContainer = styled.div`
+  width: auto;   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media(min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`
+
+export const BirdsListMain = styled(Main)`
+  display: flex;
+  justify-content: center;
+  padding-top: 200px;
+`
+
+const Wrapper = styled(OnClickDiv)`
+  @media(min-width: 768px) {
+    max-width: 30%;
+    min-width: min-content;
+  }
+  @media(min-width: 1024px) {
+    min-width: 25%;
+    max-width: 25%;
+  }
+`
 
 export const GardenBirds = () => {
   const [birdList, setBirdList] = useState([])
@@ -56,24 +101,26 @@ export const GardenBirds = () => {
     <NavBar/>
     <Main>
       <InnerMainLoggedIn>
-        <Header>Här är 40 av våra vanligaste svenska fåglar</Header>
-        <Subtext>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
+        <TopInfoDiv>
+        <Header>Fågelbiblioteket</Header>
+        <HThree>Sök i biblioteket efter din fågelspaning, finns den med?
           Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
           <br></br><br></br>
-          Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!</Subtext>
-        <SearchForm onSubmit={onSearch}>
+          Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!</HThree>
+        </TopInfoDiv>
+        <UserSearchForm onSubmit={onSearch}>
             <Input 
-            type="text"
-            onChange={(event) => setBirdSearch(event.target.value)}
-            value={birdSearch}
-            placeholder="Sök" 
+              type="text"
+              onChange={(event) => setBirdSearch(event.target.value)}
+              value={birdSearch}
+              placeholder="Sök" 
             />
           <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
-          {birdList.length === 0 ? <p>Hittade inga fåglar!</p> : '' }
-        </SearchForm>
+        </UserSearchForm>
+        {birdList.length === 0 ? <HThree>Hittade inga fåglar!</HThree> : '' }
         <Container>
         {birdList.map(bird => (
-          <OnClickDiv 
+          <Wrapper 
             onClick={() => onGetBirdPage(bird)}             
             value={bird._id}
             key={bird._id}
@@ -82,7 +129,7 @@ export const GardenBirds = () => {
               title={bird.name}
               image={bird.image}
             />
-          </OnClickDiv>
+          </Wrapper>
         ))}
         </Container>
         <Footer/>
@@ -92,34 +139,4 @@ export const GardenBirds = () => {
   )
 }
 
-export const Container = styled.section` 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`
-export const ListContainer = styled.div`
-  width: auto;   
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  justify-content: center;
-  align-items: center;
-  @media(min-width: 768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-`
 
-export const BirdsListMain = styled(Main)`
-  display: flex;
-  justify-content: center;
-  padding-top: 200px;
-`
-
-export const StyledPolaroid = styled(Polaroid)`
-  margin: 40px;
-`

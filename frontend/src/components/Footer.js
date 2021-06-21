@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import { NavLink, Nav } from 'components/NavBar'
-import { HTwo, HThree, P } from 'components/Text'
+import { P } from 'components/Text'
 
 const FooterDiv = styled.div`
   position: relative;
@@ -18,7 +17,6 @@ const FooterDiv = styled.div`
   padding: 20px;
   margin-top: 50px;
   background-color: #FAE5A2;
-
   @media (min-width: 768px) {
   
   }

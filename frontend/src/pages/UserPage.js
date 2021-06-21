@@ -8,9 +8,10 @@ import { Loader } from '../components/Loader'
 import { StyledButton } from '../components/Button'
 import { Dialog } from '../components/Dialog'
 import { NavBar } from '../components/NavBar'
-import { Subtext } from '../components/Subtext'
+import { Header, HTwo, HThree, P } from 'components/Text'
 import { Footer } from '../components/Footer'
-import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
+import { Main, InnerMainLoggedIn, OnClickDiv, ProfileInfoDiv } from 'components/MainContainers'
+import { ProfileImage } from 'components/ProfileImage'
 import { Container, ListContainer } from './GardenBirds'
 
 export const UserPage = () => {
@@ -47,15 +48,16 @@ export const UserPage = () => {
         {Loading? <Loader/> :
           <>
             <NavBar/>
-            <h2>Användarnamn: {browsedUser.username}</h2>
-            
-            {BirdArray.length === 0 ? <Subtext>
+            <ProfileInfoDiv>
+            <ProfileImage/>
+            <Header>{browsedUser.username}</Header>
+            </ProfileInfoDiv>
+            {BirdArray.length === 0 ? <HThree>
               {browsedUser.username} verkar inte ha några spaningar i sin lista ännu.
-            </Subtext>
-
+            </HThree>
             :
             <>
-            <Subtext>Sedda fåglar: {browsedUser.birdsSeen.length}/40</Subtext>
+            <HThree>Sedda fåglar: {browsedUser.birdsSeen.length}/40</HThree>
             <Container>                           
             <ListContainer>
               {browsedUser.birdsSeen && browsedUser.birdsSeen.map(bird =>
@@ -66,10 +68,6 @@ export const UserPage = () => {
                   <Dialog
                       title={bird.name}
                       image={bird.image}
-                      // button1={`👀 x 2`}
-                      // button1Click={() => console.log('hej')} 
-                      // button2={'Ta bort från lista'}
-                      // button2Click={() => onDeleteBird(bird)}
                     />   
                 </OnClickDiv>       
               )}  

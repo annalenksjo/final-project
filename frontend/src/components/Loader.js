@@ -17,7 +17,7 @@ const rotate360 = keyframes`
   to {
     transform: rotate(360deg);
   }
-`;
+`
 
 export const SpinnLoader = styled.div`
   animation: ${rotate360} 1s linear infinite;
@@ -30,7 +30,7 @@ export const SpinnLoader = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-`;
+`
 
 export const Loader = () => {
   return (
