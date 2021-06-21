@@ -9,6 +9,9 @@ export const Hamburger = styled.img`
     cursor: pointer;
   }
   @media (min-width: 768px) {
+    width: 50px;
+  }
+  @media (min-width: 1024px) {
     display: none;
   }
 `

@@ -2,7 +2,8 @@ import styled from 'styled-components/macro'
 
 // input for log in and sign up
 export const Input = styled.input`
- 
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
   border-radius: 24px;
   border: 2px solid #0C4458;
   background-color: transparent;

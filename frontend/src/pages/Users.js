@@ -11,9 +11,10 @@ import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
 import { SearchForm } from 'components/Form'
 import { Loader } from 'components/Loader'
-import { Header } from 'components/Text'
+import { Header, P } from 'components/Text'
 import { Subtext } from 'components/Subtext'
 import { Dialog } from '../components/Dialog'
+import { Footer } from '../components/Footer'
 import user from '../reducers/user'
 
 const UsersInnerMain = styled(InnerMainLoggedIn)`
@@ -99,7 +100,7 @@ export const Users = () => {
             onChange={(event) => setUserSearch(event.target.value)}
             value={userSearch} placeholder="Sök på användare"/>
           <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
-          {userList.length === 0 ? <p>Hittade inga användare!</p> : '' }
+          {userList.length === 0 ? <P>Hittade inga användare!</P> : '' }
         </UserSearchForm>
       </>
       }
@@ -117,6 +118,7 @@ export const Users = () => {
           </OnClickDiv> 
       ))}
       </UserMapContainer>
+      <Footer/>
       </UsersInnerMain>
     </Main>
     </>

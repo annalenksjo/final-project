@@ -11,14 +11,18 @@ import { Loader } from 'components/Loader'
 import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 import { ProfileImage } from 'components/ProfileImage'
-import { Header, HTwo, HThree } from 'components/Text'
+import { Header, HTwo, HThree, P } from 'components/Text'
 import { Input } from 'components/Input'
 import { Form } from 'components/Form'
+import { Footer } from 'components/Footer'
 
 import user from 'reducers/user'
 
 const ProfileInnerMain = styled(InnerMainLoggedIn)`
   padding-top: 100px;
+  @media (min-width: 768px) {
+    padding-top: 200px;
+  }
 `
 
 const StyledDivRow = styled.div`
@@ -31,11 +35,15 @@ const StyledDivRow = styled.div`
 const ProfileInfoDiv = styled(StyledDivRow)`
   flex-direction: column;
   align-items: center;
-  height: 200px;
+  height: 180px;
+  padding: 0 5px 0 5px;
 `
 const SearchBirdsForm = styled(Form)`
   height: 120px;
-  padding: 0 10px 0 10px;
+  padding: 0 35px 0 35px;
+  @media (max-width: 768px) {
+    flex-dirextion: row;
+  }
 `
 
 export const Profile = () => {
@@ -131,17 +139,10 @@ export const Profile = () => {
         <ProfileInnerMain>
           {Loading? <Loader/> :
           <> 
-           <ProfileInfoDiv>     
+           <ProfileInfoDiv>    
               <ProfileImage/>
-              <HTwo>{userData.username}</HTwo>
-              <>
-              {!userData.birdsSeen? 
-              <HThree>Du har inga fågelspaningar ännu!</HThree>
-              : 
-              <HThree>Mina fågelspaningar: {userData.birdsSeen && userData.birdsSeen.length} av 40 möjliga</HThree>
-              
-              }
-              </>              
+              <Header>{userData.username}</Header>
+                           
             </ProfileInfoDiv>  
             <StyledDivRow>
             {showConfirmation? <div>
@@ -152,7 +153,14 @@ export const Profile = () => {
             : <StyledButton onClick={() => setShowConfirmation(true)}>Ta bort konto</StyledButton>}
             </StyledDivRow>
             <SearchBirdsForm onSubmit={onSearch}>
-              <Header>Fågelspaningar</Header>
+            <>
+              {!userData.birdsSeen? 
+              <HThree>Du har inga fågelspaningar ännu!</HThree>
+              : 
+              <P>Mina fågelspaningar: {userData.birdsSeen && userData.birdsSeen.length} av 40</P>
+              
+              }
+              </> 
               <Input 
                 type="text"
                 onChange={(event) => setBirdSearch(event.target.value)}
@@ -183,6 +191,7 @@ export const Profile = () => {
             </Container>
           </>
           }
+          <Footer/>
           </ProfileInnerMain>
       </Main>
     </>

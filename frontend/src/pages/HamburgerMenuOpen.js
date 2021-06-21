@@ -5,20 +5,39 @@ import { useHistory } from 'react-router-dom'
 
 import user from '../reducers/user'
 import { Main } from '../components/MainContainer'
-import { Nav, Logo, NavLink } from '../components/NavBar'
+import { Nav, Logo, StyledNavLink } from '../components/NavBar'
 
 const HamburgerMenuMain = styled(Main)`
- display: flex;
- flex-direction: column;
- align-items: center;
- height: 100vh;
- padding: 180px 0 180px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding: 150px 0 180px 0;
+  @media(min-width: 768px) {
+    padding: 240px 0 180px 0;
+  }
 `
 const CloseCross = styled.img`
-width: 30px;
-:hover {
-  cursor: pointer;
-}
+  width: 30px;
+  :hover {
+    cursor: pointer;
+  }
+  @media (min-width: 768px) {
+    width: 40px;
+  }
+`
+const LinkDiv = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+`
+
+const HamburgerNavLink = styled(StyledNavLink)`
+  margin: 20px 0;
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
 `
 
 export const HamburgerMenuOpen = () => {
@@ -36,16 +55,18 @@ export const HamburgerMenuOpen = () => {
         <Logo src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></Logo>
         <CloseCross onClick={() => history.go(-1)} src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624115424/cross_msucvi.png"></CloseCross>
       </Nav>
-      <NavLink to='/minsida'>
+      <LinkDiv>
+        <HamburgerNavLink to='/minsida'>
             Min sida
-          </NavLink>
-          <NavLink to='/topplistan' >
+          </HamburgerNavLink>
+          <HamburgerNavLink to='/topplistan' >
             Topplistan
-          </NavLink>
-          <NavLink to='/fagelbiblioteket'>
+          </HamburgerNavLink>
+          <HamburgerNavLink to='/fagelbiblioteket'>
             Fågelbiblioteket
-          </NavLink>
-          <NavLink onClick={onLogOut} to='/'>Logga ut</NavLink>
+          </HamburgerNavLink>
+          <HamburgerNavLink onClick={onLogOut} to='/'>Logga ut</HamburgerNavLink>¨
+          </LinkDiv>
     </HamburgerMenuMain>
 
   )

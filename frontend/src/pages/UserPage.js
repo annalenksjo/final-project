@@ -9,6 +9,7 @@ import { StyledButton } from '../components/Button'
 import { Dialog } from '../components/Dialog'
 import { NavBar } from '../components/NavBar'
 import { Subtext } from '../components/Subtext'
+import { Footer } from '../components/Footer'
 import { Main, InnerMainLoggedIn, OnClickDiv } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 
@@ -79,6 +80,7 @@ export const UserPage = () => {
             <StyledButton onClick={() => history.push('/topplistan')}>Tillbaka</StyledButton>
           </>
         }
+          <Footer/>
         </InnerMainLoggedIn>      
       </Main>
     )   

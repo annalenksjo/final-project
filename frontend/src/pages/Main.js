@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-import { NavLink, Nav, LinkContainer } from '../components/NavBar'
+import { StyledNavLink, Nav, LinkContainer } from '../components/NavBar'
 import { Header, HThree } from '../components/Text'
 import { Main, InnerMain, AboutSection } from '../components/MainContainers'
 import '../index.css'
@@ -23,7 +23,7 @@ const LinkContainerStart = styled(LinkContainer)`
     display: none;
   }
 `
-const HeaderLink = styled(NavLink)`
+const HeaderLink = styled(StyledNavLink)`
   font-size: 20px;
   font-weight: bold;
   @media (min-width: 1024px) {
@@ -41,8 +41,9 @@ const StartImage = styled.img`
     margin-left: 60px;
   }
 `
-const FirstpageNavlink = styled(NavLink)`
+const FirstpageNavlink = styled(StyledNavLink)`
   color: #FF7460;
+  
   margin: 0;
   &:hover {
     opacity: 0.8;

@@ -4,7 +4,9 @@ export const StyledButton = styled.button`
   width: 100%;
   font-size: 16px;
   color: #0C4458;
-  padding: 10px 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  padding: 12px 20px;
   background-color: #FAE5A2;
   border-radius: 18px;
   border: none;

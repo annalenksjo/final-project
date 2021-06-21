@@ -13,6 +13,7 @@ import { Input } from '../components/Input'
 import { Header } from '../components/Text'
 import { Subtext } from '../components/Subtext'
 import { Dialog } from '../components/Dialog'
+import { Footer } from '../components/Footer'
 import user from 'reducers/user'
 
 
@@ -84,6 +85,7 @@ export const GardenBirds = () => {
           </OnClickDiv>
         ))}
         </Container>
+        <Footer/>
       </InnerMainLoggedIn>
     </Main> 
   </>     

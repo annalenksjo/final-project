@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, activeStyle, NavLink } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import user from '../reducers/user'
@@ -25,7 +25,7 @@ export const Nav = styled.nav`
   }
 `;
 
-export const NavLink = styled(Link)`
+export const StyledNavLink = styled(NavLink)`
   color: #0C4458;
   display: flex;
   align-items: center;
@@ -34,13 +34,11 @@ export const NavLink = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
-  &:active {
-    font-weight: bold;
-  }
   &:hover {
     color: #03045e;
   } 
 `;
+
 
 export const NavMenu = styled.div`
   display: flex;
@@ -51,7 +49,7 @@ export const NavMenu = styled.div`
 
 export const LinkContainer = styled.div`
 display: none;
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     display: flex;
     flex-direction: row;
   }
@@ -59,8 +57,10 @@ display: none;
 
 export const Logo = styled.img`
   width: 200px;
+  @media (min-width: 768px) {
+    width: 250px;
+  }
 `
-
 
 export const NavBar = () => {
   const dispatch = useDispatch()
@@ -75,16 +75,22 @@ export const NavBar = () => {
         <Logo src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></Logo>
          <HamburgerMenu/>
          <LinkContainer>
-          <NavLink to='/minsida'>
+          <StyledNavLink to='/minsida' activeStyle={{
+            fontWeight: 'bold'
+          }}>
             Min sida
-          </NavLink>
-          <NavLink to='/topplistan' >
+          </StyledNavLink>
+          <StyledNavLink to='/topplistan' activeStyle={{
+            fontWeight: 'bold'
+          }}>
             Topplistan
-          </NavLink>
-          <NavLink to='/fagelbiblioteket'>
+          </StyledNavLink>
+          <StyledNavLink to='/fagelbiblioteket' activeStyle={{
+            fontWeight: 'bold'
+          }}>
             Fågelbiblioteket
-          </NavLink>
-          <NavLink onClick={onLogOut} to='/'>Logga ut</NavLink>
+          </StyledNavLink>
+          <StyledNavLink onClick={onLogOut} to='/'>Logga ut</StyledNavLink>
         </LinkContainer>
         
       </Nav>

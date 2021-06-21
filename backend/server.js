@@ -26,8 +26,6 @@ const storage = cloudinaryStorage({
 })
 const parser = multer({ storage })
 
-// import birdData from './gardenbirds.json'
-
 dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/challengeAppAPI'

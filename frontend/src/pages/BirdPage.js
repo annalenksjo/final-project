@@ -10,6 +10,7 @@ import { StyledButton } from '../components/Button'
 import { NavBar } from '../components/NavBar'
 import { Header, HTwo } from '../components/Text'
 import { Subtext } from '../components/Subtext'
+import { Footer } from '../components/Footer'
 import { Main, InnerMainLoggedIn, AboutSection } from 'components/MainContainers'
 
 export const BirdPage = () => {
@@ -93,6 +94,7 @@ export const BirdPage = () => {
             </AboutSection>
           </>
         }
+        <Footer/>
         </BirdPageInnerMain>      
       </Main>
     )
