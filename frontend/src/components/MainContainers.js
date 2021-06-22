@@ -30,6 +30,9 @@ export const InnerMainLoggedIn = styled(InnerMain)`
   /* justify-content: center; */
   align-content: center;
   @media (min-width: 768px) {
+    padding-top: 140px;
+  }
+  @media (min-width: 1024px) {
     padding-top: 200px;
   }
 `

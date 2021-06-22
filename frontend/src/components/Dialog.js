@@ -49,7 +49,7 @@ const SubHeading = styled.div`
   margin: 0;
   color: rgba(12, 68, 88, 0.6);
   @media(min-width: 768px) {
-    font-size: 20px;
+    font-size: 26px;
   }
 `
 

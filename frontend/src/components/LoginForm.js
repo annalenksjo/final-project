@@ -64,8 +64,8 @@ export const LoginForm = () => {
         <Input onChange={(event) => setPassword(event.target.value)}
         value={password} type="password" required placeholder="Lösenord"/>
       {error ? <HThree>{error.message}</HThree> : ''}
-      <StyledButton type='submit'>Logga in</StyledButton>
-      <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
+        <StyledButton type='submit'>Logga in</StyledButton>
+        <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
     </Form>
   )
 }

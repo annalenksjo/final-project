@@ -5,7 +5,6 @@ import styled from 'styled-components/macro'
 import { Logotype } from '../components/Logotype'
 import { StyledNavLink, LinkContainer } from '../components/NavBar'
 import { Header, HThree } from '../components/Text'
-import { Footer } from '../components/Footer'
 import { Main, InnerMain, AboutSection } from '../components/MainContainers'
 
 const LinksContainer = styled.div`
@@ -44,6 +43,14 @@ const StartImage = styled.img`
 
   @media (min-width: 768px) {
     max-width: 45%;
+    margin-left: 40px;
+  }
+  @media (min-width: 1024px) {
+    max-width: 40%;
+    margin-left: 40px;
+  }
+  @media (min-width: 1440px) {
+    max-width: 35%;
     margin-left: 40px;
   }
 `
@@ -103,7 +110,6 @@ export const StartPage = () => {
             <FirstpageNavlink onClick={() => history.push('skapakonto')} to='/skapakonto'>Bli en fågelspanare!</FirstpageNavlink>
         </LinksContainer>
       </InnerMain>
-      <Footer/>
     </Main>  
   )
 }

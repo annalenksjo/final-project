@@ -26,6 +26,14 @@ const Content = styled(AboutSection)`
     max-width: 1200px;
   }
 `
+const AddBirdDiv = styled.div`
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 20px 0;
+`
 
 const BirdImg = styled.img`
   max-height: 100%; 
@@ -56,9 +64,6 @@ const AdjustedHThree = styled(HThree)`
   }
 `
 
-const Button = styled(StyledButton)`
-  margin: 6px 0;
-`
 
 export const BirdPage = () => {
   const history = useHistory()
@@ -111,21 +116,31 @@ export const BirdPage = () => {
                 <br></br><br></br>           
                 </AdjustedHThree>
               </Content>
-              {alreadyAdded?
-                <AdjustedHThree>Du har redan denna fågel i din samling.</AdjustedHThree>
-                  :
-                  <></>
+              <AddBirdDiv>
+              {alreadyAdded
+                ? <AdjustedHThree>
+                    Du har redan denna fågel i din samling.
+                  </AdjustedHThree>
+                : 
+                  <>
+                    {added? 
+                      <AdjustedHThree> 
+                        Tillagd! 
+                      </AdjustedHThree>
+                      : 
+                      <StyledButton onClick={() => onAddBird()}>
+                        Lägg till i min samling
+                      </StyledButton>
+                     }
+                  </>
                 } 
-                {added? 
-                  <AdjustedHThree> Tillagd! </AdjustedHThree>
-                  :
-                  <Button onClick={() => onAddBird()}>
-                    Lägg till i min samling
-                  </Button>
-                }
-                <Button onClick={() => history.go(-1)}>
+                
+                
+               
+                <StyledButton onClick={() => history.go(-1)}>
                   Tillbaka
-                </Button>
+                </StyledButton>
+              </AddBirdDiv>
             </BirdPageInnerMain>
           </>
         }   

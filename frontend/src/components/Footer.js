@@ -15,7 +15,7 @@ const FooterDiv = styled.div`
   padding: 10px;
   background-color: #FAE5A2;
   @media (min-width: 768px) {
-    margin-top: 50px;
+    margin-top: 20px;
     padding: 20px;
     font-size: 18px;
   }

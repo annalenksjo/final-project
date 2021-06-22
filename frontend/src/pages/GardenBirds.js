@@ -15,16 +15,16 @@ import { Footer } from '../components/Footer'
 import { Loader } from '../components/Loader'
 import user from 'reducers/user'
 
-const BirdLiberaryImage = styled.img`
+const BirdLibraryImage = styled.img`
   width: 100%;
   margin: 15px 0 15px 0;
-  @media(min-width: 768px){
+  @media (min-width: 768px) {
     width: 40%;
-    margin: 15px 20px;
+    margin: 15px 30px;
   }
-  @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     width: 30%;
-    margin: 0;
+    margin: 0 50px 0 0;
   }
 `
 
@@ -111,11 +111,12 @@ export const GardenBirds = () => {
           <InnerMainLoggedIn>
             <Header>Fågelbiblioteket</Header>
             <AboutSection>
-            <BirdLiberaryImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624353003/Bokmes_j72rga.png" alt="Fågel som läser en bok"/>
-            <HThree>Sök i biblioteket efter din fågelspaning, finns den med?
-              Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
-              <br></br><br></br>
-              Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!</HThree>
+            <BirdLibraryImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624353003/Bokmes_j72rga.png" alt="Fågel som läser en bok"/>
+              <HThree>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
+                Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
+                <br></br><br></br>
+                Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!
+              </HThree>
             </AboutSection>
             <UserSearchForm onSubmit={onSearch}>
                 <Input 

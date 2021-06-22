@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { API_URL } from '../urls/urls'
 import user from 'reducers/user'
@@ -13,6 +14,17 @@ import { Footer } from '../components/Footer'
 import { Main, InnerMainLoggedIn, OnClickDiv, ProfileInfoDiv, StyledDivRow } from 'components/MainContainers'
 import { ProfileImage } from 'components/ProfileImage'
 import { Container, ListContainer } from './GardenBirds'
+
+const Wrapper = styled(OnClickDiv)`
+  @media(min-width: 768px) {
+    max-width: 30%;
+    min-width: min-content;
+  }
+  @media(min-width: 1024px) {
+    min-width: 25%;
+    max-width: 25%;
+  }
+`
 
 export const UserPage = () => {
   const history = useHistory()
@@ -63,7 +75,7 @@ export const UserPage = () => {
               <Container>                           
                 <ListContainer>
                   {browsedUser.birdsSeen && browsedUser.birdsSeen.map(bird =>
-                    <OnClickDiv 
+                    <Wrapper 
                       key={bird._id} 
                       onClick={() => onGetBirdPage(bird)}
                     >
@@ -71,7 +83,7 @@ export const UserPage = () => {
                           title={bird.name}
                           image={bird.image}
                         />   
-                    </OnClickDiv  >       
+                    </Wrapper>       
                   )}  
                 </ListContainer>
               </Container>

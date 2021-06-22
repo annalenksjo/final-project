@@ -1,12 +1,12 @@
 import express from 'express'
-import cors from 'cors'
-import mongoose from 'mongoose'
-import listEndpoints from 'express-list-endpoints'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import dotenv from 'dotenv'
-import cloudinaryFramework from 'cloudinary'
+import cors from 'cors'
+import mongoose from 'mongoose'
 import multer from 'multer'
+import cloudinaryFramework from 'cloudinary'
+import listEndpoints from 'express-list-endpoints'
 import cloudinaryStorage from 'multer-storage-cloudinary'
 
 const cloudinary = cloudinaryFramework.v2; 
@@ -24,8 +24,8 @@ const storage = cloudinaryStorage({
     transformation: [{ width: 500, height: 500, crop: 'limit' }],
   },
 })
-const parser = multer({ storage })
 
+const parser = multer({ storage })
 dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/challengeAppAPI'
@@ -64,7 +64,7 @@ const User = mongoose.model('User', {
   },
   birdsSeen: [{
     type: mongoose.Schema.Types.ObjectId,
-    unique: true, //does this work
+    unique: true, 
     default: [],
     ref: 'Birds'
   }]
@@ -77,9 +77,8 @@ const Birds = mongoose.model('Birds', {
   }
 )
 
-  const authenticateUser = async (req, res, next) => {
-  const accessToken = req.header('Authorization')
-
+const authenticateUser = async (req, res, next) => {
+const accessToken = req.header('Authorization')
   try {
     const user = await User.findOne({ accessToken })
     if (user) {
@@ -95,19 +94,16 @@ const Birds = mongoose.model('Birds', {
 
 const port = process.env.PORT || 8080
 const app = express()
-
 app.use(cors())
 app.use(express.json())
 
-// GET
+// GET REQUESTS
 app.get('/', (req, res) => {
   res.send(listEndpoints(app))
 })
 
-// Get Birds
 app.get('/birds', async (req, res) => {
   const { birdsearch } = req.query
-
   try {
     let allBirds = await Birds.find().sort({ name: 1 }) 
     if (birdsearch) {
@@ -122,11 +118,9 @@ app.get('/birds', async (req, res) => {
   }   
 })
 
-// Get Bird Page
-// app.get('/users/:_id', authenticateUser)
+//app.get('/users/:_id', authenticateUser)
 app.get('/birds/:_id', async (req, res) => {
   const { _id } = req.params
-
   try {    
     if (_id) {
       const birdPage = await Birds.findById(_id)
@@ -139,37 +133,28 @@ app.get('/birds/:_id', async (req, res) => {
   }
 })
 
-// Loop Birds Array
-//app.get('/user/birds')
-
-// Get User List
-// app.get('/users', authenticateUser)
+//app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
   const { useraccount } = req.query
-
   try {
     let allUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen: -1 }) 
     let topUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen: -1 }).limit(10)
-
     if (useraccount) {
       allUsers = allUsers.filter((user) => user.username.toLowerCase()
         .includes(useraccount.toLowerCase())
       )
       res.json(allUsers)
-    } else {
-      res.json(topUsers)
-    }
-      
+    } else { 
+        res.json(topUsers)
+    }      
   } catch (error) {
       res.status(400).json({ success: false, message: 'Invalid request', error})
   }
 })
 
-// Get User Profile
 //app.get('/users/:_id', authenticateUser)
 app.get('/users/:_id', async (req, res) => {
   const { _id } = req.params
-
   try {    
     if (_id) {
       const userPage = await User.findById(_id)
@@ -193,9 +178,9 @@ app.get('/users/:_id', async (req, res) => {
   }
 })
 
-// DELETE
-// Delete User
-// app.delete('/users/:_id', authenticateUser)
+// DELETE REQUESTS
+
+//app.delete('/users/:_id', authenticateUser)
 app.delete('/users/:_id', async (req, res) => {
   const { _id } = req.params
   try {
@@ -213,72 +198,22 @@ app.delete('/users/:_id', async (req, res) => {
   }
 })
 
-//Delete Bird from user array
-// app.delete('/users/:_id', authenticateUser)
-app.delete('/users/:_id/addbird/', async (req, res) => {
-  const { _id } = req.params
-  const { birdId } = req.body
-  
-  try {
-    const birdToDelete = await Birds.findById(birdId)
-    await User.findByIdAndUpdate(_id, {
-      $pull: {
-        birdsSeen: birdToDelete._id
-      }
-    })
-    res.status(200).json({ success: true, message: 'Borttagen', birdToDelete})
-  } catch (error) {
-    res.status(400).json({ success: false, message: 'invalid request', error })
-  }
-})
+// POST REQUESTS
 
-// PATCH
-// Edit User Profile
-// app.patch('/users/:_id', authenticateUser)
-app.patch('/users/:_id', async (req, res) => {
-  const { _id } = req.params
-  try {
-    const updatedAccount = await User.findByIdAndUpdate(_id, {
-      // specify what the user can update, such as:
-      motto: req.body.motto
-    },
-    {
-      // new: true // to return the new document and not the orginal one
-    }
-    )
-    if(updatedAccount) {
-      res.json({
-        success: true,
-        updatedAccount 
-      })
-    } else {
-      res.status(404).json({ success: false, message: 'Sorry, something went wrong', error })
-    }
-  } catch (error) {
-    res.status(400).json({ success: false, message: 'invalid request', error })
-  }
-})
-
-// POST
-// User Register
 app.post('/register', async (req, res) => {
   const { username, password } = req.body
-
   try {
-    const salt = bcrypt.genSaltSync()
-  
+    const salt = bcrypt.genSaltSync()  
       const newUser = await new User({
         username,
         password: bcrypt.hashSync(password, salt)
-      }).save()
-  
+      }).save()  
       res.json({
         success: true,
         userID: newUser._id,
         user: newUser.username,
         accessToken: newUser.accessToken
       })
-     
   } catch (error) {
     if (error.code === 11000) {
       res.status(409).json({ success: false, message: 'Användarnamnet finns redan, prova ett annat', error })
@@ -288,13 +223,10 @@ app.post('/register', async (req, res) => {
   }
 })
 
-// User Login
 app.post('/login', async (req, res) => {
   const { username, password } = req.body
-
   try {
     const user = await User.findOne({ username })
-
     if (user && bcrypt.compareSync(password, user.password)) {
         res.json({
           success: true,
@@ -306,19 +238,17 @@ app.post('/login', async (req, res) => {
           birdsSeen: user.birdsSeen
         })
        } else {
-      res.status(404).json({ success: false, message: 'Fel användarnamn eller lösenord, prova igen.' })
-    }
+          res.status(404).json({ success: false, message: 'Fel användarnamn eller lösenord, prova igen.' })
+      }
   } catch (error) {
     res.status(400).json({ success: false, message: 'Något gick fel, prova igen', error });
   }
 })
 
-// Add birdsSeen
-// app.post('/users/:_id/addbird', authenticateUser)
+//app.post('/users/:_id/addbird', authenticateUser)
 app.post('/users/:_id/addbird/', async (req, res) => {
   const { _id } = req.params
-  const { birdId } = req.body
-  
+  const { birdId } = req.body  
   try {
     const birdToAdd = await Birds.findById(birdId)
     // const User = await User.findById(_id)
@@ -336,7 +266,6 @@ app.post('/users/:_id/addbird/', async (req, res) => {
       }
     })
     res.status(200).json({ success: true, message: 'Tillagd', User})
-
   } catch (error) {
     res.status(400).json({ success: false, message: 'invalid request', error })
   }
@@ -346,8 +275,6 @@ app.post('/birds', parser.single('image'), async (req, res) => {
 	res.json({ imageUrl: req.file.path, imageId: req.file.filename})
 })
 
-
-// Start the server
 app.listen(port, () => {
   // eslint-disable-next-line
   console.log(`Server running on http://localhost:${port}`)

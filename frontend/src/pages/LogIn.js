@@ -6,7 +6,6 @@ import { InnerMain, Main } from 'components/MainContainers'
 import { Logotype } from 'components/Logotype'
 import { LoginForm } from 'components/LoginForm'
 import { Header } from 'components/Text'
-import { Footer } from 'components/Footer'
 import { Loader } from 'components/Loader'
 
 const LoginWelcomeSection = styled.div`
@@ -27,6 +26,10 @@ const LoginFormContainer = styled.div`
   margin: 10px 0 0 0;
   padding: 0 4px;
   width: 100%;  
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   @media (min-width: 768px) {
     max-width: 500px;
   }
@@ -36,15 +39,19 @@ const LoginFormContainer = styled.div`
 `
 
 const StartImage = styled.img`
-  display: none;
+  max-width: 50%;
   @media (min-width: 768px) {
     display: flex;
-    max-width: 60%;
-    padding: 30px 10px 0 10px;
-    height: fit-content;
+    max-width: 45%;
+    margin-left: 40px;
   }
   @media (min-width: 1024px) {
     max-width: 40%;
+    margin-left: 40px;
+  }
+  @media (min-width: 1440px) {
+    max-width: 35%;
+    margin-left: 40px;
   }
 `
 
@@ -67,7 +74,6 @@ export const LogIn = () => {
               </LoginFormContainer>
             </LoginWelcomeSection> 
           </InnerMain>
-          <Footer/>
         </Main>
       }
     </>

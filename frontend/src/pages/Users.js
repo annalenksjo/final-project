@@ -20,11 +20,14 @@ const UserMapContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    max-width: 1600px;
+    margin: auto;
   }
 `
 
@@ -35,13 +38,7 @@ const Wrapper = styled(OnClickDiv)`
   }
   @media(min-width: 1024px) {
     width: 25%;
-  }
-`
-
-const UsersInnerMain = styled(InnerMainLoggedIn)`
-  padding-top: 130px;
-  @media(min-width: 768px){
-    padding-top: 200px;
+    max-width: 320px;
   }
 `
 
@@ -55,6 +52,10 @@ const HighScoreImage = styled.img`
   @media(min-width: 1024px) {
     width: 30%;
     margin: 0;
+  }
+  @media(min-width: 2560px) {
+    width: 20%;
+    margin: 0 0 50px 0;
   }
 `
 
@@ -108,7 +109,7 @@ export const Users = () => {
         <Loader/> 
         :
         <Main>
-          <UsersInnerMain>     
+          <InnerMainLoggedIn>     
           <>
           <Header>Topplistan</Header>
           <AboutSection>
@@ -142,7 +143,7 @@ export const Users = () => {
           ))}
           </UserMapContainer>
           <Footer/>
-          </UsersInnerMain>
+          </InnerMainLoggedIn>
         </Main>
       }
     </>
