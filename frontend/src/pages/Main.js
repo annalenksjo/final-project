@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { Logotype } from '../components/Logotype'
-import { StyledNavLink, Nav, LinkContainer } from '../components/NavBar'
+import { StyledNavLink, LinkContainer } from '../components/NavBar'
 import { Header, HThree } from '../components/Text'
 import { Footer } from '../components/Footer'
 import { Main, InnerMain, AboutSection } from '../components/MainContainers'
@@ -33,6 +33,9 @@ const HeaderLink = styled(StyledNavLink)`
   @media (min-width: 1024px) {
     font-size: 24px
   }
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const StartImage = styled.img`
@@ -41,7 +44,6 @@ const StartImage = styled.img`
 
   @media (min-width: 768px) {
     max-width: 45%;
-    /* padding: 20px; */
     margin-left: 40px;
   }
 `
@@ -69,11 +71,9 @@ const TextContainer = styled.div`
   }
 `
 
-
 const FirstpageSubtext = styled(HThree)`
   margin: 10px 0 5px 0;
   @media (min-width: 768px) {
-    font-size: 20px;  
     align-self: center;
   }
 `
@@ -86,12 +86,8 @@ export const StartPage = () => {
       <NavContainer>
        <Logotype />
        <LinkContainerStart>
-          <HeaderLink onClick={() => history.push('/loggain')} to='/loggain'>
-            Redan fågelspanare?
-          </HeaderLink>
-          <HeaderLink onClick={() => history.push('skapakonto')} to='/skapakonto'>
-            Bli en fågelspanare!
-          </HeaderLink>
+          <HeaderLink onClick={() => history.push('/loggain')} to='/loggain'> Redan fågelspanare? </HeaderLink>
+          <HeaderLink onClick={() => history.push('skapakonto')} to='/skapakonto'> Bli en fågelspanare! </HeaderLink>
        </LinkContainerStart>
       </NavContainer>
       <InnerMain>  
@@ -106,8 +102,8 @@ export const StartPage = () => {
             <FirstpageNavlink onClick={() => history.push('/loggain')} to='/loggain'>Redan fågelspanare?</FirstpageNavlink>
             <FirstpageNavlink onClick={() => history.push('skapakonto')} to='/skapakonto'>Bli en fågelspanare!</FirstpageNavlink>
         </LinksContainer>
-        <Footer/>
       </InnerMain>
+      <Footer/>
     </Main>  
   )
 }

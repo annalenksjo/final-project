@@ -7,16 +7,13 @@ import user from '../reducers/user'
 import { Form } from './Form'
 import { Input } from './Input'
 import { StyledButton } from './Button'
-import { Loader } from './Loader'
-import { P } from './Text'
+import { HThree } from './Text'
 
 export const LoginForm = () => {
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
 
   const loggedInUser = useSelector(store => store.user.loggedInUser)
-  // const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
-  const Loading = useSelector(store => store.user.loading)
   const error = useSelector(store => store.user.errors)
 
   const history = useHistory()
@@ -61,21 +58,15 @@ export const LoginForm = () => {
   }
 
   return(
-  <>
-    {Loading? <Loader/> :
-      <>
-        <Form onSubmit={onLogin}> 
-            <Input onChange={(event) => setUsername(event.target.value)}
-            value={username} type="text" required placeholder="Användarnamn"/>
-            <Input onChange={(event) => setPassword(event.target.value)}
-            value={password} type="password" placeholder="Lösenord"/>
-          {error ? <P>{error.message}</P> : ''}
-          <StyledButton type='submit'>Logga in</StyledButton>
-          <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
-        </Form>     
-      </>
-    }
-  </>
+    <Form onSubmit={onLogin}> 
+        <Input onChange={(event) => setUsername(event.target.value)}
+        value={username} type="text" required placeholder="Användarnamn"/>
+        <Input onChange={(event) => setPassword(event.target.value)}
+        value={password} type="password" required placeholder="Lösenord"/>
+      {error ? <HThree>{error.message}</HThree> : ''}
+      <StyledButton type='submit'>Logga in</StyledButton>
+      <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
+    </Form>
   )
 }
 

@@ -1,10 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 
 import { InnerMain, Main } from 'components/MainContainers'
 import { Logotype } from 'components/Logotype'
 import { LoginForm } from 'components/LoginForm'
 import { Header } from 'components/Text'
+import { Footer } from 'components/Footer'
+import { Loader } from 'components/Loader'
 
 const LoginWelcomeSection = styled.div`
   margin: 50px 0 0 0;
@@ -19,6 +22,7 @@ const LoginWelcomeSection = styled.div`
     padding: 0 20px;
   }
 `
+
 const LoginFormContainer = styled.div`
   margin: 10px 0 0 0;
   padding: 0 4px;
@@ -45,21 +49,27 @@ const StartImage = styled.img`
 `
 
 export const LogIn = () => {
+  const Loading = useSelector(store => store.user.loading)
   
   return (
-    <Main>
-        <Logotype />
-      <InnerMain>
-        <LoginWelcomeSection>        
-            <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>
-          <LoginFormContainer>
-            <Header>
-              Välkommen tillbaka!
-            </Header> 
-            <LoginForm/>
-          </LoginFormContainer>
-        </LoginWelcomeSection> 
-      </InnerMain>
-    </Main>   
+    <>
+      {Loading?
+        <Loader/>
+        :
+        <Main>
+          <Logotype />
+          <InnerMain>      
+            <LoginWelcomeSection>        
+                <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624367181/kompisar_s3vtb1.png"></StartImage>
+              <LoginFormContainer>
+                <Header> Välkommen tillbaka! </Header> 
+                <LoginForm/>
+              </LoginFormContainer>
+            </LoginWelcomeSection> 
+          </InnerMain>
+          <Footer/>
+        </Main>
+      }
+    </>
   )
 }

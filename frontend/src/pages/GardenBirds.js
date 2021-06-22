@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import Polaroid from "react-polaroid";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { API_URL } from '../urls/urls'
 import { StyledButton } from '../components/Button'
 import { NavBar } from '../components/NavBar.js'
-import { Main, InnerMainLoggedIn, OnClickDiv, ProfileInfoDiv } from '../components/MainContainers'
+import { Main, InnerMainLoggedIn, OnClickDiv, AboutSection } from '../components/MainContainers'
 import { UserSearchForm } from '../components/Form'
 import { Input } from '../components/Input'
 import { Header, HThree } from '../components/Text'
 import { Dialog } from '../components/Dialog'
 import { Footer } from '../components/Footer'
+import { Loader } from '../components/Loader'
 import user from 'reducers/user'
 
-const TopInfoDiv = styled(ProfileInfoDiv)`
-  height: 300px;
-  justify-content: space-evenly;
-  @media (min-width: 768px) {
-    height: 450px;
+const BirdLiberaryImage = styled.img`
+  width: 100%;
+  margin: 15px 0 15px 0;
+  @media(min-width: 768px){
+    width: 40%;
+    margin: 15px 20px;
+  }
+  @media(min-width: 1024px) {
+    width: 30%;
+    margin: 0;
   }
 `
 
@@ -65,6 +70,7 @@ const Wrapper = styled(OnClickDiv)`
 export const GardenBirds = () => {
   const [birdList, setBirdList] = useState([])
   const [birdSearch, setBirdSearch] = useState('')
+  const Loading = useSelector(store => store.user.loading)
   const dispatch = useDispatch()
   const history = useHistory()
   
@@ -92,50 +98,58 @@ export const GardenBirds = () => {
     .then(response => response.json())
     .then (data => setBirdList(data))
     .finally(() => dispatch(user.actions.setLoading(false)))
-
     setBirdSearch('')
   }
 
   return (
-  <>
-    <NavBar/>
-    <Main>
-      <InnerMainLoggedIn>
-        <TopInfoDiv>
-        <Header>Fågelbiblioteket</Header>
-        <HThree>Sök i biblioteket efter din fågelspaning, finns den med?
-          Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
-          <br></br><br></br>
-          Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!</HThree>
-        </TopInfoDiv>
-        <UserSearchForm onSubmit={onSearch}>
-            <Input 
-              type="text"
-              onChange={(event) => setBirdSearch(event.target.value)}
-              value={birdSearch}
-              placeholder="Sök" 
-            />
-          <StyledButton type="submit"><span aria-label="magnifying glass emoji" role="img">🔍</span></StyledButton>
-        </UserSearchForm>
-        {birdList.length === 0 ? <HThree>Hittade inga fåglar!</HThree> : '' }
-        <Container>
-        {birdList.map(bird => (
-          <Wrapper 
-            onClick={() => onGetBirdPage(bird)}             
-            value={bird._id}
-            key={bird._id}
-            >
-            <Dialog
-              title={bird.name}
-              image={bird.image}
-            />
-          </Wrapper>
-        ))}
-        </Container>
-        <Footer/>
-      </InnerMainLoggedIn>
-    </Main> 
-  </>     
+    <>
+      <NavBar/>
+      {Loading? 
+        <Loader/> 
+        : 
+        <Main>
+          <InnerMainLoggedIn>
+            <Header>Fågelbiblioteket</Header>
+            <AboutSection>
+            <BirdLiberaryImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624353003/Bokmes_j72rga.png" alt="Fågel som läser en bok"/>
+            <HThree>Sök i biblioteket efter din fågelspaning, finns den med?
+              Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
+              <br></br><br></br>
+              Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!</HThree>
+            </AboutSection>
+            <UserSearchForm onSubmit={onSearch}>
+                <Input 
+                  type="text"
+                  onChange={(event) => setBirdSearch(event.target.value)}
+                  value={birdSearch}
+                  placeholder="Fågelart" 
+                />
+              <StyledButton type="submit">Sök</StyledButton>
+            </UserSearchForm>
+            {birdList.length === 0 ? 
+              <HThree>Hittade inga fåglar!</HThree> 
+              : 
+              '' 
+            }
+            <Container>
+            {birdList.map(bird => (
+              <Wrapper 
+                onClick={() => onGetBirdPage(bird)}             
+                value={bird._id}
+                key={bird._id}
+                >
+                <Dialog
+                  title={bird.name}
+                  image={bird.image}
+                />
+              </Wrapper>
+            ))}
+            </Container>
+            <Footer/>
+          </InnerMainLoggedIn>
+        </Main>
+      } 
+    </>     
   )
 }
 

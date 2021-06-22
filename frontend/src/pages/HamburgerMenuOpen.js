@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 
 import user from '../reducers/user'
-import { Main } from '../components/MainContainer'
+import { Main } from '../components/MainContainers'
 import { Logotype } from '../components/Logotype'
-import { Nav, Logo, StyledNavLink } from '../components/NavBar'
+import { Nav, StyledNavLink } from '../components/NavBar'
 
 const HamburgerMenuMain = styled(Main)`
   display: flex;
@@ -59,17 +59,11 @@ export const HamburgerMenuOpen = () => {
         <CloseCross onClick={() => history.go(-1)} src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624115424/cross_msucvi.png"></CloseCross>
       </Nav>
       <LinkDiv>
-        <HamburgerNavLink to='/minsida'>
-            Min sida
-          </HamburgerNavLink>
-          <HamburgerNavLink to='/topplistan' >
-            Topplistan
-          </HamburgerNavLink>
-          <HamburgerNavLink to='/fagelbiblioteket'>
-            Fågelbiblioteket
-          </HamburgerNavLink>
-          <HamburgerNavLink onClick={onLogOut} to='/'>Logga ut</HamburgerNavLink>¨
-          </LinkDiv>
+        <HamburgerNavLink to='/minsida'> Min sida </HamburgerNavLink>
+        <HamburgerNavLink to='/topplistan'> Topplistan </HamburgerNavLink>
+        <HamburgerNavLink to='/fagelbiblioteket'> Fågelbiblioteket </HamburgerNavLink>
+        <HamburgerNavLink onClick={onLogOut} to='/'> Logga ut </HamburgerNavLink>¨
+      </LinkDiv>
     </HamburgerMenuMain>
   )
 }

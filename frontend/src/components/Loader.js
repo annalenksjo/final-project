@@ -1,13 +1,14 @@
 import React from 'react'
 import styled, { keyframes } from "styled-components/macro"
 
-import { Subtext } from './Subtext'
+import { HTwo } from './Text'
+import { LoaderMain } from './MainContainers'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 `
 
 const rotate360 = keyframes`
@@ -34,12 +35,14 @@ export const SpinnLoader = styled.div`
 
 export const Loader = () => {
   return (
-    <Container>
-      <Subtext>
-        Laddar..
-      </Subtext>    
-      <SpinnLoader>
-      </SpinnLoader>
-    </Container>
+    <LoaderMain>
+      <Container>
+        <HTwo>
+          Laddar..
+        </HTwo>    
+        <SpinnLoader>
+        </SpinnLoader>
+      </Container>
+    </LoaderMain>
   )
 }

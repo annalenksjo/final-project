@@ -1,10 +1,14 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 
 import { RegisterForm } from 'components/RegisterForm'
 import { Logotype } from 'components/Logotype'
 import { Header } from 'components/Text'
+import { Footer } from 'components/Footer'
+import { Loader } from 'components/Loader'
 import { InnerMain, Main } from 'components/MainContainers'
+import user from '../reducers/user'
 
 const SignUpWelcomeSection = styled.div`
   margin: 50px 0 0 0;
@@ -32,8 +36,6 @@ const SignUpFormContainer = styled.div`
   }
 `
 
-
-
 const StartImage = styled.img`
   display: none;
   @media (min-width: 768px) {
@@ -48,21 +50,29 @@ const StartImage = styled.img`
 `
 
 export const SignUp = () => {
+  const Loading = useSelector(store => store.user.loading)
+  const dispatch = useDispatch()
+  dispatch(user.actions.setErrors(null))
   
   return (
-    <Main>
-      <Logotype />
-      <InnerMain>
-        <SignUpWelcomeSection>
-          <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>
-        <SignUpFormContainer>
-          <Header>
-            Välkommen hit!
-          </Header>
-          <RegisterForm/>
-        </SignUpFormContainer>
-        </SignUpWelcomeSection>
-      </InnerMain>
-    </Main>    
+    <>
+      {Loading?
+        <Loader/>
+        :
+        <Main>
+          <Logotype />
+          <InnerMain>
+            <SignUpWelcomeSection>
+              <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624367181/kompisar_s3vtb1.png"></StartImage>
+            <SignUpFormContainer>
+              <Header> Välkommen hit! </Header>
+              <RegisterForm/>
+            </SignUpFormContainer>
+            </SignUpWelcomeSection>
+          </InnerMain>
+          <Footer/>
+        </Main>   
+      }
+    </>   
   )
 }

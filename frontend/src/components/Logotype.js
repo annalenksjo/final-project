@@ -10,9 +10,14 @@ const LogotypeImage = styled.img`
     margin: 25px 0 25px 25px;
   }
 
-  @media(min-width: 1440px) {
+  @media(min-width: 1024px) {
     width: 300px;
-    margin: 30px 0 30px 30px;
+    margin: 25px 0 25px 25px;
+  }
+
+  @media(min-width: 1440px) {
+    width: 350px;
+    margin: 25px 0 25px 25px;
   }
 `
 

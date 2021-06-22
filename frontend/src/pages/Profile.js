@@ -11,8 +11,7 @@ import { Loader } from 'components/Loader'
 import { Main, InnerMainLoggedIn, OnClickDiv, StyledDivRow, ProfileInfoDiv  } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 import { ProfileImage } from 'components/ProfileImage'
-import { Header, HTwo, HThree, P } from 'components/Text'
-import { Input } from 'components/Input'
+import { Header, HThree } from 'components/Text'
 import { Form } from 'components/Form'
 import { Footer } from 'components/Footer'
 
@@ -87,56 +86,57 @@ export const Profile = () => {
 
    return (
     <>
-    <NavBar />
-      <Main>
-        <InnerMainLoggedIn>
-          {Loading? <Loader/> :
-          <> 
-            <ProfileInfoDiv>    
-              <ProfileImage/>
-              <Header>{userData.username}</Header>                           
-            </ProfileInfoDiv>  
-            <StyledDivRow>
-            {showConfirmation? 
-              <div>
-                <HThree>Är du säker?</HThree>
-                <div>
-                  <Button onClick={() => onDeleteAccount()}>Ja, ta bort konto</Button>
-                  <Button onClick={() => setShowConfirmation(false)}>Avbryt</Button>
-                </div> 
-              </div>
-            : <Button onClick={() => setShowConfirmation(true)}>Ta bort konto</Button>}
-            </StyledDivRow>
-            <SearchBirdsForm>
-            <>
-              {!userData.birdsSeen? 
-              <HThree>Du har inga fågelspaningar ännu!</HThree>
-              : 
-              <HTwo>Mina fågelspaningar:<br></br> {userData.birdsSeen && userData.birdsSeen.length} av 40</HTwo>
-              }
-              </>
-            </SearchBirdsForm>
-            
-            <Container>                         
-              <ListContainer>
-                {userData.birdsSeen && userData.birdsSeen.map(bird =>
-                  <Wrapper
-                    key={bird._id}
-                    onClick={() => onGetBirdPage(bird)}
-                  >
-                    <Dialog
-                      title={bird.name}
-                      image={bird.image}
-                    />
-                  </Wrapper>          
-                )}  
-              </ListContainer>
-            </Container>
-          </>
-          }
-          <Footer/>
+      <NavBar />
+      {Loading? 
+        <Loader/> 
+        :
+        <Main>
+          <InnerMainLoggedIn>
+              <ProfileInfoDiv>    
+                <ProfileImage/>
+                <Header>{userData.username}</Header>                           
+              </ProfileInfoDiv>  
+              <StyledDivRow>
+                {showConfirmation? 
+                  <details>
+                    <HThree>Är du säker?</HThree>
+                    <details>
+                      <Button onClick={() => onDeleteAccount()}> Ja, ta bort konto </Button>
+                      <Button onClick={() => setShowConfirmation(false)}> Avbryt </Button>
+                    </details> 
+                  </details>
+                  : 
+                  <Button onClick={() => setShowConfirmation(true)}> Ta bort konto </Button>
+                }
+              </StyledDivRow>
+              <SearchBirdsForm>
+              <>
+                {!userData.birdsSeen? 
+                  <HThree>Du har inga fågelspaningar ännu!</HThree>
+                  : 
+                  <HThree>Mina fågelspaningar:<br></br> {userData.birdsSeen && userData.birdsSeen.length} av 40</HThree>
+                }
+                </>
+              </SearchBirdsForm>              
+              <Container>                         
+                <ListContainer>
+                  {userData.birdsSeen && userData.birdsSeen.map(bird =>
+                    <Wrapper
+                      key={bird._id}
+                      onClick={() => onGetBirdPage(bird)}
+                    >
+                      <Dialog
+                        title={bird.name}
+                        image={bird.image}
+                      />
+                    </Wrapper>          
+                  )}  
+                </ListContainer>
+              </Container>          
+            <Footer/>
           </InnerMainLoggedIn>
-      </Main>
+        </Main>
+      }
     </>
   )
 }

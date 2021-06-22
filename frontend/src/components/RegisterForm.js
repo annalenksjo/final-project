@@ -8,8 +8,7 @@ import user from '../reducers/user'
 import { StyledButton } from './Button'
 import { HeighForm } from './Form'
 import { Input } from './Input'
-import { Loader } from './Loader'
-import { P } from './Text'
+import { HThree } from './Text'
 
 
 export const RegisterForm = () => {
@@ -19,18 +18,17 @@ export const RegisterForm = () => {
   const [ registerError, setRegisterError ] = useState(null)
 
   const error = useSelector(store => store.user.errors)
-  const Loading = useSelector(store => store.user.loading)
 
   const history = useHistory()
   const dispatch = useDispatch()
 
   const onRegister = (event) => {
-    dispatch(user.actions.setLoading(true))
     event.preventDefault()
 
     if (registerPassword !== passwordMatch) {
       setRegisterError('Lösenorden måste vara samma')
     } else {
+      dispatch(user.actions.setLoading(true))
       setRegisterError(null)
 
       fetch(API_URL('register'), {
@@ -52,8 +50,6 @@ export const RegisterForm = () => {
               dispatch(user.actions.setloggedInUser(data))
               dispatch(user.actions.setErrors(null))
               dispatch(user.actions.setUserMessage('Register successful'))
-              console.log('register successful')
-              console.log(data)
               history.push('/minsida')            
             })
           } else {
@@ -66,21 +62,17 @@ export const RegisterForm = () => {
   }
   
   return (
-    <>
-      {Loading? <Loader/> : 
-        <HeighForm onSubmit={onRegister}>
-            <Input onChange={(event) => setRegisterUsername(event.target.value)}
-            value={registerUsername} type="text" placeholder="Användarnamn"/>
-            <Input onChange={(event) => setRegisterPassword(event.target.value)}
-            value={registerPassword} type="password" placeholder="Lösenord"/>
-            <Input onChange={(event) => setPasswordMatch(event.target.value)}
-            value={passwordMatch} type="password" placeholder="Upprepa lösenord"/>
-          {registerError ? <P>{registerError}</P> : '' }
-          {error ? <P>{error.message}</P> : ''}
-          <StyledButton type="submit"> Registrera!</StyledButton>
-          <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
-        </HeighForm>
-      }
-    </>
+    <HeighForm onSubmit={onRegister}>
+        <Input onChange={(event) => setRegisterUsername(event.target.value)}
+        value={registerUsername} type="text" required placeholder="Användarnamn"/>
+        <Input onChange={(event) => setRegisterPassword(event.target.value)}
+        value={registerPassword} type="password" required placeholder="Lösenord"/>
+        <Input onChange={(event) => setPasswordMatch(event.target.value)}
+        value={passwordMatch} type="password" required placeholder="Upprepa lösenord"/>
+      {registerError ? <HThree>{registerError}</HThree> : '' }
+      {error ? <HThree>{error.message}</HThree> : ''}
+      <StyledButton type="submit"> Registrera!</StyledButton>
+      <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
+    </HeighForm>
   )
 }

@@ -9,7 +9,7 @@ export const Header = styled.h1`
   @media (min-width: 768px) {
     font-size: 42px;
   }
-  @media (min-width: 1440px) {
+  @media (min-width: 1024px) {
     font-size: 50px;
   }
   @media (min-width: 1800px) {
@@ -20,7 +20,7 @@ export const Header = styled.h1`
 export const HTwo = styled.h2`
   color: #0C4458;
   font-family: 'Quicksand', sans-serif;
-  size: 26px;
+  font-size: 26px;
   text-align: center;
   @media (min-width: 768px) {
     font-size: 32px;
@@ -30,11 +30,22 @@ export const HTwo = styled.h2`
 export const HThree = styled.h3`
   color: #0C4458;
   font-family: 'Quicksand', sans-serif;
-  size: 24px;
+  font-size: 16px;
+  line-height: 1.4;
   text-align: center;
+
   @media (min-width: 768px) {
-    font-size: 32px;
+    font-size: 18px;
   }
+
+  @media (min-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 25px;
+  }
+
 `
 
 export const P = styled.p`

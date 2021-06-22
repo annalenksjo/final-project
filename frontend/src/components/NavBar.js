@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, activeStyle, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import user from '../reducers/user'
@@ -16,13 +16,21 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   padding: 0 20px 0 10px;
   background-color: #FAE5A2;
 
   @media (min-width: 768px) {
+    height: 100px;
+    padding: 0 60px 0 0px;
+  }
+  @media (min-width: 1024px) {
     height: 140px;
     padding: 0 60px 0 0px;
+  }
+  @media (min-width: 1440px) {
+    height: 160px;
+    padding: 0 80px 0 60px;
   }
 `
 
@@ -37,8 +45,11 @@ export const StyledNavLink = styled(NavLink)`
   height: 100%;
   cursor: pointer;
   &:hover {
-    color: #03045e;
-  } 
+    text-decoration: underline;
+  }
+  @media (min-width: 1440px) {
+    font-size: 28px;
+  }
 `
 
 export const NavMenu = styled.div`

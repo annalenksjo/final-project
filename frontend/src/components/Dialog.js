@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
 
 import { CardWrapperDiv } from '../components/MainContainers'
 
@@ -9,7 +8,7 @@ const TextContent = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 0 10px 0;
-
+  font-family: 'Quicksand', sans-serif;
 `
 
 const ButtonContainer = styled.div`
@@ -90,5 +89,5 @@ export const Dialog = ({ title, subheading, image, image2, button1, button2 }) =
         {button2 && <Button>{button2}</Button>}
       </ButtonContainer>
     </CardWrapperDiv>
-  );
-};
+  )
+}

@@ -7,23 +7,26 @@ const FooterDiv = styled.div`
   position: relative;
   bottom: 0;
   left: 0;
-  /* height: 80px; */
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
-  padding: 20px;
-  margin-top: 50px;
+  padding: 10px;
   background-color: #FAE5A2;
   @media (min-width: 768px) {
-  
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 18px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 20px;
   }
 ` 
 
 const Tag = styled.a`
   text-decoration: underline;
+  font-family: 'Quicksand', sans-serif;
   color: #0C4458;
 `
 

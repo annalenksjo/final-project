@@ -18,7 +18,7 @@ export const SearchForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 10px 0;
   @media(min-width: 768px) {
     flex-direction: row;
@@ -26,10 +26,10 @@ export const SearchForm = styled.form`
 `
 
 export const UserSearchForm = styled(SearchForm)`
-  height: 120px;
+  height: 110px;
   width: 100%;
   padding: 0 10px 0 10px;
-  justify-content: flex-start;
+  justify-content: space-between;
   @media(min-width: 768px){
     width: 80%;
     max-width: 800px;
