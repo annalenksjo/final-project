@@ -117,7 +117,7 @@ app.get('/birds', async (req, res) => {
   }   
 })
 
-//app.get('/users/:_id', authenticateUser)
+app.get('/users/:_id', authenticateUser)
 app.get('/birds/:_id', async (req, res) => {
   const { _id } = req.params
   try {    
@@ -132,7 +132,7 @@ app.get('/birds/:_id', async (req, res) => {
   }
 })
 
-//app.get('/users', authenticateUser)
+app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
   const { useraccount } = req.query
   try {
@@ -151,7 +151,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
-//app.get('/users/:_id', authenticateUser)
+app.get('/users/:_id', authenticateUser)
 app.get('/users/:_id', async (req, res) => {
   const { _id } = req.params
   try {    
@@ -179,7 +179,7 @@ app.get('/users/:_id', async (req, res) => {
 
 // DELETE REQUESTS
 
-//app.delete('/users/:_id', authenticateUser)
+app.delete('/users/:_id', authenticateUser)
 app.delete('/users/:_id', async (req, res) => {
   const { _id } = req.params
   try {

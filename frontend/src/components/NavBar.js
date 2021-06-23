@@ -22,11 +22,11 @@ export const Nav = styled.nav`
 
   @media (min-width: 768px) {
     height: 100px;
-    padding: 0 60px 0 0px;
+    padding: 0 40px 0 0px;
   }
   @media (min-width: 1024px) {
     height: 140px;
-    padding: 0 60px 0 0px;
+    padding: 0 20px 0 0px;
   }
   @media (min-width: 1440px) {
     height: 160px;

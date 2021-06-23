@@ -28,8 +28,15 @@ const NavContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   @media (min-width: 768px) {
    padding: 0 10px 0 0;
+  }
+  @media (min-width: 1024px) {
+   padding: 0 15px 0 0;
+  }
+  @media (min-width: 1440px) {
+   padding: 0 20px 0 0;
   }
 `
 
