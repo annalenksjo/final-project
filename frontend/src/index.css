@@ -17,6 +17,7 @@ body {
   background: linear-gradient(179.96deg, #CBECFE 0.04%, rgba(243, 249, 252, 0) 194.85%);
   background-repeat: no-repeat;
   /* height: 100vh; */
+  min-height: 100vh;
 }
 
 code {

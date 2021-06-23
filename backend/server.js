@@ -63,8 +63,7 @@ const User = mongoose.model('User', {
     default: Date.now
   },
   birdsSeen: [{
-    type: mongoose.Schema.Types.ObjectId,
-    unique: true, 
+    type: mongoose.Schema.Types.ObjectId, 
     default: [],
     ref: 'Birds'
   }]
@@ -245,29 +244,27 @@ app.post('/login', async (req, res) => {
   }
 })
 
-//app.post('/users/:_id/addbird', authenticateUser)
-app.post('/users/:_id/addbird/', async (req, res) => {
+app.post('/users/:_id/addbird', authenticateUser)
+app.post('/users/:_id/addbird', async (req, res) => {
   const { _id } = req.params
   const { birdId } = req.body  
+
   try {
     const birdToAdd = await Birds.findById(birdId)
-    // const User = await User.findById(_id)
-    // const userBirdArray = User.birdsSeen
 
-    // userBirdArray.includes(birdId) {
-    //   //do this
-    // } else {
-    //   // do not execute, send error code. duplicates not allowed
-    // }
+    if (req.user.birdsSeen.includes(birdId) && !birdToAdd) {
+      res.status(404).json({ success: false, message: 'Du har redan denna fågeln i din samling!' })
+    } else {
+      await User.findByIdAndUpdate(_id, {
+        $push: {
+          birdsSeen: birdToAdd
+        }
+      })
+      res.status(200).json({ success: true, message: 'Tillagd', User})
+    }
     
-    await User.findByIdAndUpdate(_id, {
-      $push: {
-        birdsSeen: birdToAdd
-      }
-    })
-    res.status(200).json({ success: true, message: 'Tillagd', User})
   } catch (error) {
-    res.status(400).json({ success: false, message: 'invalid request', error })
+    res.status(400).json({ success: false, message: 'Du har redan denna fågeln i din samling!', error })
   }
 })
 

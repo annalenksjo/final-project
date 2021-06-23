@@ -7,6 +7,17 @@ import { StyledNavLink, LinkContainer } from '../components/NavBar'
 import { Header, HThree } from '../components/Text'
 import { Main, InnerMain, AboutSection } from '../components/MainContainers'
 
+const FirstPageInnerMain = styled(InnerMain)`
+@media (min-width: 768px) {
+  justify-content: center; 
+  align-items: center;
+  height: 60vh;
+}
+@media (min-width: 1024px) {
+  height: 70vh;
+}
+`
+
 const LinksContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,6 +28,9 @@ const NavContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media (min-width: 768px) {
+   padding: 0 10px 0 0;
+  }
 `
 
 const LinkContainerStart = styled(LinkContainer)`
@@ -97,7 +111,7 @@ export const StartPage = () => {
           <HeaderLink onClick={() => history.push('skapakonto')} to='/skapakonto'> Bli en fågelspanare! </HeaderLink>
        </LinkContainerStart>
       </NavContainer>
-      <InnerMain>  
+      <FirstPageInnerMain>  
         <AboutSection>        
           <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>
           <TextContainer> 
@@ -109,7 +123,7 @@ export const StartPage = () => {
             <FirstpageNavlink onClick={() => history.push('/loggain')} to='/loggain'>Redan fågelspanare?</FirstpageNavlink>
             <FirstpageNavlink onClick={() => history.push('skapakonto')} to='/skapakonto'>Bli en fågelspanare!</FirstpageNavlink>
         </LinksContainer>
-      </InnerMain>
+      </FirstPageInnerMain>
     </Main>  
   )
 }

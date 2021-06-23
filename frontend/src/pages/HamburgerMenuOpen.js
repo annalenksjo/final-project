@@ -62,7 +62,7 @@ export const HamburgerMenuOpen = () => {
         <HamburgerNavLink to='/minsida'> Min sida </HamburgerNavLink>
         <HamburgerNavLink to='/topplistan'> Topplistan </HamburgerNavLink>
         <HamburgerNavLink to='/fagelbiblioteket'> Fågelbiblioteket </HamburgerNavLink>
-        <HamburgerNavLink onClick={onLogOut} to='/'> Logga ut </HamburgerNavLink>¨
+        <HamburgerNavLink onClick={onLogOut} to='/'> Logga ut </HamburgerNavLink>
       </LinkDiv>
     </HamburgerMenuMain>
   )

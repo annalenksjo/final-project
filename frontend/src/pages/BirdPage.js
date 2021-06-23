@@ -15,6 +15,7 @@ import { Main, InnerMainLoggedIn, AboutSection } from '../components/MainContain
 const BirdPageInnerMain = styled(InnerMainLoggedIn)`
   @media(min-width: 768px) {
       flex-direction: column;
+      align-items: center;
   }
 `
 
@@ -75,6 +76,7 @@ export const BirdPage = () => {
   const loggedInUserBirdsArray = useSelector(store => store.user.loggedInUser.birdsSeen)
   const Loading = useSelector(store => store.user.loading)
   const browsedBird = useSelector(store => store.user.browsedBird)
+  const error = useSelector(store => store.user.errors)
   
   useEffect(() => {
     dispatch(user.actions.setLoading(true))
@@ -88,6 +90,8 @@ export const BirdPage = () => {
   },[browsedBird._id, dispatch])
 
   const onAddBird = () => {
+    dispatch(user.actions.setLoading(true))
+
     fetch(API_URL(`users/${loggedInUserID}/addbird/`), {
       method: 'POST',
       headers: {
@@ -98,7 +102,17 @@ export const BirdPage = () => {
       })
     })
     .then (response => response.json())
-    .then (data => data.success? setAdded(true) : setAdded(false) )
+    .then (data => {
+    if (data.success) {
+        setAdded (true) 
+        dispatch(user.actions.setErrors(null))        
+    } else {
+      setAdded (false)
+      dispatch(user.actions.setErrors(data))
+    }
+  })
+  .catch()
+  .finally(() => dispatch(user.actions.setLoading(false)))
   }
 
   const alreadyAdded = loggedInUserBirdsArray && loggedInUserBirdsArray.includes(browsedBird._id)
@@ -117,8 +131,9 @@ export const BirdPage = () => {
                 </AdjustedHThree>
               </Content>
               <AddBirdDiv>
-              {alreadyAdded
-                ? <AdjustedHThree>
+              {error ? <HThree>{error.message}</HThree> : ''}
+              {alreadyAdded? 
+                  <AdjustedHThree>
                     Du har redan denna fågel i din samling.
                   </AdjustedHThree>
                 : 

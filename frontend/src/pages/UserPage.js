@@ -75,6 +75,7 @@ export const UserPage = () => {
               <Container>                           
                 <ListContainer>
                   {browsedUser.birdsSeen && browsedUser.birdsSeen.map(bird =>
+                  (
                     <Wrapper 
                       key={bird._id} 
                       onClick={() => onGetBirdPage(bird)}
@@ -84,7 +85,8 @@ export const UserPage = () => {
                           image={bird.image}
                         />   
                     </Wrapper>       
-                  )}  
+                  ))}
+                  
                 </ListContainer>
               </Container>
             </>

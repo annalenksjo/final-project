@@ -33,8 +33,7 @@ const Tag = styled.a`
 export const Footer = () => {
   return (
     <FooterDiv>
-      <P>Ett projekt av <br></br> Anna Lenksjö, Elle Frankenberg och Tobias Hagberg.</P>
-      <P>Illustrationer av August Florén.</P>
+      <P>Ett projekt av Anna Lenksjö, Elle Frankenberg och Tobias Hagberg. Illustrationer av August Florén.</P>
       <br></br>
       <Tag href="https://github.com/annalenksjo/final-project">GitHub</Tag>        
     </FooterDiv>
