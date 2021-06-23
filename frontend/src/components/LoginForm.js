@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
+import styled from "styled-components/macro"
 import { useHistory } from 'react-router-dom'
 
 import { API_URL } from '../urls/urls'
@@ -8,6 +9,17 @@ import { Form } from './Form'
 import { Input } from './Input'
 import { StyledButton } from './Button'
 import { HThree } from './Text'
+
+const Button = styled(StyledButton)`
+  @media (min-width: 1024px) {
+    margin: 8px 0;
+  }
+`
+const InputMargin = styled(Input)`
+  @media (min-width: 1024px) {
+    margin: 8px 0;
+  }
+`
 
 export const LoginForm = () => {
   const [ username, setUsername ] = useState('')
@@ -59,13 +71,13 @@ export const LoginForm = () => {
 
   return(
     <Form onSubmit={onLogin}> 
-        <Input onChange={(event) => setUsername(event.target.value)}
+        <InputMargin onChange={(event) => setUsername(event.target.value)}
         value={username} type="text" required placeholder="Användarnamn"/>
-        <Input onChange={(event) => setPassword(event.target.value)}
+        <InputMargin onChange={(event) => setPassword(event.target.value)}
         value={password} type="password" required placeholder="Lösenord"/>
       {error ? <HThree>{error.message}</HThree> : ''}
-        <StyledButton type='submit'>Logga in</StyledButton>
-        <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
+        <Button type='submit'>Logga in</Button>
+        <Button onClick={() => history.push('/')}>Tillbaka</Button>
     </Form>
   )
 }
