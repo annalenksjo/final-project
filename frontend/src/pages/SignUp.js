@@ -9,6 +9,17 @@ import { Loader } from 'components/Loader'
 import { InnerMain, Main } from 'components/MainContainers'
 import user from '../reducers/user'
 
+const SignUpInnerMain = styled(InnerMain)`
+@media (min-width: 768px) {
+  justify-content: center; 
+  align-items: center;
+  height: 60vh;
+}
+@media (min-width: 1024px) {
+  height: 70vh;
+}
+`
+
 const SignUpWelcomeSection = styled.div`
   margin: 50px 0 0 0;
   display: flex;
@@ -67,7 +78,7 @@ export const SignUp = () => {
         :
         <Main>
           <Logotype />
-          <InnerMain>
+          <SignUpInnerMain>
             <SignUpWelcomeSection>
               <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624367181/kompisar_s3vtb1.png"></StartImage>
             <SignUpFormContainer>
@@ -75,7 +86,7 @@ export const SignUp = () => {
               <RegisterForm/>
             </SignUpFormContainer>
             </SignUpWelcomeSection>
-          </InnerMain>
+          </SignUpInnerMain>
         </Main>   
       }
     </>   

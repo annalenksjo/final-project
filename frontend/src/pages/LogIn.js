@@ -8,6 +8,17 @@ import { LoginForm } from 'components/LoginForm'
 import { Header } from 'components/Text'
 import { Loader } from 'components/Loader'
 
+const LogInInnerMain = styled(InnerMain)`
+@media (min-width: 768px) {
+  justify-content: center; 
+  align-items: center;
+  height: 60vh;
+}
+@media (min-width: 1024px) {
+  height: 70vh;
+}
+`
+
 const LoginWelcomeSection = styled.div`
   margin: 50px 0 0 0;
   display: flex;
@@ -36,7 +47,11 @@ const LoginFormContainer = styled.div`
   @media (min-width: 1024px) {
     padding-top: 20px;
   }
-`
+  @media (min-width: 2560px) {
+    height: 450px;
+  }
+  
+  `
 
 const StartImage = styled.img`
   max-width: 50%;
@@ -65,7 +80,7 @@ export const LogIn = () => {
         :
         <Main>
           <Logotype />
-          <InnerMain>      
+          <LogInInnerMain>      
             <LoginWelcomeSection>        
                 <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624367181/kompisar_s3vtb1.png"></StartImage>
               <LoginFormContainer>
@@ -73,7 +88,7 @@ export const LogIn = () => {
                 <LoginForm/>
               </LoginFormContainer>
             </LoginWelcomeSection> 
-          </InnerMain>
+          </LogInInnerMain>
         </Main>
       }
     </>

@@ -34,6 +34,9 @@ const AddBirdDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 0 20px 0;
+  @media (min-width: 1024px) {
+    height: 110px;
+  }
 `
 
 const BirdImg = styled.img`
