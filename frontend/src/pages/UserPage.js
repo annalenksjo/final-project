@@ -21,7 +21,7 @@ const Wrapper = styled(OnClickDiv)`
     min-width: min-content;
   }
   @media(min-width: 1024px) {
-    min-width: 25%;
+    min-width: min-content;
     max-width: 25%;
   }
 `

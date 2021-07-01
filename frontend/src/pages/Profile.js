@@ -35,7 +35,7 @@ const Wrapper = styled(OnClickDiv)`
     min-width: min-content;
   }
   @media(min-width: 1024px) {
-    min-width: 25%;
+    min-width: min-content;
     max-width: 25%;
   }
 `
@@ -83,7 +83,7 @@ export const Profile = () => {
     }
     fetch(API_URL(`users/${LoggedInUserID}`), options)
       .then (response => response.json())
-      .then (data => console.log(data))
+      .then (data => console.log(data.success))
       .finally(() => dispatch(user.actions.setLoading(false)))
     localStorage.clear()
     history.push('/')
@@ -110,13 +110,13 @@ export const Profile = () => {
               </ProfileInfoDiv>  
               <StyledDivRow>
                 {showConfirmation? 
-                  <details>
+                  <div>
                     <HThree>Är du säker?</HThree>
-                    <details>
+                    <div>
                       <Button onClick={() => onDeleteAccount()}> Ja, ta bort konto </Button>
                       <Button onClick={() => setShowConfirmation(false)}> Avbryt </Button>
-                    </details> 
-                  </details>
+                    </div> 
+                  </div>
                   : 
                   <Button onClick={() => setShowConfirmation(true)}> Ta bort konto </Button>
                 }

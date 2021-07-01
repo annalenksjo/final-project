@@ -105,13 +105,14 @@ export const GardenBirds = () => {
     dispatch(user.actions.setLoading(true))
     event.preventDefault()
 
-    // const options = {
-    //   method: 'GET',
-    //   headers: {
-    //     Authorization: accessToken
-    //   }
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: accessToken
+      }
+    }
 
-    fetch(API_URL(`birds?birdsearch=${birdSearch}`))
+    fetch(API_URL(`birds?birdsearch=${birdSearch}`), options)
     .then(response => response.json())
     .then (data => setBirdList(data))
     .finally(() => dispatch(user.actions.setLoading(false)))

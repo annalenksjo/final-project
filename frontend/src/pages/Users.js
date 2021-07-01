@@ -98,7 +98,14 @@ export const Users = () => {
     dispatch(user.actions.setLoading(true))
     event.preventDefault()
 
-    fetch(API_URL(`users?useraccount=${userSearch}`))
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: accessToken
+      }
+    }
+
+    fetch(API_URL(`users?useraccount=${userSearch}`), options)
     .then(response => response.json())
     .then (data => setUserList(data))
     .finally(() => dispatch(user.actions.setLoading(false)))
