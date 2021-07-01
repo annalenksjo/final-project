@@ -79,6 +79,8 @@ export const NavBar = () => {
 
   const onLogOut = () => {
     dispatch(user.actions.setloggedInUser(null))
+    dispatch(user.actions.setAccessToken(null))
+    dispatch(user.actions.setUserMessage(null))
     localStorage.clear()
   }
 
