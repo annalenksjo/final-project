@@ -70,18 +70,29 @@ export const Users = () => {
   const [userList, setUserList] = useState([])
   const [userSearch, setUserSearch] = useState('')
 
+  const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
   const Loading = useSelector(store => store.user.loading)
   const dispatch = useDispatch()
   const history = useHistory()
 
   useEffect(() => {
     const fetchUserList = () => {
-        fetch(API_URL('users'))
+      if (!accessToken) {
+        history.push('/')
+      } else {
+        const options = {
+          method: 'GET',
+          headers: {
+            Authorization: accessToken
+          }
+        }
+        fetch(API_URL('users'), options)
         .then(response => response.json())
-        .then (data => setUserList(data)) 
+        .then (data => setUserList(data))
+      }
     }
     fetchUserList()
-  },[])
+  },[history, accessToken])
 
   const onSearch = (event) => {
     dispatch(user.actions.setLoading(true))

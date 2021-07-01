@@ -45,6 +45,7 @@ const Button = styled(StyledButton)`
 
 export const Profile = () => {
   const LoggedInUserID = useSelector(store => store.user.loggedInUser.userID)
+  const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
   const Loading = useSelector(store => store.user.loading)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [userData, setUserData] = useState({})
@@ -54,19 +55,30 @@ export const Profile = () => {
 
   useEffect(() => {
     const fetchUserProfile = () => {
-        fetch(API_URL(`users/${LoggedInUserID}`))
+      if (!accessToken) {
+        history.push('/')
+      } else {
+        const options = {
+          method: 'GET',
+          headers: {
+            Authorization: accessToken
+          }
+        }
+        fetch(API_URL(`users/${LoggedInUserID}`), options)
         .then(response => response.json())
         .then (data => setUserData(data)) 
+      }
     }
     fetchUserProfile()
-  },[LoggedInUserID])
+  }, [LoggedInUserID, accessToken, history])
 
   const onDeleteAccount = () => {
     dispatch(user.actions.setLoading(true))  
     const options = {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: accessToken
       }
     }
     fetch(API_URL(`users/${LoggedInUserID}`), options)

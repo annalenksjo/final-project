@@ -77,6 +77,7 @@ export const BirdPage = () => {
 
   const loggedInUserID = useSelector(store => store.user.loggedInUser.userID)
   const loggedInUserBirdsArray = useSelector(store => store.user.loggedInUser.birdsSeen)
+  const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
   const Loading = useSelector(store => store.user.loading)
   const browsedBird = useSelector(store => store.user.browsedBird)
   const error = useSelector(store => store.user.errors)
@@ -84,13 +85,23 @@ export const BirdPage = () => {
   useEffect(() => {
     dispatch(user.actions.setLoading(true))
     const fetchBirdPage = () => {
-        fetch(API_URL(`birds/${browsedBird._id}`))
+      if (!accessToken) {
+        history.push('/')
+      } else {
+        const options = {
+          method: 'GET',
+          headers: {
+            Authorization: accessToken
+          }
+        }
+        fetch(API_URL(`birds/${browsedBird._id}`), options)
         .then(response => response.json())
         .then (data => setBirdData(data))
         .finally(() => dispatch(user.actions.setLoading(false)))
+      }
     }
     fetchBirdPage()
-  },[browsedBird._id, dispatch])
+  },[browsedBird._id, dispatch, history, accessToken])
 
   const onAddBird = () => {
     dispatch(user.actions.setLoading(true))
@@ -98,7 +109,8 @@ export const BirdPage = () => {
     fetch(API_URL(`users/${loggedInUserID}/addbird`), {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: accessToken
       },
       body: JSON.stringify({
         birdId : browsedBird._id

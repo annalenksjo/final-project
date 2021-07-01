@@ -31,6 +31,7 @@ export const UserPage = () => {
   const dispatch = useDispatch()
 
   const browsedUser = useSelector(store => store.user.browsedUser)
+  const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
   const Loading = useSelector(store => store.user.loading)
 
   const BirdArray = browsedUser.birdsSeen
@@ -38,13 +39,23 @@ export const UserPage = () => {
   useEffect(() => {
     dispatch(user.actions.setLoading(true))
     const fetchUserProfile = () => {
-        fetch(API_URL(`users/${browsedUser._id}`))
+      if (!accessToken) {
+        history.push('/')
+      } else {
+        const options = {
+          method: 'GET',
+          headers: {
+            Authorization: accessToken
+          }
+        }
+        fetch(API_URL(`users/${browsedUser._id}`), options)
         .then(response => response.json())
         .then (data => dispatch(user.actions.setBrowsedUser(data)))
         .finally(() => dispatch(user.actions.setLoading(false)))
+      }
     }
     fetchUserProfile()
-  },[browsedUser._id, dispatch])
+  }, [browsedUser._id, dispatch, accessToken, history])
 
   const onGetBirdPage = (action) => {
     dispatch(user.actions.setLoading(true))

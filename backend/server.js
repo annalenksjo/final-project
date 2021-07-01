@@ -101,6 +101,7 @@ app.get('/', (req, res) => {
   res.send(listEndpoints(app))
 })
 
+app.get('/birds', authenticateUser)
 app.get('/birds', async (req, res) => {
   const { birdsearch } = req.query
   try {
@@ -117,7 +118,7 @@ app.get('/birds', async (req, res) => {
   }   
 })
 
-app.get('/users/:_id', authenticateUser)
+app.get('/birds/:_id', authenticateUser)
 app.get('/birds/:_id', async (req, res) => {
   const { _id } = req.params
   try {    

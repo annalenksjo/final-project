@@ -70,18 +70,29 @@ const Wrapper = styled(OnClickDiv)`
 export const GardenBirds = () => {
   const [birdList, setBirdList] = useState([])
   const [birdSearch, setBirdSearch] = useState('')
+  const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
   const Loading = useSelector(store => store.user.loading)
   const dispatch = useDispatch()
   const history = useHistory()
   
   useEffect(() => {
     const fetchGardenBirds = () => {
-      fetch (API_URL('birds'))
+      if (!accessToken) {
+        history.push('/')
+      } else {
+        const options = {
+          method: 'GET',
+          headers: {
+            Authorization: accessToken
+          }
+        }
+      fetch (API_URL('birds'), options)
       .then(response => response.json())
       .then(data => setBirdList(data))
+      }
     }
     fetchGardenBirds()
-  },[])
+  },[accessToken, history])
 
   const onGetBirdPage = (action) => {
     dispatch(user.actions.setLoading(true))
@@ -93,6 +104,12 @@ export const GardenBirds = () => {
   const onSearch = (event) => {
     dispatch(user.actions.setLoading(true))
     event.preventDefault()
+
+    // const options = {
+    //   method: 'GET',
+    //   headers: {
+    //     Authorization: accessToken
+    //   }
 
     fetch(API_URL(`birds?birdsearch=${birdSearch}`))
     .then(response => response.json())
