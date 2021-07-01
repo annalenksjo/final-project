@@ -95,7 +95,7 @@ export const BirdPage = () => {
   const onAddBird = () => {
     dispatch(user.actions.setLoading(true))
 
-    fetch(API_URL(`users/${loggedInUserID}/addbird/`), {
+    fetch(API_URL(`users/${loggedInUserID}/addbird`), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -152,9 +152,7 @@ export const BirdPage = () => {
                      }
                   </>
                 } 
-                
-                
-               
+                              
                 <StyledButton onClick={() => history.go(-1)}>
                   Tillbaka
                 </StyledButton>

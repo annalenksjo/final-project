@@ -117,7 +117,7 @@ app.get('/birds', async (req, res) => {
   }   
 })
 
-//app.get('/users/:_id', authenticateUser)
+app.get('/users/:_id', authenticateUser)
 app.get('/birds/:_id', async (req, res) => {
   const { _id } = req.params
   try {    
@@ -132,7 +132,7 @@ app.get('/birds/:_id', async (req, res) => {
   }
 })
 
-//app.get('/users', authenticateUser)
+app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
   const { useraccount } = req.query
   try {
@@ -151,7 +151,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
-//app.get('/users/:_id', authenticateUser)
+app.get('/users/:_id', authenticateUser)
 app.get('/users/:_id', async (req, res) => {
   const { _id } = req.params
   try {    
@@ -179,7 +179,7 @@ app.get('/users/:_id', async (req, res) => {
 
 // DELETE REQUESTS
 
-//app.delete('/users/:_id', authenticateUser)
+app.delete('/users/:_id', authenticateUser)
 app.delete('/users/:_id', async (req, res) => {
   const { _id } = req.params
   try {
@@ -244,7 +244,7 @@ app.post('/login', async (req, res) => {
   }
 })
 
-//app.post('/users/:_id/addbird', authenticateUser)
+app.post('/users/:_id/addbird', authenticateUser)
 app.post('/users/:_id/addbird', async (req, res) => {
   const { _id } = req.params
   const { birdId } = req.body  
@@ -253,18 +253,18 @@ app.post('/users/:_id/addbird', async (req, res) => {
     const birdToAdd = await Birds.findById(birdId)
 
     if (req.user.birdsSeen.includes(birdId) && !birdToAdd) {
-      res.status(404).json({ success: false, message: 'Du har redan denna fågeln i din samling!' })
+      res.status(404).json({ success: false, message: 'Någonting gick fel, kanske har du redan denna fågeln i din samling?' })
     } else {
       await User.findByIdAndUpdate(_id, {
         $push: {
           birdsSeen: birdToAdd
         }
       })
-      res.status(200).json({ success: true, message: 'Tillagd', User})
+      res.status(200).json({ success: true, message: 'Tillagd!', User})
     }
     
   } catch (error) {
-    res.status(400).json({ success: false, message: 'Du har redan denna fågeln i din samling!', error })
+    res.status(400).json({ success: false, message: 'Någonting gick fel, kanske har du redan denna fågeln i din samling?', error })
   }
 })
 
