@@ -131,18 +131,18 @@ export const Users = () => {
           <>
           <Header>Topplistan</Header>
           <AboutSection>
-            <HighScoreImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623940639/topplista_pldnzu.png" alt="Fågelspaning prispall"/>
+            <HighScoreImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1623940639/topplista_pldnzu.png' alt='Fågelspaning prispall'/>
             <SubTitle>
             <br></br> Här kan du se vem som leder fågelspaningsligan! <br></br> Ju fler fågelarter du sett desto högre upp hamnar du på topplistan. 
             </SubTitle>
           </AboutSection>
             <UserSearchForm onSubmit={onSearch}>
               <Input 
-                type="text"
+                type='text'
                 onChange={(event) => setUserSearch(event.target.value)}
-                value={userSearch} placeholder="Användare"
+                value={userSearch} placeholder='Användare'
               />
-              <StyledButton type="submit">Sök</StyledButton>
+              <StyledButton type='submit'>Sök</StyledButton>
             </UserSearchForm>
             {userList.length === 0 ? <HThree>Hittade inga användare!</HThree> : '' }
           </>
@@ -155,7 +155,7 @@ export const Users = () => {
               <Dialog
                 title={`${user.username}`}
                 subheading={`Spaningar: ${user.birdsSeen.length}/40`}
-                image2={"https://res.cloudinary.com/mittbildmoln/image/upload/v1623940616/fagelholk_xtv0tw.png"}
+                image2={'https://res.cloudinary.com/mittbildmoln/image/upload/v1623940616/fagelholk_xtv0tw.png'}
               />
               </Wrapper> 
           ))}

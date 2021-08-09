@@ -56,7 +56,7 @@ export const HamburgerMenuOpen = () => {
     <HamburgerMenuMain>
       <Nav>
         <Logotype />
-        <CloseCross onClick={() => history.go(-1)} src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624115424/cross_msucvi.png"></CloseCross>
+        <CloseCross onClick={() => history.go(-1)} src='https://res.cloudinary.com/mittbildmoln/image/upload/v1624115424/cross_msucvi.png'></CloseCross>
       </Nav>
       <LinkDiv>
         <HamburgerNavLink to='/minsida'> Min sida </HamburgerNavLink>

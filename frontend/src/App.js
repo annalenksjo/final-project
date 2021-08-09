@@ -1,19 +1,19 @@
-import React from "react"
+import React from 'react'
 import { Provider } from 'react-redux'
 import {configureStore, combineReducers } from '@reduxjs/toolkit'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { StartPage } from "pages/Main"
-import { LogIn } from "pages/LogIn"
-import { Profile } from "pages/Profile"
-import { SignUp } from "pages/SignUp"
-import { Users } from "pages/Users"
-import { GardenBirds } from "pages/GardenBirds"
-import { BirdPage } from "pages/BirdPage"
-import { HamburgerMenuOpen } from "pages/HamburgerMenuOpen"
+import { StartPage } from 'pages/Main'
+import { LogIn } from 'pages/LogIn'
+import { Profile } from 'pages/Profile'
+import { SignUp } from 'pages/SignUp'
+import { Users } from 'pages/Users'
+import { GardenBirds } from 'pages/GardenBirds'
+import { BirdPage } from 'pages/BirdPage'
+import { HamburgerMenuOpen } from 'pages/HamburgerMenuOpen'
 
 import user from './reducers/user'
-import { UserPage } from "pages/UserPage"
+import { UserPage } from 'pages/UserPage'
 
 const reducer = combineReducers({
   user: user.reducer

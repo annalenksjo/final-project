@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
-import styled from "styled-components/macro"
+import styled from 'styled-components/macro'
 import { useHistory } from 'react-router-dom'
 
 import { API_URL } from '../urls/urls'
@@ -72,9 +72,9 @@ export const LoginForm = () => {
   return(
     <Form onSubmit={onLogin}> 
         <InputMargin onChange={(event) => setUsername(event.target.value)}
-        value={username} type="text" required placeholder="Användarnamn"/>
+        value={username} type='text' required placeholder='Användarnamn'/>
         <InputMargin onChange={(event) => setPassword(event.target.value)}
-        value={password} type="password" required placeholder="Lösenord"/>
+        value={password} type='password' required placeholder='Lösenord'/>
       {error ? <HThree>{error.message}</HThree> : ''}
         <Button type='submit'>Logga in</Button>
         <Button onClick={() => history.push('/')}>Tillbaka</Button>

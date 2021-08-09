@@ -23,6 +23,6 @@ const LogotypeImage = styled.img`
 
 export const Logotype = () => {
   return (
-    <LogotypeImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png"></LogotypeImage>
+    <LogotypeImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1623943290/Blames_med_titel_adxxiz.png'></LogotypeImage>
   )
 } 

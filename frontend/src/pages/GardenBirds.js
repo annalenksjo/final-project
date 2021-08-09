@@ -129,7 +129,7 @@ export const GardenBirds = () => {
           <InnerMainLoggedIn>
             <Header>Fågelbiblioteket</Header>
             <AboutSection>
-            <BirdLibraryImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624353003/Bokmes_j72rga.png" alt="Fågel som läser en bok"/>
+            <BirdLibraryImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1624353003/Bokmes_j72rga.png' alt='Fågel som läser en bok'/>
               <HThree>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
                 Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
                 <br></br><br></br>
@@ -138,12 +138,12 @@ export const GardenBirds = () => {
             </AboutSection>
             <UserSearchForm onSubmit={onSearch}>
                 <Input 
-                  type="text"
+                  type='text'
                   onChange={(event) => setBirdSearch(event.target.value)}
                   value={birdSearch}
-                  placeholder="Fågelart" 
+                  placeholder='Fågelart'
                 />
-              <StyledButton type="submit">Sök</StyledButton>
+              <StyledButton type='submit'>Sök</StyledButton>
             </UserSearchForm>
             {birdList.length === 0 ? 
               <HThree>Hittade inga fåglar!</HThree> 

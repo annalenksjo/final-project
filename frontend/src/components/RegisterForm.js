@@ -64,14 +64,14 @@ export const RegisterForm = () => {
   return (
     <HeighForm onSubmit={onRegister}>
         <Input onChange={(event) => setRegisterUsername(event.target.value)}
-        value={registerUsername} type="text" required placeholder="Användarnamn"/>
+        value={registerUsername} type='text' required placeholder='Användarnamn'/>
         <Input onChange={(event) => setRegisterPassword(event.target.value)}
-        value={registerPassword} type="password" required placeholder="Lösenord"/>
+        value={registerPassword} type='password' required placeholder='Lösenord'/>
         <Input onChange={(event) => setPasswordMatch(event.target.value)}
-        value={passwordMatch} type="password" required placeholder="Upprepa lösenord"/>
+        value={passwordMatch} type='password' required placeholder='Upprepa lösenord'/>
       {registerError ? <HThree>{registerError}</HThree> : '' }
       {error ? <HThree>{error.message}</HThree> : ''}
-      <StyledButton type="submit"> Registrera!</StyledButton>
+      <StyledButton type='submit'> Registrera!</StyledButton>
       <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
     </HeighForm>
   )

@@ -80,7 +80,7 @@ export const SignUp = () => {
           <Logotype />
           <SignUpInnerMain>
             <SignUpWelcomeSection>
-              <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624367181/kompisar_s3vtb1.png"></StartImage>
+              <StartImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1624367181/kompisar_s3vtb1.png'></StartImage>
             <SignUpFormContainer>
               <Header> Välkommen hit! </Header>
               <RegisterForm/>

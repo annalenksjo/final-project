@@ -20,6 +20,6 @@ export const HamburgerMenu = () => {
   const history = useHistory()
 
   return (
-    <Hamburger onClick={() => history.push('/meny')} src="https://res.cloudinary.com/mittbildmoln/image/upload/v1624115425/hamburgermenu_c9pfxi.png"></Hamburger>
+    <Hamburger onClick={() => history.push('/meny')} src='https://res.cloudinary.com/mittbildmoln/image/upload/v1624115425/hamburgermenu_c9pfxi.png'></Hamburger>
   )
 }

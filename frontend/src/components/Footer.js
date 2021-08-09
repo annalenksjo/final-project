@@ -35,7 +35,7 @@ export const Footer = () => {
     <FooterDiv>
       <P>Ett projekt av Anna Lenksjö, Elle Frankenberg och Tobias Hagberg. Illustrationer av August Florén.</P>
       <br></br>
-      <Tag href="https://github.com/annalenksjo/final-project">GitHub</Tag>        
+      <Tag href='https://github.com/annalenksjo/final-project'>GitHub</Tag>        
     </FooterDiv>
   )
 }

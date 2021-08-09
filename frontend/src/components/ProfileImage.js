@@ -7,6 +7,6 @@ const BirdhouseImage = styled.img`
 
 export const ProfileImage = () => {
   return (
-    <BirdhouseImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623940616/fagelholk_xtv0tw.png"></BirdhouseImage>
+    <BirdhouseImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1623940616/fagelholk_xtv0tw.png'></BirdhouseImage>
   )
 } 

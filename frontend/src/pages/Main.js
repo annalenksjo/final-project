@@ -120,7 +120,7 @@ export const StartPage = () => {
       </NavContainer>
       <FirstPageInnerMain>  
         <AboutSection>        
-          <StartImage src="https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png"></StartImage>
+          <StartImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1623942849/Blames_illustration_jqnlfn.png'></StartImage>
           <TextContainer> 
             <Header>Fram med kikaren, <br></br> nu kör vi!</Header>
             <FirstpageSubtext>Denna app listar de vanligaste fåglarna i Sverige. <br></br> Här kan du markera vilka fåglar du sett i din trädgård eller omgivning.</FirstpageSubtext>
