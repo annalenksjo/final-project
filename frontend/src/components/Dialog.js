@@ -11,21 +11,18 @@ const TextContent = styled.div`
   font-family: 'Quicksand', sans-serif;
 `
 
-const ButtonContainer = styled.div`
+const TagContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 `
 
-const Button = styled.button`
+const Tag = styled.div`
   border: none;
   background-color: inherit;
   color: #0C4458;
   font-weight: 500px;
   margin: 40px 0 0 10px;
   padding: 5px;
-  &:hover {
-    background-color: #fafafa;
-    cursor:pointer;
   }
 `
 
@@ -71,7 +68,7 @@ const Image2 = styled.img`
   }
 `
 
-export const Dialog = ({ title, subheading, image, image2, button1, button2 }) => {
+export const Dialog = ({ title, subheading, image, image2, tag1, tag2 }) => {
   return (
     <CardWrapperDiv>
       <TextContent>
@@ -84,10 +81,10 @@ export const Dialog = ({ title, subheading, image, image2, button1, button2 }) =
       <ImageContainer>
         {image2 && <Image2 src={image2}></Image2>}
       </ImageContainer>
-      <ButtonContainer>
-        {button1 && <Button>{button1}</Button>}
-        {button2 && <Button>{button2}</Button>}
-      </ButtonContainer>
+      <TagContainer>
+        {<Tag>{tag1}</Tag>}
+        {tag2 && <Tag>{tag2}</Tag>}
+      </TagContainer>
     </CardWrapperDiv>
   )
 }

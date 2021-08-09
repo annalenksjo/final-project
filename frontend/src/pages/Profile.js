@@ -22,10 +22,10 @@ const SearchBirdsForm = styled(Form)`
   padding: 0 20px 0 20px;
   @media (min-width: 768px) {
     flex-direction: row;
-    margin: 40px 0 30px 0;
+    margin: 20px 0;
   }
   @media (min-width: 1024px) {
-    margin: 60px 0 40px 0;
+    margin: 30px 0;
   }
 `
 
@@ -108,19 +108,6 @@ export const Profile = () => {
                 <ProfileImage/>
                 <Header>{userData.username}</Header>                           
               </ProfileInfoDiv>  
-              <StyledDivRow>
-                {showConfirmation? 
-                  <div>
-                    <SubText>Är du säker?</SubText>
-                    <div>
-                      <Button onClick={() => onDeleteAccount()}> Ja, ta bort konto </Button>
-                      <Button onClick={() => setShowConfirmation(false)}> Avbryt </Button>
-                    </div> 
-                  </div>
-                  : 
-                  <Button onClick={() => setShowConfirmation(true)}> Ta bort konto </Button>
-                }
-              </StyledDivRow>
               <SearchBirdsForm>
               <>
                 {!userData.birdsSeen? 
@@ -145,6 +132,19 @@ export const Profile = () => {
                   )}  
                 </ListContainer>
               </Container>          
+              <StyledDivRow>
+                {showConfirmation? 
+                  <div>
+                    <SubText>Är du säker?</SubText>
+                    <div>
+                      <Button onClick={() => onDeleteAccount()}> Ja, ta bort konto </Button>
+                      <Button onClick={() => setShowConfirmation(false)}> Avbryt </Button>
+                    </div> 
+                  </div>
+                  : 
+                  <Button onClick={() => setShowConfirmation(true)}> Ta bort konto </Button>
+                }
+              </StyledDivRow>
             <Footer/>
           </InnerMainLoggedIn>
         </Main>

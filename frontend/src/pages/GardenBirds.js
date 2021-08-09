@@ -70,7 +70,9 @@ const Wrapper = styled(OnClickDiv)`
 export const GardenBirds = () => {
   const [birdList, setBirdList] = useState([])
   const [birdSearch, setBirdSearch] = useState('')
+  const [filterBirds, setFilterBirds] = useState(false)
   const accessToken = useSelector(store => store.user.loggedInUser.accessToken)
+  const loggedInUserBirdsArray = useSelector(store => store.user.loggedInUser.birdsSeen)
   const Loading = useSelector(store => store.user.loading)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -130,9 +132,9 @@ export const GardenBirds = () => {
             <Header>Fågelbiblioteket</Header>
             <AboutSection>
             <BirdLibraryImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1624353003/Bokmes_j72rga.png' alt='Fågel som läser en bok'/>
-              <SubText>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
+              <SubText>
+                Sök i biblioteket efter din fågelspaning, finns den med?
                 Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
-                <br></br><br></br>
                 Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!
               </SubText>
             </AboutSection>
@@ -145,13 +147,28 @@ export const GardenBirds = () => {
                 />
               <StyledButton type='submit'>Sök</StyledButton>
             </UserSearchForm>
+            <UserSearchForm onSubmit={onSearch}>
+              <label>
+                <SubText>Dölj sedda fåglar</SubText>
+                <Input 
+                  type='checkbox'
+                  // onChange={(event) => setBirdSearch(event.target.value)}
+                  // value={birdSearch}
+                  checked={filterBirds}
+                  onClick={() => setFilterBirds(!filterBirds)}
+                  placeholder='Fågelart'
+                />
+              </label>
+            </UserSearchForm>
             {birdList.length === 0 ? 
               <SubText>Hittade inga fåglar!</SubText> 
               : 
               '' 
             }
             <Container>
-            {birdList.map(bird => (
+              {filterBirds?
+              <> 
+            {birdList.filter(bird => !loggedInUserBirdsArray.includes(bird._id)).map(bird => (
               <Wrapper 
                 onClick={() => onGetBirdPage(bird)}             
                 value={bird._id}
@@ -160,9 +177,30 @@ export const GardenBirds = () => {
                 <Dialog
                   title={bird.name}
                   image={bird.image}
+                  tag1={loggedInUserBirdsArray && loggedInUserBirdsArray.includes(bird._id) && '👀 ✔' }
+                  // tag2={loggedInUserBirdsArray && loggedInUserBirdsArray.includes(bird._id) && '👀 ✔' }
                 />
               </Wrapper>
             ))}
+            </>
+              :
+              <>
+              {birdList.map(bird => (
+              <Wrapper 
+                onClick={() => onGetBirdPage(bird)}             
+                value={bird._id}
+                key={bird._id}
+                >
+                <Dialog
+                  title={bird.name}
+                  image={bird.image}
+                  tag1={loggedInUserBirdsArray && loggedInUserBirdsArray.includes(bird._id) && '👀 ✔' }
+                  // tag2={loggedInUserBirdsArray && loggedInUserBirdsArray.includes(bird._id) && '👀 ✔' }
+                />
+              </Wrapper>
+            ))}
+              </>
+          }
             </Container>
             <Footer/>
           </InnerMainLoggedIn>

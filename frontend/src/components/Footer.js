@@ -4,9 +4,8 @@ import styled from 'styled-components/macro'
 import { P } from 'components/Text'
 
 const FooterDiv = styled.div`
-  position: relative;
+  position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
   display: flex;
   flex-direction: column;

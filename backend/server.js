@@ -133,12 +133,15 @@ app.get('/birds/:_id', async (req, res) => {
   }
 })
 
-app.get('/users', authenticateUser)
+// app.get('/users', authenticateUser)
 app.get('/users', async (req, res) => {
   const { useraccount } = req.query
+
   try {
-    let allUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen: -1 }) 
-    let topUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen: -1 }).limit(10)
+    // const { birdsSeenLength } = birdsSeen.lenght
+
+    let allUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen : -1 }) 
+    let topUsers = await User.find({}, {password: 0, accessToken: 0}).sort({ birdsSeen: -1 })
     if (useraccount) {
       allUsers = allUsers.filter((user) => user.username.toLowerCase()
         .includes(useraccount.toLowerCase())
@@ -152,7 +155,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
-app.get('/users/:_id', authenticateUser)
+// app.get('/users/:_id', authenticateUser)
 app.get('/users/:_id', async (req, res) => {
   const { _id } = req.params
   try {    
