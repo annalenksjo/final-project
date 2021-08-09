@@ -9,7 +9,7 @@ import { Loader } from '../components/Loader'
 import { StyledButton } from '../components/Button'
 import { Dialog } from '../components/Dialog'
 import { NavBar } from '../components/NavBar'
-import { Header, HThree } from 'components/Text'
+import { Header, SubText } from 'components/Text'
 import { Footer } from '../components/Footer'
 import { Main, InnerMainLoggedIn, OnClickDiv, ProfileInfoDiv, StyledDivRow } from 'components/MainContainers'
 import { ProfileImage } from 'components/ProfileImage'
@@ -79,10 +79,10 @@ export const UserPage = () => {
             <StyledButton onClick={() => history.push('/topplistan')}>Tillbaka</StyledButton>
           </StyledDivRow>
           {BirdArray.length === 0 ? 
-            <HThree> {browsedUser.username} verkar inte ha några spaningar i sin lista ännu. </HThree>
+            <SubText> {browsedUser.username} verkar inte ha några spaningar i sin lista ännu. </SubText>
             :
             <>
-              <HThree>Sedda fåglar: {browsedUser.birdsSeen.length}/40</HThree>
+              <SubText>Sedda fåglar: {browsedUser.birdsSeen.length}/40</SubText>
               <Container>                           
                 <ListContainer>
                   {browsedUser.birdsSeen && browsedUser.birdsSeen.map(bird =>

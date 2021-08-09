@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components/macro'
 
-import { HTwo } from './Text'
+import { SubTitle } from './Text'
 import { LoaderMain } from './MainContainers'
 
 const Container = styled.div`
@@ -37,9 +37,9 @@ export const Loader = () => {
   return (
     <LoaderMain>
       <Container>
-        <HTwo>
+        <SubTitle>
           Laddar..
-        </HTwo>    
+        </SubTitle>    
         <SpinnLoader>
         </SpinnLoader>
       </Container>

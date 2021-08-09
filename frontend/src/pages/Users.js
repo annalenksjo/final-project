@@ -11,7 +11,7 @@ import { Input } from 'components/Input'
 import { StyledButton } from 'components/Button'
 import { UserSearchForm } from 'components/Form'
 import { Loader } from 'components/Loader'
-import { Header, HThree, } from 'components/Text'
+import { Header, SubText, } from 'components/Text'
 import { Dialog } from '../components/Dialog'
 import { Footer } from '../components/Footer'
 import user from '../reducers/user'
@@ -59,7 +59,7 @@ const HighScoreImage = styled.img`
   }
 `
 
-const SubTitle = styled(HThree)`
+const SubTitle = styled(SubText)`
   @media(min-width: 1024px) {
     max-width: 40%;
     margin-left: 30px;
@@ -144,7 +144,7 @@ export const Users = () => {
               />
               <StyledButton type='submit'>Sök</StyledButton>
             </UserSearchForm>
-            {userList.length === 0 ? <HThree>Hittade inga användare!</HThree> : '' }
+            {userList.length === 0 ? <SubText>Hittade inga användare!</SubText> : '' }
           </>
           <UserMapContainer>
           {userList.map(user => (

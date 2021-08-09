@@ -17,7 +17,7 @@ export const Header = styled.h1`
   }
 `
 
-export const HTwo = styled.h2`
+export const SubTitle = styled.h2`
   color: #0C4458;
   font-family: 'Quicksand', sans-serif;
   font-size: 26px;
@@ -27,7 +27,7 @@ export const HTwo = styled.h2`
   }
 `
 
-export const HThree = styled.h3`
+export const SubText = styled.h3`
   color: #0C4458;
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;

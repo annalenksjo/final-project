@@ -9,7 +9,7 @@ import { NavBar } from '../components/NavBar.js'
 import { Main, InnerMainLoggedIn, OnClickDiv, AboutSection } from '../components/MainContainers'
 import { UserSearchForm } from '../components/Form'
 import { Input } from '../components/Input'
-import { Header, HThree } from '../components/Text'
+import { Header, SubText } from '../components/Text'
 import { Dialog } from '../components/Dialog'
 import { Footer } from '../components/Footer'
 import { Loader } from '../components/Loader'
@@ -130,11 +130,11 @@ export const GardenBirds = () => {
             <Header>Fågelbiblioteket</Header>
             <AboutSection>
             <BirdLibraryImage src='https://res.cloudinary.com/mittbildmoln/image/upload/v1624353003/Bokmes_j72rga.png' alt='Fågel som läser en bok'/>
-              <HThree>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
+              <SubText>Sök i biblioteket efter din fågelspaning, finns den med?<br></br>
                 Tryck på bilden för mer information om fågeln, och lägg till den i din spaningslista. 
                 <br></br><br></br>
                 Kom ihåg, ju fler fåglar du sett ju högre upp kommer du på topplistan!
-              </HThree>
+              </SubText>
             </AboutSection>
             <UserSearchForm onSubmit={onSearch}>
                 <Input 
@@ -146,7 +146,7 @@ export const GardenBirds = () => {
               <StyledButton type='submit'>Sök</StyledButton>
             </UserSearchForm>
             {birdList.length === 0 ? 
-              <HThree>Hittade inga fåglar!</HThree> 
+              <SubText>Hittade inga fåglar!</SubText> 
               : 
               '' 
             }

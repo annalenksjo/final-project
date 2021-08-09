@@ -11,7 +11,7 @@ import { Loader } from 'components/Loader'
 import { Main, InnerMainLoggedIn, OnClickDiv, StyledDivRow, ProfileInfoDiv  } from 'components/MainContainers'
 import { Container, ListContainer } from './GardenBirds'
 import { ProfileImage } from 'components/ProfileImage'
-import { Header, HThree } from 'components/Text'
+import { Header, SubText } from 'components/Text'
 import { Form } from 'components/Form'
 import { Footer } from 'components/Footer'
 
@@ -111,7 +111,7 @@ export const Profile = () => {
               <StyledDivRow>
                 {showConfirmation? 
                   <div>
-                    <HThree>Är du säker?</HThree>
+                    <SubText>Är du säker?</SubText>
                     <div>
                       <Button onClick={() => onDeleteAccount()}> Ja, ta bort konto </Button>
                       <Button onClick={() => setShowConfirmation(false)}> Avbryt </Button>
@@ -124,9 +124,9 @@ export const Profile = () => {
               <SearchBirdsForm>
               <>
                 {!userData.birdsSeen? 
-                  <HThree>Du har inga fågelspaningar ännu!</HThree>
+                  <SubText>Du har inga fågelspaningar ännu!</SubText>
                   : 
-                  <HThree>Mina fågelspaningar:<br></br> {userData.birdsSeen && userData.birdsSeen.length} av 40</HThree>
+                  <SubText>Mina fågelspaningar:<br></br> {userData.birdsSeen && userData.birdsSeen.length} av 40</SubText>
                 }
                 </>
               </SearchBirdsForm>              

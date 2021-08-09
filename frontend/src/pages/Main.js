@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 
 import { Logotype } from '../components/Logotype'
 import { StyledNavLink, LinkContainer } from '../components/NavBar'
-import { Header, HThree } from '../components/Text'
+import { Header, SubText } from '../components/Text'
 import { Main, InnerMain, AboutSection } from '../components/MainContainers'
 
 const FirstPageInnerMain = styled(InnerMain)`
@@ -99,7 +99,7 @@ const TextContainer = styled.div`
   }
 `
 
-const FirstpageSubtext = styled(HThree)`
+const FirstpageSubtext = styled(SubText)`
   margin: 10px 0 5px 0;
   @media (min-width: 768px) {
     align-self: center;

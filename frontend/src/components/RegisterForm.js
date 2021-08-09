@@ -8,7 +8,7 @@ import user from '../reducers/user'
 import { StyledButton } from './Button'
 import { HeighForm } from './Form'
 import { Input } from './Input'
-import { HThree } from './Text'
+import { SubText } from './Text'
 
 
 export const RegisterForm = () => {
@@ -69,8 +69,8 @@ export const RegisterForm = () => {
         value={registerPassword} type='password' required placeholder='Lösenord'/>
         <Input onChange={(event) => setPasswordMatch(event.target.value)}
         value={passwordMatch} type='password' required placeholder='Upprepa lösenord'/>
-      {registerError ? <HThree>{registerError}</HThree> : '' }
-      {error ? <HThree>{error.message}</HThree> : ''}
+      {registerError ? <SubText>{registerError}</SubText> : '' }
+      {error ? <SubText>{error.message}</SubText> : ''}
       <StyledButton type='submit'> Registrera!</StyledButton>
       <StyledButton onClick={() => history.push('/')}>Tillbaka</StyledButton>
     </HeighForm>

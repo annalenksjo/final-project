@@ -8,7 +8,7 @@ import user from 'reducers/user'
 import { Loader } from '../components/Loader'
 import { StyledButton } from '../components/Button'
 import { NavBar } from '../components/NavBar'
-import { Header, HThree } from '../components/Text'
+import { Header, SubText } from '../components/Text'
 import { Footer } from '../components/Footer'
 import { Main, InnerMainLoggedIn, AboutSection } from '../components/MainContainers'
 
@@ -53,7 +53,7 @@ const BirdImg = styled.img`
   }
 `
 
-const AdjustedHThree = styled(HThree)`
+const AdjustedSubText = styled(SubText)`
   padding: 5px;
   @media (min-width: 768px) {
     font-size: 16px;
@@ -141,22 +141,22 @@ export const BirdPage = () => {
               <Header>{birdData.name}</Header>
               <Content>
                 <BirdImg src={birdData.image} alt={birdData.name}/>
-                <AdjustedHThree>{birdData.description}
+                <AdjustedSubText>{birdData.description}
                 <br></br><br></br>           
-                </AdjustedHThree>
+                </AdjustedSubText>
               </Content>
               <AddBirdDiv>
-              {error ? <HThree>{error.message}</HThree> : ''}
+              {error ? <SubText>{error.message}</SubText> : ''}
               {alreadyAdded? 
-                  <AdjustedHThree>
+                  <AdjustedSubText>
                     Du har redan denna fågel i din samling.
-                  </AdjustedHThree>
+                  </AdjustedSubText>
                 : 
                   <>
                     {added? 
-                      <AdjustedHThree> 
+                      <AdjustedSubText> 
                         Tillagd! 
-                      </AdjustedHThree>
+                      </AdjustedSubText>
                       : 
                       <StyledButton onClick={() => onAddBird()}>
                         Lägg till i min samling

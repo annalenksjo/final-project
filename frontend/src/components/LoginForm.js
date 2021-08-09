@@ -8,7 +8,7 @@ import user from '../reducers/user'
 import { Form } from './Form'
 import { Input } from './Input'
 import { StyledButton } from './Button'
-import { HThree } from './Text'
+import { SubText } from './Text'
 
 const Button = styled(StyledButton)`
   @media (min-width: 1024px) {
@@ -75,7 +75,7 @@ export const LoginForm = () => {
         value={username} type='text' required placeholder='Användarnamn'/>
         <InputMargin onChange={(event) => setPassword(event.target.value)}
         value={password} type='password' required placeholder='Lösenord'/>
-      {error ? <HThree>{error.message}</HThree> : ''}
+      {error ? <SubText>{error.message}</SubText> : ''}
         <Button type='submit'>Logga in</Button>
         <Button onClick={() => history.push('/')}>Tillbaka</Button>
     </Form>
